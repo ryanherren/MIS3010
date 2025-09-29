@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+
+{% block title %}Reviews - Jake's Photo Crew{% endblock %}
+
+{% block content %}
+<div class="hero-section bg-gradient-primary text-white py-5">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold mb-3">
+            <i class="fas fa-star me-3"></i>Client Reviews
+        </h1>
+        <p class="lead">See what our clients say about their photography experience with us</p>
+    </div>
+</div>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Reviews Display -->
+            <div class="col-lg-8">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3>Customer Reviews</h3>
+                    <div class="d-flex align-items-center">
+                        <div class="me-3">
+                            <span class="h4 text-warning">
+                                {% set total_reviews = reviews|length %}
+                                {% if total_reviews > 0 %}
+                                    {% set avg_rating = (reviews|sum(attribute='rating') / total_reviews)|round(1) %}
+                                    {% for i in range(5) %}
+                                        {% if i < avg_rating %}
+                                            <i class="fas fa-star"></i>
+                                        {% else %}
+                                            <i class="far fa-star"></i>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                {% endif %}
+                            </span>
+                        </div>
+                        <span class="text-muted">
+                            {% if total_reviews > 0 %}
+                                {{ "%.1f"|format(avg_rating) }} ({{ total_reviews }} reviews)
+                            {% else %}
+                                No reviews yet
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+
+                {% if reviews %}
+                    {% for review in reviews %}
+                    <div class="card shadow-sm border-0 mb-4">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <h5 class="mb-1">{{ review.name }}</h5>
+                                    <div class="text-warning mb-2">
+                                        {% for i in range(review.rating) %}
+                                            <i class="fas fa-star"></i>
+                                        {% endfor %}
+                                        {% for i in range(5 - review.rating) %}
+                                            <i class="far fa-star"></i>
+                                        {% endfor %}
+                                    </div>
+                                    <small class="text-muted">
+                                        <i class="fas fa-camera me-1"></i>{{ review.service|title }} Photography
+                                    </small>
+                                </div>
+                                <small class="text-muted">{{ review.created_at.strftime('%B %d, %Y') }}</small>
+                            </div>
+                            <p class="mb-0">{{ review.comment }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="text-center py-5">
+                        <i class="fas fa-star fs-1 text-muted mb-3"></i>
+                        <h4>No reviews yet</h4>
+                        <p class="text-muted">Be the first to share your experience with Jake's Photo Crew!</p>
+                    </div>
+                {% endif %}
+            </div>
+            
+            <!-- Leave a Review Form -->
+            <div class="col-lg-4">
+                <div class="card shadow-lg border-0 sticky-top" style="top: 2rem;">
+                    <div class="card-header bg-gradient-primary text-white">
+                        <h4 class="mb-0">
+                            <i class="fas fa-edit me-2"></i>Leave a Review
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            {{ form.hidden_tag() }}
+                            
+                            <div class="mb-3">
+                                {{ form.name.label(class="form-label fw-semibold") }}
+                                {{ form.name(class="form-control") }}
+                                {% for error in form.name.errors %}
+                                    <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            
+                            <div class="mb-3">
+                                {{ form.rating.label(class="form-label fw-semibold") }}
+                                {{ form.rating(class="form-select") }}
+                                {% for error in form.rating.errors %}
+                                    <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            
+                            <div class="mb-3">
+                                {{ form.service.label(class="form-label fw-semibold") }}
+                                {{ form.service(class="form-select") }}
+                                {% for error in form.service.errors %}
+                                    <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            
+                            <div class="mb-4">
+                                {{ form.comment.label(class="form-label fw-semibold") }}
+                                {{ form.comment(class="form-control", rows="4", placeholder="Share your experience with Jake's Photo Crew...") }}
+                                {% for error in form.comment.errors %}
+                                    <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            
+                            <div class="d-grid">
+                                {{ form.submit(class="btn btn-primary") }}
+                            </div>
+                            
+                            <p class="text-muted small mt-2 text-center">
+                                <i class="fas fa-info-circle me-1"></i>
+                                Reviews are published after approval
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="text-center mb-5">
+                    <h3 class="display-6 fw-bold">Why Our Clients Love Working With Us</h3>
+                </div>
+                
+                <div class="row">
+                    <div class="col-lg-4 mb-4">
+                        <div class="card border-0 h-100">
+                            <div class="card-body text-center">
+                                <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                    <i class="fas fa-heart fs-4"></i>
+                                </div>
+                                <h5>Personal Attention</h5>
+                                <p class="text-muted">Every client receives personalized service and attention to detail that makes their experience special.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 mb-4">
+                        <div class="card border-0 h-100">
+                            <div class="card-body text-center">
+                                <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                    <i class="fas fa-award fs-4"></i>
+                                </div>
+                                <h5>Professional Quality</h5>
+                                <p class="text-muted">High-end equipment and professional editing ensure every photo meets our quality standards.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 mb-4">
+                        <div class="card border-0 h-100">
+                            <div class="card-body text-center">
+                                <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                    <i class="fas fa-clock fs-4"></i>
+                                </div>
+                                <h5>Reliable Service</h5>
+                                <p class="text-muted">On-time delivery, clear communication, and dependable service you can count on for your important moments.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h3 class="display-6 fw-bold mb-4">Ready to Create Your Own Success Story?</h3>
+                <p class="lead mb-4">Join our satisfied clients and let us capture your special moments with the same care and creativity.</p>
+                <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-calendar-plus me-2"></i>Book Your Session
+                    </a>
+                    <a href="{{ url_for('gallery') }}" class="btn btn-outline-primary btn-lg">
+                        <i class="fas fa-images me-2"></i>View Our Work
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

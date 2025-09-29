@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - Jake's Photo Crew{% endblock %}
+
+{% block content %}
+<div class="hero-section bg-gradient-primary text-white py-5">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold mb-3">
+            <i class="fas fa-envelope me-3"></i>Contact Us
+        </h1>
+        <p class="lead">Let's discuss your photography needs and create something amazing together</p>
+    </div>
+</div>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Contact Form -->
+            <div class="col-lg-8">
+                <div class="card shadow-lg border-0">
+                    <div class="card-header bg-gradient-primary text-white">
+                        <h3 class="mb-0">
+                            <i class="fas fa-paper-plane me-2"></i>Send Us a Message
+                        </h3>
+                    </div>
+                    <div class="card-body p-4">
+                        <form method="POST">
+                            {{ form.hidden_tag() }}
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {{ form.name.label(class="form-label fw-semibold") }}
+                                    {{ form.name(class="form-control form-control-lg") }}
+                                    {% for error in form.name.errors %}
+                                        <div class="text-danger small">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.email.label(class="form-label fw-semibold") }}
+                                    {{ form.email(class="form-control form-control-lg") }}
+                                    {% for error in form.email.errors %}
+                                        <div class="text-danger small">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {{ form.phone.label(class="form-label fw-semibold") }}
+                                    {{ form.phone(class="form-control form-control-lg", placeholder="Optional") }}
+                                    {% for error in form.phone.errors %}
+                                        <div class="text-danger small">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.service.label(class="form-label fw-semibold") }}
+                                    {{ form.service(class="form-select form-select-lg") }}
+                                    {% for error in form.service.errors %}
+                                        <div class="text-danger small">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                {{ form.event_date.label(class="form-label fw-semibold") }}
+                                {{ form.event_date(class="form-control form-control-lg", placeholder="e.g., June 15, 2025 or 'Flexible'") }}
+                                {% for error in form.event_date.errors %}
+                                    <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            
+                            <div class="mb-4">
+                                {{ form.message.label(class="form-label fw-semibold") }}
+                                {{ form.message(class="form-control", rows="5", placeholder="Tell us about your vision, location preferences, number of people, and any special requests...") }}
+                                {% for error in form.message.errors %}
+                                    <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            
+                            <div class="d-grid">
+                                {{ form.submit(class="btn btn-primary btn-lg") }}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Information -->
+            <div class="col-lg-4">
+                <div class="card shadow border-0 mb-4">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-phone text-primary fs-1 mb-3"></i>
+                        <h5>Call Us</h5>
+                        <p class="h6 text-primary">(555) 123-PHOTO</p>
+                        <p class="text-muted small">Mon-Fri: 9AM-6PM<br>Weekends: By appointment</p>
+                    </div>
+                </div>
+                
+                <div class="card shadow border-0 mb-4">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-envelope text-primary fs-1 mb-3"></i>
+                        <h5>Email Us</h5>
+                        <p class="h6 text-primary">info@jakesphoto.com</p>
+                        <p class="text-muted small">We respond within 24 hours</p>
+                    </div>
+                </div>
+                
+                <div class="card shadow border-0 mb-4">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-map-marker-alt text-primary fs-1 mb-3"></i>
+                        <h5>Visit Our Studio</h5>
+                        <p class="text-muted">123 Photography Lane<br>Downtown District<br>City, State 12345</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Get Directions</a>
+                    </div>
+                </div>
+                
+                <div class="card shadow border-0">
+                    <div class="card-body text-center p-4">
+                        <h5 class="mb-3">Follow Us</h5>
+                        <div class="d-flex justify-content-center gap-3">
+                            <a href="#" class="btn btn-outline-primary btn-sm">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="btn btn-outline-primary btn-sm">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="btn btn-outline-primary btn-sm">
+                                <i class="fab fa-pinterest"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h3 class="display-6 fw-bold mb-4">Frequently Asked Questions</h3>
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq1">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                                How far in advance should I book?
+                            </button>
+                        </h2>
+                        <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                For weddings, we recommend booking 6-12 months in advance. For other sessions, 2-4 weeks notice is usually sufficient, though we can often accommodate shorter notice for urgent needs.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                                What happens if it rains on my outdoor session day?
+                            </button>
+                        </h2>
+                        <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                We monitor weather closely and will work with you to reschedule if needed. We also have backup indoor locations and can create beautiful photos with light rain or overcast skies.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                                How long until I receive my photos?
+                            </button>
+                        </h2>
+                        <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Portrait and family sessions: 1-2 weeks. Wedding photography: 4-6 weeks. We provide sneak peeks within 48 hours for weddings and special events.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq4">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4">
+                                Can I bring props or have specific requests?
+                            </button>
+                        </h2>
+                        <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Absolutely! We encourage you to bring meaningful props and share your vision with us. We'll work together to create photos that reflect your personality and style.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq5">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5">
+                                Do you travel for destination shoots?
+                            </button>
+                        </h2>
+                        <div id="collapse5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes! We love destination photography. Travel fees apply for locations outside our local area, but we're excited to capture your special moments anywhere they happen.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h3 class="display-6 fw-bold mb-4">Ready to Get Started?</h3>
+        <p class="lead mb-4">We can't wait to hear about your photography vision and help bring it to life!</p>
+        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+            <a href="tel:555-123-7486" class="btn btn-light btn-lg">
+                <i class="fas fa-phone me-2"></i>Call Now
+            </a>
+            <a href="mailto:info@jakesphoto.com" class="btn btn-outline-light btn-lg">
+                <i class="fas fa-envelope me-2"></i>Email Us
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

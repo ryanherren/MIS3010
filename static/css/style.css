@@ -1,17 +1,17 @@
-/* Custom CSS Variables for Theming */
+/* Custom CSS Variables for Theming - Professional Blue & Green */
 :root {
-    --primary-color: #0d6efd;
-    --secondary-color: #6c757d;
-    --success-color: #198754;
-    --info-color: #0dcaf0;
-    --warning-color: #ffc107;
-    --danger-color: #dc3545;
-    --light-color: #f8f9fa;
-    --dark-color: #212529;
+    --primary-color: #1e40af; /* Navy Blue */
+    --secondary-color: #059669; /* Emerald Green */
+    --success-color: #10b981; /* Green */
+    --info-color: #0891b2; /* Teal */
+    --warning-color: #f59e0b;
+    --danger-color: #dc2626;
+    --light-color: #f8fafc;
+    --dark-color: #1e293b;
     
-    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --gradient-success: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-    --gradient-info: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-primary: linear-gradient(135deg, #1e40af 0%, #0891b2 100%); /* Navy to Teal */
+    --gradient-success: linear-gradient(135deg, #059669 0%, #10b981 100%); /* Emerald to Green */
+    --gradient-info: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); /* Teal to Cyan */
     
     --border-radius: 0.375rem;
     --box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
@@ -33,15 +33,26 @@ body {
 .navbar-brand {
     font-weight: 700;
     font-size: 1.5rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-nav .nav-link {
     font-weight: 500;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    border-radius: 0.25rem;
+    margin: 0 0.25rem;
+    padding: 0.5rem 0.75rem !important;
 }
 
 .navbar-nav .nav-link:hover {
-    color: rgba(255, 255, 255, 0.8) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+.navbar-nav .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white !important;
 }
 
 /* Hero Section */
@@ -206,7 +217,7 @@ body {
 }
 
 .table-hover tbody tr:hover {
-    background-color: rgba(0, 123, 255, 0.05);
+    background-color: rgba(30, 64, 175, 0.05);
 }
 
 /* API Results */
@@ -230,7 +241,7 @@ body {
 
 .form-control:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+    box-shadow: 0 0 0 0.2rem rgba(30, 64, 175, 0.25);
 }
 
 /* Button Enhancements */
@@ -250,8 +261,18 @@ body {
 }
 
 .btn-primary:hover {
-    background: #0b5ed7;
-    border-color: #0a58ca;
+    background: #1d4ed8;
+    border-color: #1e3a8a;
+}
+
+.btn-secondary {
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.btn-secondary:hover {
+    background: #047857;
+    border-color: #065f46;
 }
 
 /* Responsive Design */
@@ -395,4 +416,142 @@ body {
 .border-gradient {
     border: 2px solid;
     border-image: var(--gradient-primary) 1;
+}
+
+/* Photography-specific styles */
+.gallery-image {
+    transition: transform 0.3s ease;
+}
+
+.gallery-item {
+    transition: all 0.3s ease;
+}
+
+.gallery-item:hover .gallery-image {
+    transform: scale(1.05);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay-content {
+    text-align: center;
+    padding: 1rem;
+}
+
+.price-box {
+    border: 2px solid var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.price-box:hover {
+    background: var(--primary-color) !important;
+    color: white !important;
+}
+
+.price-box:hover .text-primary {
+    color: white !important;
+}
+
+/* Service cards hover effects */
+.services .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Contact form enhancements */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(30, 64, 175, 0.25);
+}
+
+/* Review stars */
+.text-warning .fas.fa-star,
+.text-warning .far.fa-star {
+    color: #ffc107 !important;
+}
+
+/* Photography hero sections */
+.hero-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23ffffff"></path></svg>') no-repeat bottom;
+    background-size: cover;
+    pointer-events: none;
+}
+
+/* Accordion customization */
+.accordion-button:not(.collapsed) {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.accordion-button:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(30, 64, 175, 0.25);
+}
+
+/* Sticky elements */
+.sticky-top {
+    z-index: 1020;
+}
+
+/* Mobile gallery improvements */
+@media (max-width: 768px) {
+    .gallery-overlay {
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.5);
+    }
+    
+    .gallery-overlay-content h5 {
+        font-size: 1rem;
+    }
+    
+    .gallery-overlay-content p {
+        font-size: 0.875rem;
+    }
+    
+    .price-box {
+        margin-top: 2rem;
+    }
+}
+
+/* Print styles for professional look */
+@media print {
+    .navbar,
+    .footer,
+    .btn,
+    .gallery-overlay {
+        display: none !important;
+    }
+    
+    .card {
+        border: 1px solid #ddd !important;
+        box-shadow: none !important;
+    }
 }

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Admin Panel - MIS 3010{% endblock %}
+{% block title %}Admin Panel - Jake's Photo Crew{% endblock %}
 
 {% block content %}
 <div class="container py-5">
@@ -15,7 +15,7 @@
             
             <!-- Statistics Cards -->
             <div class="row mb-4">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="card bg-primary text-white">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
@@ -31,8 +31,40 @@
                     </div>
                 </div>
                 
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="card bg-success text-white">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <h5 class="card-title">Contact Inquiries</h5>
+                                    <h2 class="mb-0">{{ contacts|length }}</h2>
+                                </div>
+                                <div class="ms-3">
+                                    <i class="fas fa-envelope fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="card bg-warning text-dark">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <h5 class="card-title">Pending Reviews</h5>
+                                    <h2 class="mb-0">{{ pending_reviews|length }}</h2>
+                                </div>
+                                <div class="ms-3">
+                                    <i class="fas fa-star fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="card bg-info text-white">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div class="flex-grow-1">
@@ -46,23 +78,104 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="col-md-4">
-                    <div class="card bg-info text-white">
+            </div>
+            
+            <!-- Pending Reviews Section -->
+            {% if pending_reviews %}
+            <div class="card shadow mb-4">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-star me-2"></i>Pending Reviews
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% for review in pending_reviews %}
+                    <div class="card mb-3">
                         <div class="card-body">
-                            <div class="d-flex align-items-center">
+                            <div class="d-flex justify-content-between align-items-start">
                                 <div class="flex-grow-1">
-                                    <h5 class="card-title">Regular Users</h5>
-                                    <h2 class="mb-0">{{ users|selectattr("role", "equalto", "user")|list|length }}</h2>
+                                    <h6>{{ review.name }}</h6>
+                                    <div class="text-warning mb-2">
+                                        {% for i in range(review.rating) %}
+                                            <i class="fas fa-star"></i>
+                                        {% endfor %}
+                                        {% for i in range(5 - review.rating) %}
+                                            <i class="far fa-star"></i>
+                                        {% endfor %}
+                                    </div>
+                                    <p class="mb-2">{{ review.comment }}</p>
+                                    <small class="text-muted">
+                                        <i class="fas fa-camera me-1"></i>{{ review.service|title }} Photography • 
+                                        {{ review.created_at.strftime('%B %d, %Y at %I:%M %p') }}
+                                    </small>
                                 </div>
                                 <div class="ms-3">
-                                    <i class="fas fa-user fa-2x"></i>
+                                    <a href="{{ url_for('approve_review', review_id=review.id) }}" 
+                                       class="btn btn-success btn-sm">
+                                        <i class="fas fa-check me-1"></i>Approve
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
+            {% endif %}
+            
+            <!-- Contact Inquiries -->
+            {% if contacts %}
+            <div class="card shadow mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-envelope me-2"></i>Recent Contact Inquiries
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Service</th>
+                                    <th>Date Requested</th>
+                                    <th>Submitted</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for contact in contacts[:10] %}
+                                <tr>
+                                    <td>{{ contact.name }}</td>
+                                    <td>
+                                        <a href="mailto:{{ contact.email }}" class="text-decoration-none">
+                                            {{ contact.email }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-secondary">{{ contact.service|title }}</span>
+                                    </td>
+                                    <td>{{ contact.event_date or 'Flexible' }}</td>
+                                    <td>
+                                        <small class="text-muted">
+                                            {{ contact.created_at.strftime('%m/%d/%Y') }}
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-primary btn-sm" 
+                                                onclick="viewContact({{ contact.id }})" title="View Details">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
             
             <!-- Users Table -->
             <div class="card shadow">
@@ -135,30 +248,20 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- API Testing Section -->
-            <div class="card shadow mt-4">
-                <div class="card-header bg-white">
-                    <h5 class="card-title mb-0">
-                        <i class="fas fa-code me-2"></i>API Testing
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">Test the RESTful API endpoints:</p>
-                    <div class="d-flex gap-2 flex-wrap">
-                        <button class="btn btn-outline-primary" onclick="testTimeAPI()">
-                            <i class="fas fa-clock me-1"></i>Test Time API
-                        </button>
-                        <button class="btn btn-outline-success" onclick="testUsersAPI()">
-                            <i class="fas fa-users me-1"></i>Test Users API
-                        </button>
-                    </div>
-                    
-                    <div id="api-results" class="mt-3" style="display: none;">
-                        <h6>API Response:</h6>
-                        <pre class="bg-light p-3 rounded"><code id="api-output"></code></pre>
-                    </div>
-                </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Details Modal -->
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contactModalLabel">Contact Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="contactModalBody">
+                <!-- Contact details will be loaded here -->
             </div>
         </div>
     </div>
@@ -177,30 +280,32 @@
         alert('Edit user with ID: ' + userId);
     }
     
-    function testTimeAPI() {
-        fetch('/api/time')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('api-output').textContent = JSON.stringify(data, null, 2);
-                document.getElementById('api-results').style.display = 'block';
-            })
-            .catch(error => {
-                document.getElementById('api-output').textContent = 'Error: ' + error;
-                document.getElementById('api-results').style.display = 'block';
-            });
-    }
-    
-    function testUsersAPI() {
-        fetch('/api/users')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('api-output').textContent = JSON.stringify(data, null, 2);
-                document.getElementById('api-results').style.display = 'block';
-            })
-            .catch(error => {
-                document.getElementById('api-output').textContent = 'Error: ' + error;
-                document.getElementById('api-results').style.display = 'block';
-            });
+    function viewContact(contactId) {
+        // In a real application, this would fetch contact details and show in modal
+        const contacts = {{ contacts|tojson }};
+        const contact = contacts.find(c => c.id === contactId);
+        
+        if (contact) {
+            const modalBody = document.getElementById('contactModalBody');
+            modalBody.innerHTML = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong>Name:</strong> ${contact.name}<br>
+                        <strong>Email:</strong> <a href="mailto:${contact.email}">${contact.email}</a><br>
+                        <strong>Phone:</strong> ${contact.phone || 'Not provided'}<br>
+                        <strong>Service:</strong> ${contact.service}<br>
+                        <strong>Event Date:</strong> ${contact.event_date || 'Flexible'}
+                    </div>
+                    <div class="col-md-6">
+                        <strong>Message:</strong><br>
+                        <div class="border p-2 bg-light rounded">${contact.message}</div>
+                    </div>
+                </div>
+            `;
+            
+            const modal = new bootstrap.Modal(document.getElementById('contactModal'));
+            modal.show();
+        }
     }
 </script>
 {% endblock %}

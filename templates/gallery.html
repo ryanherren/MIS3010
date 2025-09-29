@@ -1,0 +1,295 @@
+{% extends "base.html" %}
+
+{% block title %}Gallery - Jake's Photo Crew{% endblock %}
+
+{% block content %}
+<div class="hero-section bg-gradient-primary text-white py-5">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold mb-3">
+            <i class="fas fa-images me-3"></i>Our Gallery
+        </h1>
+        <p class="lead">Explore our portfolio of captured memories and creative moments</p>
+    </div>
+</div>
+
+<section class="py-5">
+    <div class="container">
+        <!-- Gallery Filter Buttons -->
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <div class="btn-group" role="group" aria-label="Gallery filters">
+                    <button type="button" class="btn btn-outline-primary active" data-filter="all">All Photos</button>
+                    <button type="button" class="btn btn-outline-primary" data-filter="wedding">Weddings</button>
+                    <button type="button" class="btn btn-outline-primary" data-filter="portrait">Portraits</button>
+                    <button type="button" class="btn btn-outline-primary" data-filter="event">Events</button>
+                    <button type="button" class="btn btn-outline-primary" data-filter="family">Family</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Photo Gallery Grid -->
+        <div class="row g-4" id="gallery-grid">
+            <!-- Wedding Photos -->
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="wedding">
+                <div class="card border-0 shadow-sm">
+                    <div class="position-relative overflow-hidden">
+                        <img src="{{ url_for('static', filename='images/placeholder-logo.svg') }}" 
+                             class="card-img-top gallery-image" 
+                             alt="Wedding Photography Sample"
+                             style="height: 300px; object-fit: cover;">
+                        <div class="gallery-overlay">
+                            <div class="gallery-overlay-content">
+                                <h5 class="text-white">Sarah & Mike's Wedding</h5>
+                                <p class="text-white-50">Garden Wedding Ceremony</p>
+                                <button class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#photoModal">
+                                    <i class="fas fa-expand-alt me-1"></i>View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="wedding">
+                <div class="card border-0 shadow-sm">
+                    <div class="position-relative overflow-hidden">
+                        <img src="{{ url_for('static', filename='images/placeholder-logo.svg') }}" 
+                             class="card-img-top gallery-image" 
+                             alt="Wedding Photography Sample"
+                             style="height: 300px; object-fit: cover;">
+                        <div class="gallery-overlay">
+                            <div class="gallery-overlay-content">
+                                <h5 class="text-white">Reception Moments</h5>
+                                <p class="text-white-50">Dancing & Celebration</p>
+                                <button class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#photoModal">
+                                    <i class="fas fa-expand-alt me-1"></i>View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portrait Photos -->
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="portrait">
+                <div class="card border-0 shadow-sm">
+                    <div class="position-relative overflow-hidden">
+                        <img src="{{ url_for('static', filename='images/placeholder-profile.svg') }}" 
+                             class="card-img-top gallery-image" 
+                             alt="Portrait Photography Sample"
+                             style="height: 300px; object-fit: cover;">
+                        <div class="gallery-overlay">
+                            <div class="gallery-overlay-content">
+                                <h5 class="text-white">Professional Headshots</h5>
+                                <p class="text-white-50">Corporate Portrait Session</p>
+                                <button class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#photoModal">
+                                    <i class="fas fa-expand-alt me-1"></i>View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="portrait">
+                <div class="card border-0 shadow-sm">
+                    <div class="position-relative overflow-hidden">
+                        <img src="{{ url_for('static', filename='images/placeholder-profile.svg') }}" 
+                             class="card-img-top gallery-image" 
+                             alt="Portrait Photography Sample"
+                             style="height: 300px; object-fit: cover;">
+                        <div class="gallery-overlay">
+                            <div class="gallery-overlay-content">
+                                <h5 class="text-white">Creative Portraits</h5>
+                                <p class="text-white-50">Artistic Portrait Session</p>
+                                <button class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#photoModal">
+                                    <i class="fas fa-expand-alt me-1"></i>View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Photos -->
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="event">
+                <div class="card border-0 shadow-sm">
+                    <div class="position-relative overflow-hidden">
+                        <img src="{{ url_for('static', filename='images/DJI_20250927204212_0193_D_RHM3P.jpg') }}" 
+                             class="card-img-top gallery-image" 
+                             alt="Event Photography Sample"
+                             style="height: 300px; object-fit: cover;">
+                        <div class="gallery-overlay">
+                            <div class="gallery-overlay-content">
+                                <h5 class="text-white">Corporate Event</h5>
+                                <p class="text-white-50">Annual Company Gala</p>
+                                <button class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#photoModal">
+                                    <i class="fas fa-expand-alt me-1"></i>View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="event">
+                <div class="card border-0 shadow-sm">
+                    <div class="position-relative overflow-hidden">
+                        <img src="{{ url_for('static', filename='images/IMG_7369.JPG') }}" 
+                             class="card-img-top gallery-image" 
+                             alt="Event Photography Sample"
+                             style="height: 300px; object-fit: cover;">
+                        <div class="gallery-overlay">
+                            <div class="gallery-overlay-content">
+                                <h5 class="text-white">Birthday Celebration</h5>
+                                <p class="text-white-50">Special Milestone Party</p>
+                                <button class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#photoModal">
+                                    <i class="fas fa-expand-alt me-1"></i>View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Family Photos -->
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="family">
+                <div class="card border-0 shadow-sm">
+                    <div class="position-relative overflow-hidden">
+                        <img src="{{ url_for('static', filename='images/placeholder-logo.svg') }}" 
+                             class="card-img-top gallery-image" 
+                             alt="Family Photography Sample"
+                             style="height: 300px; object-fit: cover;">
+                        <div class="gallery-overlay">
+                            <div class="gallery-overlay-content">
+                                <h5 class="text-white">Family Portrait</h5>
+                                <p class="text-white-50">Outdoor Family Session</p>
+                                <button class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#photoModal">
+                                    <i class="fas fa-expand-alt me-1"></i>View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="family">
+                <div class="card border-0 shadow-sm">
+                    <div class="position-relative overflow-hidden">
+                        <img src="{{ url_for('static', filename='images/placeholder-logo.svg') }}" 
+                             class="card-img-top gallery-image" 
+                             alt="Family Photography Sample"
+                             style="height: 300px; object-fit: cover;">
+                        <div class="gallery-overlay">
+                            <div class="gallery-overlay-content">
+                                <h5 class="text-white">Newborn Photos</h5>
+                                <p class="text-white-50">Baby's First Photos</p>
+                                <button class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#photoModal">
+                                    <i class="fas fa-expand-alt me-1"></i>View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="portrait">
+                <div class="card border-0 shadow-sm">
+                    <div class="position-relative overflow-hidden">
+                        <img src="{{ url_for('static', filename='images/placeholder-profile.svg') }}" 
+                             class="card-img-top gallery-image" 
+                             alt="Senior Portrait Sample"
+                             style="height: 300px; object-fit: cover;">
+                        <div class="gallery-overlay">
+                            <div class="gallery-overlay-content">
+                                <h5 class="text-white">Senior Portraits</h5>
+                                <p class="text-white-50">Graduation Photo Session</p>
+                                <button class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#photoModal">
+                                    <i class="fas fa-expand-alt me-1"></i>View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light py-5">
+    <div class="container text-center">
+        <h3 class="display-6 fw-bold mb-4">Ready to Create Your Own Gallery?</h3>
+        <p class="lead mb-4">Let's capture your special moments with the same attention to detail and creativity.</p>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">
+            <i class="fas fa-calendar-plus me-2"></i>Book Your Session
+        </a>
+    </div>
+</section>
+
+<!-- Photo Modal -->
+<div class="modal fade" id="photoModal" tabindex="-1" aria-labelledby="photoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="photoModalLabel">Photo Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="{{ url_for('static', filename='images/placeholder-logo.svg') }}" 
+                     class="img-fluid rounded" 
+                     alt="Full size photo"
+                     id="modalImage">
+                <div class="mt-3">
+                    <h6 id="modalTitle">Photo Title</h6>
+                    <p class="text-muted" id="modalDescription">Photo description</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Gallery filtering functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterButtons = document.querySelectorAll('[data-filter]');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter');
+                
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter gallery items
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                        item.style.animation = 'fadeIn 0.5s ease-in';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Modal functionality (basic implementation)
+        const modalButtons = document.querySelectorAll('[data-bs-toggle="modal"]');
+        modalButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const card = this.closest('.gallery-item');
+                const img = card.querySelector('.gallery-image');
+                const title = card.querySelector('.gallery-overlay-content h5').textContent;
+                const description = card.querySelector('.gallery-overlay-content p').textContent;
+                
+                document.getElementById('modalImage').src = img.src;
+                document.getElementById('modalTitle').textContent = title;
+                document.getElementById('modalDescription').textContent = description;
+            });
+        });
+    });
+</script>
+{% endblock %}
