@@ -1,88 +1,75 @@
 {% extends "base.html" %}
 
-{% block title %}Home - MIS 3010{% endblock %}
+{% block title %}Home - Lamaria's Photo Gallery{% endblock %}
 
 {% block content %}
-<div class="hero-section bg-gradient-primary text-white py-5">
+<div class="hero-section bg-pink-cream-gradient py-5">
     <div class="container text-center">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <h1 class="display-4 fw-bold mb-4">
-                    <i class="fas fa-graduation-cap me-3"></i>
-                    Welcome to MIS 3010
+                <h1 class="display-4 fw-bold mb-4" style="color: var(--text-dark);">
+                    <i class="fas fa-camera me-3" style="color: var(--primary-color);"></i>
+                    Welcome to Lamaria's Photo Gallery
                 </h1>
                 
-                <div class="datetime-display bg-white bg-opacity-10 rounded-4 p-4 mb-4">
-                    <div class="row">
-                        <div class="col-md-6 mb-3 mb-md-0">
-                            <h5 class="mb-2">
-                                <i class="fas fa-calendar-alt me-2"></i>Current Date
-                            </h5>
-                            <p class="h4 mb-0" id="current-date">Loading...</p>
-                        </div>
-                        <div class="col-md-6">
-                            <h5 class="mb-2">
-                                <i class="fas fa-clock me-2"></i>Current Time
-                            </h5>
-                            <p class="h2 mb-0 font-monospace" id="current-time">00:00:00</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <p class="lead mb-4">
-                    Management Information Systems - Real World Applications of Artificial Intelligence
+                <p class="lead mb-4" style="color: var(--text-dark);">
+                    Capturing life's most precious moments with artistry and passion. Professional photography services for weddings, portraits, events, and more.
                 </p>
                 
                 <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-                    <a href="{{ url_for('about') }}" class="btn btn-light btn-lg">
-                        <i class="fas fa-user me-2"></i>Learn About Me
+                    <a href="{{ url_for('gallery') }}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-images me-2"></i>View Gallery
                     </a>
-                    {% if not current_user.is_authenticated %}
-                        <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg">
-                            <i class="fas fa-sign-in-alt me-2"></i>Login
-                        </a>
-                    {% endif %}
+                    <a href="{{ url_for('contact') }}" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-phone me-2"></i>Book Session
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Featured Services Section -->
 <section class="py-5">
     <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold mb-3" style="color: var(--text-dark);">Photography Services</h2>
+            <p class="lead" style="color: var(--text-dark);">Specializing in capturing your most important moments</p>
+        </div>
+        
         <div class="row">
             <div class="col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
+                <div class="card h-100 shadow-sm" style="background-color: white; border: 2px solid var(--soft-pink);">
                     <div class="card-body text-center">
-                        <div class="feature-icon bg-primary bg-gradient text-white rounded-circle mb-3">
-                            <i class="fas fa-code"></i>
+                        <div class="feature-icon bg-pink text-white rounded-circle mb-3">
+                            <i class="fas fa-heart"></i>
                         </div>
-                        <h5 class="card-title">Modern Technologies</h5>
-                        <p class="card-text">Built with Flask, Bootstrap 5, and modern web standards for a responsive experience.</p>
+                        <h5 class="card-title" style="color: var(--text-dark);">Wedding Photography</h5>
+                        <p class="card-text" style="color: var(--text-dark);">Beautiful, timeless wedding photography to capture your special day with elegance and emotion.</p>
                     </div>
                 </div>
             </div>
             
             <div class="col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
+                <div class="card h-100 shadow-sm" style="background-color: white; border: 2px solid var(--soft-pink);">
                     <div class="card-body text-center">
-                        <div class="feature-icon bg-success bg-gradient text-white rounded-circle mb-3">
-                            <i class="fas fa-database"></i>
+                        <div class="feature-icon bg-soft-pink text-dark rounded-circle mb-3">
+                            <i class="fas fa-user-friends"></i>
                         </div>
-                        <h5 class="card-title">Database Integration</h5>
-                        <p class="card-text">SQLAlchemy ORM with support for both SQLite development and PostgreSQL production.</p>
+                        <h5 class="card-title" style="color: var(--text-dark);">Portrait Sessions</h5>
+                        <p class="card-text" style="color: var(--text-dark);">Professional portrait photography for individuals, families, and couples in stunning natural settings.</p>
                     </div>
                 </div>
             </div>
             
             <div class="col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
+                <div class="card h-100 shadow-sm" style="background-color: white; border: 2px solid var(--soft-pink);">
                     <div class="card-body text-center">
-                        <div class="feature-icon bg-info bg-gradient text-white rounded-circle mb-3">
-                            <i class="fas fa-mobile-alt"></i>
+                        <div class="feature-icon bg-pink text-white rounded-circle mb-3">
+                            <i class="fas fa-calendar-alt"></i>
                         </div>
-                        <h5 class="card-title">Mobile Responsive</h5>
-                        <p class="card-text">Mobile-first design approach ensuring great user experience across all devices.</p>
+                        <h5 class="card-title" style="color: var(--text-dark);">Event Photography</h5>
+                        <p class="card-text" style="color: var(--text-dark);">Comprehensive event coverage for corporate events, parties, and special celebrations.</p>
                     </div>
                 </div>
             </div>
@@ -90,53 +77,83 @@
     </div>
 </section>
 
-{% if current_user.is_authenticated %}
-<section class="bg-light py-5">
+<!-- About Preview Section -->
+<section class="bg-soft-pink py-5">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
-                <h3 class="mb-4">Welcome back, {{ current_user.username }}!</h3>
-                <p class="lead">You are logged in as a {{ current_user.role }} user.</p>
-                
-                {% if current_user.is_admin() %}
-                    <a href="{{ url_for('admin') }}" class="btn btn-primary">
-                        <i class="fas fa-cog me-2"></i>Access Admin Panel
-                    </a>
-                {% endif %}
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <img src="{{ url_for('static', filename='images/placeholder-profile.svg') }}" 
+                     alt="Lamaria - Photographer" 
+                     class="img-fluid rounded-circle shadow" 
+                     style="max-width: 300px; border: 5px solid white;">
+            </div>
+            <div class="col-lg-6">
+                <h3 class="display-6 fw-bold mb-3" style="color: var(--text-dark);">Meet Lamaria</h3>
+                <p class="lead mb-4" style="color: var(--text-dark);">
+                    With over 5 years of experience in professional photography, I specialize in creating 
+                    beautiful, authentic images that tell your unique story.
+                </p>
+                <p style="color: var(--text-dark);">
+                    My passion lies in capturing genuine emotions and creating timeless memories that 
+                    you'll treasure forever. From intimate portraits to grand celebrations, I bring 
+                    creativity, professionalism, and a keen eye for detail to every shoot.
+                </p>
+                <a href="{{ url_for('about') }}" class="btn btn-primary">
+                    <i class="fas fa-user me-2"></i>Learn More About Me
+                </a>
             </div>
         </div>
     </div>
 </section>
-{% endif %}
-{% endblock %}
 
-{% block scripts %}
-<script>
-    // Update time continuously
-    function updateDateTime() {
-        const now = new Date();
+<!-- Recent Work Preview -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold mb-3" style="color: var(--text-dark);">Recent Work</h2>
+            <p class="lead" style="color: var(--text-dark);">A glimpse into some of my favorite recent captures</p>
+        </div>
         
-        // Update date
-        const dateOptions = { 
-            weekday: 'long', 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-        };
-        document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', dateOptions);
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm" style="border: none;">
+                    <img src="{{ url_for('static', filename='images/placeholder-logo.svg') }}" 
+                         class="card-img-top" alt="Sample Photo 1" style="height: 250px; object-fit: cover;">
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm" style="border: none;">
+                    <img src="{{ url_for('static', filename='images/placeholder-logo.svg') }}" 
+                         class="card-img-top" alt="Sample Photo 2" style="height: 250px; object-fit: cover;">
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm" style="border: none;">
+                    <img src="{{ url_for('static', filename='images/placeholder-logo.svg') }}" 
+                         class="card-img-top" alt="Sample Photo 3" style="height: 250px; object-fit: cover;">
+                </div>
+            </div>
+        </div>
         
-        // Update time
-        const timeOptions = {
-            hour12: false,
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit'
-        };
-        document.getElementById('current-time').textContent = now.toLocaleTimeString('en-US', timeOptions);
-    }
-    
-    // Update immediately and then every second
-    updateDateTime();
-    setInterval(updateDateTime, 1000);
-</script>
+        <div class="text-center">
+            <a href="{{ url_for('gallery') }}" class="btn btn-primary btn-lg">
+                <i class="fas fa-images me-2"></i>View Full Gallery
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="bg-pink-cream-gradient py-5">
+    <div class="container text-center">
+        <h2 class="display-6 fw-bold mb-3" style="color: var(--text-dark);">Ready to Capture Your Story?</h2>
+        <p class="lead mb-4" style="color: var(--text-dark);">Let's create beautiful memories together</p>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg me-3">
+            <i class="fas fa-phone me-2"></i>Book Your Session
+        </a>
+        <a href="{{ url_for('services') }}" class="btn btn-secondary btn-lg">
+            <i class="fas fa-info-circle me-2"></i>View Packages
+        </a>
+    </div>
+</section>
 {% endblock %}

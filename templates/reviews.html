@@ -1,0 +1,302 @@
+{% extends "base.html" %}
+
+{% block title %}Reviews & Testimonials - Lamaria's Photo Gallery{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="bg-pink-cream-gradient py-5">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold mb-4" style="color: var(--text-dark);">
+            <i class="fas fa-star me-3" style="color: var(--primary-color);"></i>
+            Reviews & Testimonials
+        </h1>
+        <p class="lead" style="color: var(--text-dark);">
+            See what my wonderful clients have to say about their photography experience
+        </p>
+        <div class="mt-4">
+            <div class="d-inline-flex align-items-center">
+                <div class="me-3">
+                    <i class="fas fa-star" style="color: #FFD700; font-size: 1.5rem;"></i>
+                    <i class="fas fa-star" style="color: #FFD700; font-size: 1.5rem;"></i>
+                    <i class="fas fa-star" style="color: #FFD700; font-size: 1.5rem;"></i>
+                    <i class="fas fa-star" style="color: #FFD700; font-size: 1.5rem;"></i>
+                    <i class="fas fa-star" style="color: #FFD700; font-size: 1.5rem;"></i>
+                </div>
+                <span class="h4 mb-0" style="color: var(--text-dark);">5.0 out of 5 stars</span>
+            </div>
+            <p class="mt-2" style="color: var(--text-dark);">Based on 47 reviews</p>
+        </div>
+    </div>
+</div>
+
+<!-- Featured Testimonials -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm" style="background-color: white; border: 2px solid var(--soft-pink);">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{{ url_for('static', filename='images/placeholder-profile.svg') }}" 
+                                 alt="Sarah Johnson" class="rounded-circle me-3" 
+                                 style="width: 60px; height: 60px; object-fit: cover;">
+                            <div>
+                                <h6 class="mb-0" style="color: var(--text-dark);">Sarah & Michael Johnson</h6>
+                                <small style="color: var(--primary-color);">Wedding Photography</small>
+                                <div class="mt-1">
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text" style="color: var(--text-dark);">
+                            "Lamaria captured our wedding day perfectly! She made us feel so comfortable and 
+                            natural. The photos are absolutely stunning and we'll treasure them forever. 
+                            Her attention to detail and creative eye are exceptional."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm" style="background-color: white; border: 2px solid var(--soft-pink);">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{{ url_for('static', filename='images/placeholder-profile.svg') }}" 
+                                 alt="Emma Davis" class="rounded-circle me-3" 
+                                 style="width: 60px; height: 60px; object-fit: cover;">
+                            <div>
+                                <h6 class="mb-0" style="color: var(--text-dark);">Emma Davis</h6>
+                                <small style="color: var(--primary-color);">Senior Portraits</small>
+                                <div class="mt-1">
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text" style="color: var(--text-dark);">
+                            "I was so nervous about my senior photos, but Lamaria made the whole experience 
+                            amazing! She helped me feel confident and the photos turned out better than I 
+                            ever imagined. I can't wait to use them for graduation announcements!"
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm" style="background-color: white; border: 2px solid var(--soft-pink);">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{{ url_for('static', filename='images/placeholder-profile.svg') }}" 
+                                 alt="The Martinez Family" class="rounded-circle me-3" 
+                                 style="width: 60px; height: 60px; object-fit: cover;">
+                            <div>
+                                <h6 class="mb-0" style="color: var(--text-dark);">The Martinez Family</h6>
+                                <small style="color: var(--primary-color);">Family Portraits</small>
+                                <div class="mt-1">
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text" style="color: var(--text-dark);">
+                            "Lamaria was wonderful with our three young children! She was patient, creative, 
+                            and somehow managed to get all of them smiling at the same time. The family photos 
+                            are now proudly displayed throughout our home."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- More Reviews -->
+<section class="bg-soft-pink py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold mb-3" style="color: var(--text-dark);">What Clients Are Saying</h2>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card" style="background-color: white; border: 1px solid var(--primary-color);">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div>
+                                <h6 class="mb-0" style="color: var(--text-dark);">Jessica & Ryan Thompson</h6>
+                                <small style="color: var(--primary-color);">Engagement Session</small>
+                                <div class="mt-1">
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text" style="color: var(--text-dark);">
+                            "Our engagement photos exceeded all expectations! Lamaria's direction was perfect 
+                            and she captured our love story beautifully. We can't wait to work with her again 
+                            for our wedding!"
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card" style="background-color: white; border: 1px solid var(--primary-color);">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div>
+                                <h6 class="mb-0" style="color: var(--text-dark);">Corporate Events Inc.</h6>
+                                <small style="color: var(--primary-color);">Corporate Event</small>
+                                <div class="mt-1">
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text" style="color: var(--text-dark);">
+                            "Professional, punctual, and produced outstanding results! Lamaria captured our 
+                            company retreat perfectly. The photos were delivered quickly and exceeded our 
+                            expectations. Highly recommend!"
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card" style="background-color: white; border: 1px solid var(--primary-color);">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div>
+                                <h6 class="mb-0" style="color: var(--text-dark);">Amanda Wilson</h6>
+                                <small style="color: var(--primary-color);">Maternity Session</small>
+                                <div class="mt-1">
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text" style="color: var(--text-dark);">
+                            "Lamaria made me feel so beautiful during my maternity session! She was gentle, 
+                            patient, and created such a comfortable environment. The photos are absolutely 
+                            gorgeous and I'll treasure them forever."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card" style="background-color: white; border: 1px solid var(--primary-color);">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div>
+                                <h6 class="mb-0" style="color: var(--text-dark);">Mark & Lisa Chen</h6>
+                                <small style="color: var(--primary-color);">Anniversary Session</small>
+                                <div class="mt-1">
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text" style="color: var(--text-dark);">
+                            "After 25 years of marriage, we wanted to celebrate with professional photos. 
+                            Lamaria captured our love and connection beautifully. We felt like newlyweds 
+                            again! The experience was wonderful from start to finish."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Review Statistics -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold mb-3" style="color: var(--text-dark);">Client Satisfaction</h2>
+        </div>
+        
+        <div class="row text-center">
+            <div class="col-md-3 mb-4">
+                <div class="card h-100" style="background-color: white; border: 2px solid var(--primary-color);">
+                    <div class="card-body">
+                        <i class="fas fa-users fa-3x mb-3" style="color: var(--primary-color);"></i>
+                        <h3 class="fw-bold" style="color: var(--text-dark);">150+</h3>
+                        <p style="color: var(--text-dark);">Happy Clients</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-4">
+                <div class="card h-100" style="background-color: white; border: 2px solid var(--primary-color);">
+                    <div class="card-body">
+                        <i class="fas fa-heart fa-3x mb-3" style="color: var(--primary-color);"></i>
+                        <h3 class="fw-bold" style="color: var(--text-dark);">85+</h3>
+                        <p style="color: var(--text-dark);">Weddings Captured</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-4">
+                <div class="card h-100" style="background-color: white; border: 2px solid var(--primary-color);">
+                    <div class="card-body">
+                        <i class="fas fa-star fa-3x mb-3" style="color: var(--primary-color);"></i>
+                        <h3 class="fw-bold" style="color: var(--text-dark);">5.0</h3>
+                        <p style="color: var(--text-dark);">Average Rating</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-4">
+                <div class="card h-100" style="background-color: white; border: 2px solid var(--primary-color);">
+                    <div class="card-body">
+                        <i class="fas fa-redo fa-3x mb-3" style="color: var(--primary-color);"></i>
+                        <h3 class="fw-bold" style="color: var(--text-dark);">95%</h3>
+                        <p style="color: var(--text-dark);">Return Clients</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Leave a Review -->
+<section class="bg-pink-cream-gradient py-5">
+    <div class="container text-center">
+        <h2 class="display-6 fw-bold mb-3" style="color: var(--text-dark);">Had a Great Experience?</h2>
+        <p class="lead mb-4" style="color: var(--text-dark);">
+            I'd love to hear about your photography session! Your feedback helps me continue to improve and helps other clients know what to expect.
+        </p>
+        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+            <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">
+                <i class="fas fa-star me-2"></i>Leave a Review
+            </a>
+            <a href="{{ url_for('contact') }}" class="btn btn-secondary btn-lg">
+                <i class="fas fa-phone me-2"></i>Book Your Session
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

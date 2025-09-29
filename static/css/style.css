@@ -1,17 +1,24 @@
-/* Custom CSS Variables for Theming */
+/* Custom CSS Variables for Photography Portfolio */
 :root {
-    --primary-color: #0d6efd;
-    --secondary-color: #6c757d;
+    --primary-color: #F4A6CD;
+    --secondary-color: #FDF6E3;
+    --accent-color: #E8B4CB;
+    --cream-color: #FDF6E3;
+    --light-pink: #F4A6CD;
+    --soft-pink: #F8D7DA;
     --success-color: #198754;
     --info-color: #0dcaf0;
     --warning-color: #ffc107;
     --danger-color: #dc3545;
-    --light-color: #f8f9fa;
-    --dark-color: #212529;
+    --light-color: #FDF6E3;
+    --dark-color: #2C1810;
+    --text-dark: #2C1810;
+    --text-light: #ffffff;
+    --text-muted: #6B5B4F;
     
-    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --gradient-success: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-    --gradient-info: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-primary: linear-gradient(135deg, #F4A6CD 0%, #E8B4CB 100%);
+    --gradient-secondary: linear-gradient(135deg, #FDF6E3 0%, #F5F5DC 100%);
+    --gradient-pink-cream: linear-gradient(135deg, #F4A6CD 0%, #FDF6E3 100%);
     
     --border-radius: 0.375rem;
     --box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
@@ -25,23 +32,30 @@
 body {
     font-family: var(--font-family-sans-serif);
     line-height: 1.6;
-    color: var(--dark-color);
-    background-color: #ffffff;
+    color: var(--text-dark);
+    background-color: var(--cream-color);
 }
 
 /* Enhanced Navbar */
 .navbar-brand {
     font-weight: 700;
     font-size: 1.5rem;
+    color: var(--text-dark) !important;
 }
 
 .navbar-nav .nav-link {
     font-weight: 500;
     transition: color 0.3s ease;
+    color: var(--text-dark) !important;
 }
 
 .navbar-nav .nav-link:hover {
-    color: rgba(255, 255, 255, 0.8) !important;
+    color: var(--primary-color) !important;
+}
+
+.navbar-nav .nav-link.active {
+    color: var(--primary-color) !important;
+    font-weight: 600;
 }
 
 /* Hero Section */
@@ -206,7 +220,7 @@ body {
 }
 
 .table-hover tbody tr:hover {
-    background-color: rgba(0, 123, 255, 0.05);
+    background-color: rgba(139, 21, 56, 0.05);
 }
 
 /* API Results */
@@ -230,7 +244,7 @@ body {
 
 .form-control:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+    box-shadow: 0 0 0 0.2rem rgba(139, 21, 56, 0.25);
 }
 
 /* Button Enhancements */
@@ -247,11 +261,27 @@ body {
 .btn-primary {
     background: var(--primary-color);
     border-color: var(--primary-color);
+    color: var(--dark-color);
+    font-weight: 500;
 }
 
 .btn-primary:hover {
-    background: #0b5ed7;
-    border-color: #0a58ca;
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--dark-color);
+}
+
+.btn-secondary {
+    background: var(--secondary-color);
+    border-color: var(--primary-color);
+    color: var(--dark-color);
+    font-weight: 500;
+}
+
+.btn-secondary:hover {
+    background: var(--soft-pink);
+    border-color: var(--accent-color);
+    color: var(--dark-color);
 }
 
 /* Responsive Design */
@@ -386,6 +416,62 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+.text-pink {
+    color: var(--primary-color) !important;
+}
+
+.text-cream {
+    color: var(--secondary-color) !important;
+}
+
+.text-dark-readable {
+    color: var(--text-dark) !important;
+}
+
+.text-light-readable {
+    color: var(--text-light) !important;
+}
+
+.bg-pink {
+    background-color: var(--primary-color) !important;
+}
+
+.bg-cream {
+    background-color: var(--secondary-color) !important;
+}
+
+.bg-soft-pink {
+    background-color: var(--soft-pink) !important;
+}
+
+/* Pink-Cream gradient background */
+.bg-pink-cream-gradient {
+    background: var(--gradient-pink-cream) !important;
+}
+
+/* Text contrast fixes */
+.bg-pink-cream-gradient h1,
+.bg-pink-cream-gradient h2,
+.bg-pink-cream-gradient h3,
+.bg-pink-cream-gradient h4,
+.bg-pink-cream-gradient h5,
+.bg-pink-cream-gradient h6,
+.bg-pink-cream-gradient p,
+.bg-pink-cream-gradient .lead {
+    color: var(--text-dark) !important;
+}
+
+.bg-soft-pink h1,
+.bg-soft-pink h2,
+.bg-soft-pink h3,
+.bg-soft-pink h4,
+.bg-soft-pink h5,
+.bg-soft-pink h6,
+.bg-soft-pink p,
+.bg-soft-pink .lead {
+    color: var(--text-dark) !important;
 }
 
 .shadow-custom {

@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+
+{% block title %}Contact - Lamaria's Photo Gallery{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="bg-pink-cream-gradient py-5">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold mb-4" style="color: var(--text-dark);">
+            <i class="fas fa-envelope me-3" style="color: var(--primary-color);"></i>
+            Contact Me
+        </h1>
+        <p class="lead" style="color: var(--text-dark);">
+            Ready to capture your special moments? Let's discuss your vision and create something beautiful together.
+        </p>
+    </div>
+</div>
+
+<!-- Contact Form and Info -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Contact Form -->
+            <div class="col-lg-8 mb-5">
+                <div class="card shadow-lg" style="background-color: white; border: 2px solid var(--soft-pink);">
+                    <div class="card-header text-center" style="background-color: var(--soft-pink);">
+                        <h3 class="mb-0" style="color: var(--text-dark);">
+                            <i class="fas fa-paper-plane me-2"></i>Send Me a Message
+                        </h3>
+                    </div>
+                    <div class="card-body p-5">
+                        <form method="POST" action="{{ url_for('contact') }}">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label fw-bold" style="color: var(--text-dark);">Full Name *</label>
+                                    <input type="text" class="form-control" id="name" name="name" required
+                                           style="border: 2px solid var(--soft-pink); border-radius: 10px;">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label fw-bold" style="color: var(--text-dark);">Email Address *</label>
+                                    <input type="email" class="form-control" id="email" name="email" required
+                                           style="border: 2px solid var(--soft-pink); border-radius: 10px;">
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="phone" class="form-label fw-bold" style="color: var(--text-dark);">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone"
+                                           style="border: 2px solid var(--soft-pink); border-radius: 10px;">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="event_date" class="form-label fw-bold" style="color: var(--text-dark);">Event Date</label>
+                                    <input type="date" class="form-control" id="event_date" name="event_date"
+                                           style="border: 2px solid var(--soft-pink); border-radius: 10px;">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="service_type" class="form-label fw-bold" style="color: var(--text-dark);">Type of Photography Session</label>
+                                <select class="form-select" id="service_type" name="service_type"
+                                        style="border: 2px solid var(--soft-pink); border-radius: 10px;">
+                                    <option value="">Select a service...</option>
+                                    <option value="wedding">Wedding Photography</option>
+                                    <option value="engagement">Engagement Session</option>
+                                    <option value="portrait">Portrait Session</option>
+                                    <option value="family">Family Photography</option>
+                                    <option value="maternity">Maternity Session</option>
+                                    <option value="newborn">Newborn Photography</option>
+                                    <option value="senior">Senior Portraits</option>
+                                    <option value="event">Event Photography</option>
+                                    <option value="corporate">Corporate/Headshots</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="message" class="form-label fw-bold" style="color: var(--text-dark);">Tell Me About Your Vision *</label>
+                                <textarea class="form-control" id="message" name="message" rows="5" required
+                                          placeholder="Share details about your event, preferred style, location ideas, number of people, and any special requests..."
+                                          style="border: 2px solid var(--soft-pink); border-radius: 10px;"></textarea>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-paper-plane me-2"></i>Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Information -->
+            <div class="col-lg-4">
+                <div class="card shadow-lg mb-4" style="background-color: white; border: 2px solid var(--primary-color);">
+                    <div class="card-header text-center" style="background-color: var(--primary-color); color: white;">
+                        <h4 class="mb-0">
+                            <i class="fas fa-info-circle me-2"></i>Contact Information
+                        </h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-phone fa-lg me-3" style="color: var(--primary-color); width: 20px;"></i>
+                            <div>
+                                <strong style="color: var(--text-dark);">Phone</strong><br>
+                                <span style="color: var(--text-dark);">(555) 123-4567</span>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-envelope fa-lg me-3" style="color: var(--primary-color); width: 20px;"></i>
+                            <div>
+                                <strong style="color: var(--text-dark);">Email</strong><br>
+                                <span style="color: var(--text-dark);">hello@lamariasphotos.com</span>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-map-marker-alt fa-lg me-3" style="color: var(--primary-color); width: 20px;"></i>
+                            <div>
+                                <strong style="color: var(--text-dark);">Location</strong><br>
+                                <span style="color: var(--text-dark);">Based in [Your City], Available for travel</span>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-clock fa-lg me-3" style="color: var(--primary-color); width: 20px;"></i>
+                            <div>
+                                <strong style="color: var(--text-dark);">Response Time</strong><br>
+                                <span style="color: var(--text-dark);">Within 24 hours</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Social Media -->
+                <div class="card shadow-lg" style="background-color: white; border: 2px solid var(--soft-pink);">
+                    <div class="card-header text-center" style="background-color: var(--soft-pink);">
+                        <h4 class="mb-0" style="color: var(--text-dark);">
+                            <i class="fas fa-share-alt me-2"></i>Follow My Work
+                        </h4>
+                    </div>
+                    <div class="card-body p-4 text-center">
+                        <p style="color: var(--text-dark);">Stay updated with my latest work and behind-the-scenes content!</p>
+                        <div class="d-flex justify-content-center gap-3">
+                            <a href="#" class="btn btn-outline-primary">
+                                <i class="fab fa-instagram"></i> Instagram
+                            </a>
+                            <a href="#" class="btn btn-outline-primary">
+                                <i class="fab fa-facebook"></i> Facebook
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="bg-soft-pink py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold mb-3" style="color: var(--text-dark);">Before You Contact Me</h2>
+            <p class="lead" style="color: var(--text-dark);">Quick answers to common questions</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100" style="background-color: white; border: 1px solid var(--primary-color);">
+                    <div class="card-body p-4">
+                        <h5 class="card-title" style="color: var(--primary-color);">
+                            <i class="fas fa-calendar-check me-2"></i>How far in advance should I book?
+                        </h5>
+                        <p class="card-text" style="color: var(--text-dark);">
+                            For weddings, I recommend booking 6-12 months in advance. Portrait sessions can usually be scheduled within 2-4 weeks.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="card h-100" style="background-color: white; border: 1px solid var(--primary-color);">
+                    <div class="card-body p-4">
+                        <h5 class="card-title" style="color: var(--primary-color);">
+                            <i class="fas fa-dollar-sign me-2"></i>Do you offer payment plans?
+                        </h5>
+                        <p class="card-text" style="color: var(--text-dark);">
+                            Yes! I require a 50% deposit to secure your date, with the balance due on your session day. Custom payment plans available for weddings.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="card h-100" style="background-color: white; border: 1px solid var(--primary-color);">
+                    <div class="card-body p-4">
+                        <h5 class="card-title" style="color: var(--primary-color);">
+                            <i class="fas fa-map-marked-alt me-2"></i>Do you travel for sessions?
+                        </h5>
+                        <p class="card-text" style="color: var(--text-dark);">
+                            Absolutely! I love exploring new locations. Travel within 50 miles is included, with reasonable fees for destinations beyond that.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="card h-100" style="background-color: white; border: 1px solid var(--primary-color);">
+                    <div class="card-body p-4">
+                        <h5 class="card-title" style="color: var(--primary-color);">
+                            <i class="fas fa-images me-2"></i>When will I receive my photos?
+                        </h5>
+                        <p class="card-text" style="color: var(--text-dark);">
+                            You'll get a sneak peek within 24 hours! Full galleries are delivered within 2-6 weeks depending on the session type.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="bg-pink-cream-gradient py-5">
+    <div class="container text-center">
+        <h2 class="display-6 fw-bold mb-3" style="color: var(--text-dark);">Let's Create Something Beautiful</h2>
+        <p class="lead mb-4" style="color: var(--text-dark);">
+            I can't wait to hear about your vision and help bring it to life through photography
+        </p>
+        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+            <a href="tel:+15551234567" class="btn btn-primary btn-lg">
+                <i class="fas fa-phone me-2"></i>Call Now
+            </a>
+            <a href="mailto:hello@lamariasphotos.com" class="btn btn-secondary btn-lg">
+                <i class="fas fa-envelope me-2"></i>Send Email
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

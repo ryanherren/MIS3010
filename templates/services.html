@@ -1,0 +1,315 @@
+{% extends "base.html" %}
+
+{% block title %}Services & Pricing - Lamaria's Photo Gallery{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="bg-pink-cream-gradient py-5">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold mb-4" style="color: var(--text-dark);">
+            <i class="fas fa-camera-retro me-3" style="color: var(--primary-color);"></i>
+            Services & Pricing
+        </h1>
+        <p class="lead" style="color: var(--text-dark);">
+            Professional photography packages designed to capture your most important moments
+        </p>
+    </div>
+</div>
+
+<!-- Pricing Cards -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Wedding Photography -->
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 shadow-lg" style="background-color: white; border: 3px solid var(--primary-color);">
+                    <div class="card-header text-center" style="background-color: var(--primary-color); color: white;">
+                        <h4 class="mb-0">
+                            <i class="fas fa-heart me-2"></i>Wedding Photography
+                        </h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="text-center mb-4">
+                            <span class="h2" style="color: var(--text-dark);">Starting at</span>
+                            <div class="h1 fw-bold" style="color: var(--primary-color);">$2,500</div>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li class="mb-2" style="color: var(--text-dark);">
+                                <i class="fas fa-check me-2" style="color: var(--primary-color);"></i>
+                                8 hours of coverage
+                            </li>
+                            <li class="mb-2" style="color: var(--text-dark);">
+                                <i class="fas fa-check me-2" style="color: var(--primary-color);"></i>
+                                Engagement session included
+                            </li>
+                            <li class="mb-2" style="color: var(--text-dark);">
+                                <i class="fas fa-check me-2" style="color: var(--primary-color);"></i>
+                                500+ edited high-resolution photos
+                            </li>
+                            <li class="mb-2" style="color: var(--text-dark);">
+                                <i class="fas fa-check me-2" style="color: var(--primary-color);"></i>
+                                Online gallery for sharing
+                            </li>
+                            <li class="mb-2" style="color: var(--text-dark);">
+                                <i class="fas fa-check me-2" style="color: var(--primary-color);"></i>
+                                USB drive with all images
+                            </li>
+                            <li class="mb-2" style="color: var(--text-dark);">
+                                <i class="fas fa-check me-2" style="color: var(--primary-color);"></i>
+                                Print release included
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer text-center" style="background-color: var(--soft-pink);">
+                        <a href="{{ url_for('contact') }}" class="btn btn-primary">
+                            <i class="fas fa-phone me-2"></i>Book Consultation
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portrait Sessions -->
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 shadow-lg" style="background-color: white; border: 3px solid var(--soft-pink);">
+                    <div class="card-header text-center" style="background-color: var(--soft-pink); color: var(--dark-color);">
+                        <h4 class="mb-0">
+                            <i class="fas fa-user me-2"></i>Portrait Sessions
+                        </h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="text-center mb-4">
+                            <span class="h2" style="color: var(--text-dark);">Starting at</span>
+                            <div class="h1 fw-bold" style="color: var(--primary-color);">$350</div>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li class="mb-2" style="color: var(--text-dark);">
+                                <i class="fas fa-check me-2" style="color: var(--primary-color);"></i>
+                                1-2 hour session
+                            </li>
+                            <li class="mb-2" style="color: var(--text-dark);">
+                                <i class="fas fa-check me-2" style="color: var(--primary-color);"></i>
+                                Multiple outfit changes
+                            </li>
+                            <li class="mb-2" style="color: var(--text-dark);">
+                                <i class="fas fa-check me-2" style="color: var(--primary-color);"></i>
+                                50+ edited high-resolution photos
+                            </li>
+                            <li class="mb-2" style="color: var(--text-dark);">
+                                <i class="fas fa-check me-2" style="color: var(--primary-color);"></i>
+                                Online gallery for viewing
+                            </li>
+                            <li class="mb-2" style="color: var(--text-dark);">
+                                <i class="fas fa-check me-2" style="color: var(--primary-color);"></i>
+                                Location of your choice
+                            </li>
+                            <li class="mb-2" style="color: var(--text-dark);">
+                                <i class="fas fa-check me-2" style="color: var(--primary-color);"></i>
+                                Print release included
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer text-center" style="background-color: var(--soft-pink);">
+                        <a href="{{ url_for('contact') }}" class="btn btn-primary">
+                            <i class="fas fa-phone me-2"></i>Book Session
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Photography -->
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 shadow-lg" style="background-color: white; border: 3px solid var(--primary-color);">
+                    <div class="card-header text-center" style="background-color: var(--primary-color); color: white;">
+                        <h4 class="mb-0">
+                            <i class="fas fa-calendar-alt me-2"></i>Event Photography
+                        </h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="text-center mb-4">
+                            <span class="h2" style="color: var(--text-dark);">Starting at</span>
+                            <div class="h1 fw-bold" style="color: var(--primary-color);">$150/hr</div>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li class="mb-2" style="color: var(--text-dark);">
+                                <i class="fas fa-check me-2" style="color: var(--primary-color);"></i>
+                                Minimum 2 hours
+                            </li>
+                            <li class="mb-2" style="color: var(--text-dark);">
+                                <i class="fas fa-check me-2" style="color: var(--primary-color);"></i>
+                                Corporate events, parties, celebrations
+                            </li>
+                            <li class="mb-2" style="color: var(--text-dark);">
+                                <i class="fas fa-check me-2" style="color: var(--primary-color);"></i>
+                                100+ edited photos per hour
+                            </li>
+                            <li class="mb-2" style="color: var(--text-dark);">
+                                <i class="fas fa-check me-2" style="color: var(--primary-color);"></i>
+                                Quick turnaround (48-72 hours)
+                            </li>
+                            <li class="mb-2" style="color: var(--text-dark);">
+                                <i class="fas fa-check me-2" style="color: var(--primary-color);"></i>
+                                Online gallery for sharing
+                            </li>
+                            <li class="mb-2" style="color: var(--text-dark);">
+                                <i class="fas fa-check me-2" style="color: var(--primary-color);"></i>
+                                Print release included
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer text-center" style="background-color: var(--soft-pink);">
+                        <a href="{{ url_for('contact') }}" class="btn btn-primary">
+                            <i class="fas fa-phone me-2"></i>Get Quote
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional Services -->
+<section class="bg-soft-pink py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold mb-3" style="color: var(--text-dark);">Additional Services</h2>
+            <p class="lead" style="color: var(--text-dark);">Enhance your photography experience with these add-ons</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card text-center h-100" style="background-color: white; border: 2px solid var(--primary-color);">
+                    <div class="card-body p-4">
+                        <i class="fas fa-video fa-2x mb-3" style="color: var(--primary-color);"></i>
+                        <h5 class="card-title" style="color: var(--text-dark);">Video Add-On</h5>
+                        <p class="card-text" style="color: var(--text-dark);">Professional videography services</p>
+                        <p class="h5 fw-bold" style="color: var(--primary-color);">+$500</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card text-center h-100" style="background-color: white; border: 2px solid var(--primary-color);">
+                    <div class="card-body p-4">
+                        <i class="fas fa-book fa-2x mb-3" style="color: var(--primary-color);"></i>
+                        <h5 class="card-title" style="color: var(--text-dark);">Photo Album</h5>
+                        <p class="card-text" style="color: var(--text-dark);">Custom designed photo book</p>
+                        <p class="h5 fw-bold" style="color: var(--primary-color);">$200-400</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card text-center h-100" style="background-color: white; border: 2px solid var(--primary-color);">
+                    <div class="card-body p-4">
+                        <i class="fas fa-print fa-2x mb-3" style="color: var(--primary-color);"></i>
+                        <h5 class="card-title" style="color: var(--text-dark);">Professional Prints</h5>
+                        <p class="card-text" style="color: var(--text-dark);">High-quality prints and canvases</p>
+                        <p class="h5 fw-bold" style="color: var(--primary-color);">$25-200</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card text-center h-100" style="background-color: white; border: 2px solid var(--primary-color);">
+                    <div class="card-body p-4">
+                        <i class="fas fa-clock fa-2x mb-3" style="color: var(--primary-color);"></i>
+                        <h5 class="card-title" style="color: var(--text-dark);">Extended Hours</h5>
+                        <p class="card-text" style="color: var(--text-dark);">Additional coverage time</p>
+                        <p class="h5 fw-bold" style="color: var(--primary-color);">$150/hr</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold mb-3" style="color: var(--text-dark);">Frequently Asked Questions</h2>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item mb-3" style="border: 2px solid var(--soft-pink); border-radius: 10px;">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" 
+                                    style="background-color: var(--soft-pink); color: var(--dark-color); font-weight: 500;">
+                                What's included in the wedding package?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body" style="color: var(--text-dark);">
+                                Our wedding package includes 8 hours of coverage, an engagement session, 500+ edited photos, 
+                                online gallery, USB drive, and print release. We also provide a second photographer for 
+                                weddings with 100+ guests.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item mb-3" style="border: 2px solid var(--soft-pink); border-radius: 10px;">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2"
+                                    style="background-color: var(--soft-pink); color: var(--dark-color); font-weight: 500;">
+                                How long until I receive my photos?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body" style="color: var(--text-dark);">
+                                Wedding photos are delivered within 4-6 weeks, portrait sessions within 2-3 weeks, 
+                                and event photography within 48-72 hours. You'll receive a sneak peek within 24 hours!
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item mb-3" style="border: 2px solid var(--soft-pink); border-radius: 10px;">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3"
+                                    style="background-color: var(--soft-pink); color: var(--dark-color); font-weight: 500;">
+                                Do you travel for shoots?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body" style="color: var(--text-dark);">
+                                Yes! I love traveling for shoots. Travel within 50 miles is included. 
+                                For destinations beyond that, travel fees apply but I'm always excited to 
+                                explore new locations with you.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item mb-3" style="border: 2px solid var(--soft-pink); border-radius: 10px;">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4"
+                                    style="background-color: var(--soft-pink); color: var(--dark-color); font-weight: 500;">
+                                What's your payment policy?
+                            </button>
+                        </h2>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body" style="color: var(--text-dark);">
+                                I require a 50% deposit to secure your date, with the remaining balance due on the day 
+                                of your session. I accept cash, check, and all major credit cards.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="bg-pink-cream-gradient py-5">
+    <div class="container text-center">
+        <h2 class="display-6 fw-bold mb-3" style="color: var(--text-dark);">Ready to Book Your Session?</h2>
+        <p class="lead mb-4" style="color: var(--text-dark);">
+            Let's discuss your vision and create something beautiful together
+        </p>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">
+            <i class="fas fa-phone me-2"></i>Contact Me Today
+        </a>
+    </div>
+</section>
+{% endblock %}

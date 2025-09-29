@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+
+{% block title %}Gallery - Lamaria's Photo Gallery{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="bg-pink-cream-gradient py-5">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold mb-4" style="color: var(--text-dark);">
+            <i class="fas fa-images me-3" style="color: var(--primary-color);"></i>
+            Photo Gallery
+        </h1>
+        <p class="lead" style="color: var(--text-dark);">
+            A collection of my favorite captures from weddings, portraits, and special events
+        </p>
+    </div>
+</div>
+
+<!-- Gallery Categories -->
+<section class="py-3" style="background-color: var(--soft-pink);">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <button class="btn btn-primary btn-sm active" onclick="filterGallery('all')">All Photos</button>
+                    <button class="btn btn-secondary btn-sm" onclick="filterGallery('weddings')">Weddings</button>
+                    <button class="btn btn-secondary btn-sm" onclick="filterGallery('portraits')">Portraits</button>
+                    <button class="btn btn-secondary btn-sm" onclick="filterGallery('events')">Events</button>
+                    <button class="btn btn-secondary btn-sm" onclick="filterGallery('family')">Family</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Grid -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4" id="gallery-grid">
+            <!-- Wedding Photos -->
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="weddings">
+                <div class="card shadow-sm h-100" style="border: none;">
+                    <img src="{{ url_for('static', filename='images/placeholder-logo.svg') }}" 
+                         class="card-img-top" alt="Wedding Photo 1" 
+                         style="height: 300px; object-fit: cover; cursor: pointer;"
+                         onclick="openModal(this)">
+                    <div class="card-body p-3">
+                        <h6 class="card-title mb-1" style="color: var(--text-dark);">Sarah & Michael's Wedding</h6>
+                        <small class="text-muted">Outdoor ceremony at Sunset Gardens</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="weddings">
+                <div class="card shadow-sm h-100" style="border: none;">
+                    <img src="{{ url_for('static', filename='images/placeholder-logo.svg') }}" 
+                         class="card-img-top" alt="Wedding Photo 2" 
+                         style="height: 300px; object-fit: cover; cursor: pointer;"
+                         onclick="openModal(this)">
+                    <div class="card-body p-3">
+                        <h6 class="card-title mb-1" style="color: var(--text-dark);">Emma & James Reception</h6>
+                        <small class="text-muted">Elegant ballroom celebration</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portrait Photos -->
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="portraits">
+                <div class="card shadow-sm h-100" style="border: none;">
+                    <img src="{{ url_for('static', filename='images/placeholder-profile.svg') }}" 
+                         class="card-img-top" alt="Portrait Photo 1" 
+                         style="height: 300px; object-fit: cover; cursor: pointer;"
+                         onclick="openModal(this)">
+                    <div class="card-body p-3">
+                        <h6 class="card-title mb-1" style="color: var(--text-dark);">Senior Portrait Session</h6>
+                        <small class="text-muted">Graduation celebration photos</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="portraits">
+                <div class="card shadow-sm h-100" style="border: none;">
+                    <img src="{{ url_for('static', filename='images/placeholder-profile.svg') }}" 
+                         class="card-img-top" alt="Portrait Photo 2" 
+                         style="height: 300px; object-fit: cover; cursor: pointer;"
+                         onclick="openModal(this)">
+                    <div class="card-body p-3">
+                        <h6 class="card-title mb-1" style="color: var(--text-dark);">Professional Headshots</h6>
+                        <small class="text-muted">Corporate portrait session</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Family Photos -->
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="family">
+                <div class="card shadow-sm h-100" style="border: none;">
+                    <img src="{{ url_for('static', filename='images/placeholder-logo.svg') }}" 
+                         class="card-img-top" alt="Family Photo 1" 
+                         style="height: 300px; object-fit: cover; cursor: pointer;"
+                         onclick="openModal(this)">
+                    <div class="card-body p-3">
+                        <h6 class="card-title mb-1" style="color: var(--text-dark);">Johnson Family Portrait</h6>
+                        <small class="text-muted">Annual family photos at the park</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="family">
+                <div class="card shadow-sm h-100" style="border: none;">
+                    <img src="{{ url_for('static', filename='images/placeholder-logo.svg') }}" 
+                         class="card-img-top" alt="Family Photo 2" 
+                         style="height: 300px; object-fit: cover; cursor: pointer;"
+                         onclick="openModal(this)">
+                    <div class="card-body p-3">
+                        <h6 class="card-title mb-1" style="color: var(--text-dark);">Newborn Session</h6>
+                        <small class="text-muted">Welcome baby Emma</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Photos -->
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="events">
+                <div class="card shadow-sm h-100" style="border: none;">
+                    <img src="{{ url_for('static', filename='images/placeholder-logo.svg') }}" 
+                         class="card-img-top" alt="Event Photo 1" 
+                         style="height: 300px; object-fit: cover; cursor: pointer;"
+                         onclick="openModal(this)">
+                    <div class="card-body p-3">
+                        <h6 class="card-title mb-1" style="color: var(--text-dark);">Corporate Event</h6>
+                        <small class="text-muted">Annual company celebration</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="events">
+                <div class="card shadow-sm h-100" style="border: none;">
+                    <img src="{{ url_for('static', filename='images/placeholder-logo.svg') }}" 
+                         class="card-img-top" alt="Event Photo 2" 
+                         style="height: 300px; object-fit: cover; cursor: pointer;"
+                         onclick="openModal(this)">
+                    <div class="card-body p-3">
+                        <h6 class="card-title mb-1" style="color: var(--text-dark);">Birthday Celebration</h6>
+                        <small class="text-muted">50th birthday party</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="weddings">
+                <div class="card shadow-sm h-100" style="border: none;">
+                    <img src="{{ url_for('static', filename='images/placeholder-logo.svg') }}" 
+                         class="card-img-top" alt="Wedding Photo 3" 
+                         style="height: 300px; object-fit: cover; cursor: pointer;"
+                         onclick="openModal(this)">
+                    <div class="card-body p-3">
+                        <h6 class="card-title mb-1" style="color: var(--text-dark);">Beach Wedding Ceremony</h6>
+                        <small class="text-muted">Romantic seaside celebration</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content" style="background-color: var(--cream-color); border: 2px solid var(--primary-color);">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center p-0">
+                <img id="modalImage" src="" alt="" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action -->
+<section class="bg-soft-pink py-5">
+    <div class="container text-center">
+        <h2 class="display-6 fw-bold mb-3" style="color: var(--text-dark);">Love What You See?</h2>
+        <p class="lead mb-4" style="color: var(--text-dark);">
+            Let's create beautiful memories together for your special occasion
+        </p>
+        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+            <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">
+                <i class="fas fa-phone me-2"></i>Book Your Session
+            </a>
+            <a href="{{ url_for('services') }}" class="btn btn-secondary btn-lg">
+                <i class="fas fa-info-circle me-2"></i>View Packages
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Gallery filtering
+function filterGallery(category) {
+    const items = document.querySelectorAll('.gallery-item');
+    const buttons = document.querySelectorAll('[onclick^="filterGallery"]');
+    
+    // Update button states
+    buttons.forEach(btn => {
+        btn.classList.remove('btn-primary');
+        btn.classList.add('btn-secondary');
+    });
+    event.target.classList.remove('btn-secondary');
+    event.target.classList.add('btn-primary');
+    
+    // Filter items
+    items.forEach(item => {
+        if (category === 'all' || item.dataset.category === category) {
+            item.style.display = 'block';
+            item.classList.add('fade-in');
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+// Image modal
+function openModal(img) {
+    const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+    document.getElementById('modalImage').src = img.src;
+    document.getElementById('modalImage').alt = img.alt;
+    modal.show();
+}
+
+// Add fade-in animation to gallery items on load
+document.addEventListener('DOMContentLoaded', function() {
+    const items = document.querySelectorAll('.gallery-item');
+    items.forEach((item, index) => {
+        setTimeout(() => {
+            item.classList.add('fade-in');
+        }, index * 100);
+    });
+});
+</script>
+{% endblock %}
