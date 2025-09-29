@@ -1,0 +1,429 @@
+{% extends "base.html" %}
+
+{% block title %}Customer Testimonials - Gods of Sod{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-section bg-gradient-primary text-white py-5">
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="display-4 fw-bold mb-4">
+                    <i class="fas fa-star me-3"></i>
+                    Customer Testimonials
+                </h1>
+                <p class="lead mb-4">
+                    See what our satisfied customers have to say about our landscaping services
+                </p>
+                <div class="row text-center">
+                    <div class="col-md-4 mb-3">
+                        <div class="h2 fw-bold">4.9/5</div>
+                        <div class="text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div>Average Rating</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="h2 fw-bold">250+</div>
+                        <div>Happy Customers</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="h2 fw-bold">98%</div>
+                        <div>Recommend Us</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Featured Testimonials -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold text-success mb-3">Featured Reviews</h2>
+                <p class="lead text-muted">Our most recent customer experiences</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm border-success">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{{ url_for('static', filename='images/placeholder-profile.svg') }}" alt="Customer" class="rounded-circle me-3" width="60" height="60">
+                            <div>
+                                <h5 class="mb-0">Brandon Weber</h5>
+                                <small class="text-muted">Homeowner</small>
+                            </div>
+                        </div>
+                        <div class="text-warning mb-3">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="card-text">"Gods of Sod completely transformed our backyard into a beautiful oasis. The sod installation was flawless, and the team was professional throughout the entire process. Our lawn has never looked better!"</p>
+                        <small class="text-muted">Service: Sod Installation • Project Size: 2,500 sq ft</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm border-success">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{{ url_for('static', filename='images/placeholder-profile.svg') }}" alt="Customer" class="rounded-circle me-3" width="60" height="60">
+                            <div>
+                                <h5 class="mb-0">Mike Chen</h5>
+                                <small class="text-muted">Business Owner</small>
+                            </div>
+                        </div>
+                        <div class="text-warning mb-3">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="card-text">"Excellent service from start to finish! They designed and installed a complete landscape for our office building. The project was completed ahead of schedule and within budget. Highly recommended!"</p>
+                        <small class="text-muted">Service: Complete Landscape Design • Project Size: 8,000 sq ft</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm border-success">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{{ url_for('static', filename='images/placeholder-profile.svg') }}" alt="Customer" class="rounded-circle me-3" width="60" height="60">
+                            <div>
+                                <h5 class="mb-0">Emily Rodriguez</h5>
+                                <small class="text-muted">Property Manager</small>
+                            </div>
+                        </div>
+                        <div class="text-warning mb-3">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="card-text">"The best lawn care service in town! Their maintenance program has kept our property looking pristine year-round. The team is reliable, professional, and always goes above and beyond."</p>
+                        <small class="text-muted">Service: Premium Maintenance Package • 2+ years</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- All Testimonials -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold text-success mb-3">All Customer Reviews</h2>
+                <p class="lead text-muted">Real feedback from real customers</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <!-- Review 1 -->
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <span class="fw-bold">DM</span>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">David Martinez</h6>
+                                <small class="text-muted">2 weeks ago</small>
+                            </div>
+                            <div class="ms-auto text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="mb-2">"Outstanding irrigation system installation! The smart controllers they installed have saved us so much water and money. Professional team, fair pricing, and excellent results."</p>
+                        <small class="text-success">Irrigation System Installation</small>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Review 2 -->
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <span class="fw-bold">LT</span>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Lisa Thompson</h6>
+                                <small class="text-muted">3 weeks ago</small>
+                            </div>
+                            <div class="ms-auto text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="mb-2">"The hardscaping work they did on our patio and walkways is absolutely beautiful. Attention to detail was incredible, and they finished exactly when they said they would."</p>
+                        <small class="text-success">Hardscaping & Patio Installation</small>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Review 3 -->
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <span class="fw-bold">RW</span>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Robert Wilson</h6>
+                                <small class="text-muted">1 month ago</small>
+                            </div>
+                            <div class="ms-auto text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="mb-2">"After the storm damaged our trees and landscaping, Gods of Sod came out the same day for emergency cleanup. They went above and beyond to restore our property quickly."</p>
+                        <small class="text-success">Emergency Storm Cleanup</small>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Review 4 -->
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <span class="fw-bold">AM</span>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Angela Miller</h6>
+                                <small class="text-muted">1 month ago</small>
+                            </div>
+                            <div class="ms-auto text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <p class="mb-2">"Great experience with their lawn maintenance service. The crew is always punctual, thorough, and leaves our property looking immaculate. Highly recommend their premium package."</p>
+                        <small class="text-success">Premium Maintenance Package</small>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Review 5 -->
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <span class="fw-bold">JB</span>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">James Brown</h6>
+                                <small class="text-muted">6 weeks ago</small>
+                            </div>
+                            <div class="ms-auto text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="mb-2">"The seasonal cleanup service is fantastic! They handle our spring and fall maintenance perfectly, and our property always looks ready for the season ahead."</p>
+                        <small class="text-success">Seasonal Cleanup Services</small>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Review 6 -->
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <span class="fw-bold">MG</span>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Maria Garcia</h6>
+                                <small class="text-muted">2 months ago</small>
+                            </div>
+                            <div class="ms-auto text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="mb-2">"We hired them for a complete backyard makeover including sod, plants, and a fire pit area. The design was perfect and the execution was flawless. Our neighbors are all asking for their contact info!"</p>
+                        <small class="text-success">Complete Landscape Makeover</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Review Statistics -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold text-success mb-3">Review Breakdown</h2>
+                <p class="lead text-muted">What our customers rate us on</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <div class="text-warning mb-3">
+                            <i class="fas fa-star fa-2x"></i>
+                        </div>
+                        <h3 class="text-success">4.9/5</h3>
+                        <h6>Quality of Work</h6>
+                        <div class="progress mt-3">
+                            <div class="progress-bar bg-success" style="width: 98%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <div class="text-warning mb-3">
+                            <i class="fas fa-clock fa-2x"></i>
+                        </div>
+                        <h3 class="text-success">4.8/5</h3>
+                        <h6>Timeliness</h6>
+                        <div class="progress mt-3">
+                            <div class="progress-bar bg-success" style="width: 96%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <div class="text-warning mb-3">
+                            <i class="fas fa-users fa-2x"></i>
+                        </div>
+                        <h3 class="text-success">4.9/5</h3>
+                        <h6>Professionalism</h6>
+                        <div class="progress mt-3">
+                            <div class="progress-bar bg-success" style="width: 98%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <div class="text-warning mb-3">
+                            <i class="fas fa-dollar-sign fa-2x"></i>
+                        </div>
+                        <h3 class="text-success">4.7/5</h3>
+                        <h6>Value for Money</h6>
+                        <div class="progress mt-3">
+                            <div class="progress-bar bg-success" style="width: 94%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Write a Review CTA -->
+<section class="bg-gradient-primary text-white py-5">
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h2 class="display-5 fw-bold mb-3">Share Your Experience</h2>
+                <p class="lead mb-4">Had a great experience with Gods of Sod? We'd love to hear from you!</p>
+                <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                    <a href="{{ url_for('contact') }}" class="btn btn-light btn-lg">
+                        <i class="fas fa-edit me-2"></i>Write a Review
+                    </a>
+                    <a href="{{ url_for('contact') }}" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-phone me-2"></i>Get Your Free Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trust Badges -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center">
+                    <i class="fas fa-certificate text-success fa-3x mb-3"></i>
+                    <h5>Licensed & Insured</h5>
+                    <p class="text-muted">Fully licensed and insured for your peace of mind</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center">
+                    <i class="fas fa-award text-success fa-3x mb-3"></i>
+                    <h5>5+ Years Experience</h5>
+                    <p class="text-muted">Proven track record of exceptional landscaping services</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center">
+                    <i class="fas fa-shield-alt text-success fa-3x mb-3"></i>
+                    <h5>Satisfaction Guarantee</h5>
+                    <p class="text-muted">100% satisfaction guaranteed on all our services</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center">
+                    <i class="fas fa-handshake text-success fa-3x mb-3"></i>
+                    <h5>Free Estimates</h5>
+                    <p class="text-muted">No obligation quotes for all landscaping projects</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

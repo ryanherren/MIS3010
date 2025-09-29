@@ -1,64 +1,74 @@
 {% extends "base.html" %}
 
-{% block title %}Home - MIS 3010{% endblock %}
+{% block title %}Gods of Sod - Professional Landscaping Services{% endblock %}
 
 {% block content %}
 <div class="hero-section bg-gradient-primary text-white py-5">
     <div class="container text-center">
         <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <h1 class="display-4 fw-bold mb-4">
-                    <i class="fas fa-graduation-cap me-3"></i>
-                    Welcome to MIS 3010
+            <div class="col-lg-10">
+                <h1 class="display-3 fw-bold mb-4">
+                    <i class="fas fa-seedling me-3"></i>
+                    Welcome to Gods of Sod
                 </h1>
                 
-                <div class="datetime-display bg-white bg-opacity-10 rounded-4 p-4 mb-4">
-                    <div class="row">
-                        <div class="col-md-6 mb-3 mb-md-0">
-                            <h5 class="mb-2">
-                                <i class="fas fa-calendar-alt me-2"></i>Current Date
-                            </h5>
-                            <p class="h4 mb-0" id="current-date">Loading...</p>
-                        </div>
-                        <div class="col-md-6">
-                            <h5 class="mb-2">
-                                <i class="fas fa-clock me-2"></i>Current Time
-                            </h5>
-                            <p class="h2 mb-0 font-monospace" id="current-time">00:00:00</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <p class="lead mb-4">
-                    Management Information Systems - Real World Applications of Artificial Intelligence
+                <p class="lead mb-4 fs-4">
+                    Transform Your Outdoor Space into a Lush Paradise
                 </p>
                 
-                <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-                    <a href="{{ url_for('about') }}" class="btn btn-light btn-lg">
-                        <i class="fas fa-user me-2"></i>Learn About Me
+                <p class="mb-5 fs-5">
+                    Professional landscaping services that bring your dream lawn to life. 
+                    From sod installation to complete landscape design, we're your trusted partners in creating beautiful outdoor spaces.
+                </p>
+                
+                <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center mb-4">
+                    <a href="{{ url_for('services') }}" class="btn btn-light btn-lg">
+                        <i class="fas fa-leaf me-2"></i>View Our Services
                     </a>
-                    {% if not current_user.is_authenticated %}
-                        <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg">
-                            <i class="fas fa-sign-in-alt me-2"></i>Login
-                        </a>
-                    {% endif %}
+                    <a href="{{ url_for('contact') }}" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-phone me-2"></i>Get Free Quote
+                    </a>
+                </div>
+                
+                <div class="row text-center mt-5">
+                    <div class="col-md-4 mb-3">
+                        <div class="h2 fw-bold">500+</div>
+                        <div>Lawns Transformed</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="h2 fw-bold">5 Years</div>
+                        <div>Experience</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="h2 fw-bold">100%</div>
+                        <div>Satisfaction Guaranteed</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Services Overview Section -->
 <section class="py-5">
     <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold text-success mb-3">Our Landscaping Services</h2>
+                <p class="lead text-muted">Professional landscaping solutions tailored to your needs</p>
+            </div>
+        </div>
+        
         <div class="row">
             <div class="col-lg-4 mb-4">
                 <div class="card h-100 shadow-sm">
                     <div class="card-body text-center">
-                        <div class="feature-icon bg-primary bg-gradient text-white rounded-circle mb-3">
-                            <i class="fas fa-code"></i>
+                        <div class="feature-icon bg-success bg-gradient text-white rounded-circle mb-3">
+                            <i class="fas fa-seedling"></i>
                         </div>
-                        <h5 class="card-title">Modern Technologies</h5>
-                        <p class="card-text">Built with Flask, Bootstrap 5, and modern web standards for a responsive experience.</p>
+                        <h5 class="card-title">Sod Installation</h5>
+                        <p class="card-text">Premium quality sod installation for instant, lush green lawns. We use only the finest grass varieties suited for your local climate.</p>
+                        <p class="text-success fw-bold">Starting at $2.50/sq ft</p>
                     </div>
                 </div>
             </div>
@@ -67,10 +77,11 @@
                 <div class="card h-100 shadow-sm">
                     <div class="card-body text-center">
                         <div class="feature-icon bg-success bg-gradient text-white rounded-circle mb-3">
-                            <i class="fas fa-database"></i>
+                            <i class="fas fa-tree"></i>
                         </div>
-                        <h5 class="card-title">Database Integration</h5>
-                        <p class="card-text">SQLAlchemy ORM with support for both SQLite development and PostgreSQL production.</p>
+                        <h5 class="card-title">Landscape Design</h5>
+                        <p class="card-text">Complete landscape design and installation services. From concept to completion, we create beautiful outdoor living spaces.</p>
+                        <p class="text-success fw-bold">Custom Pricing</p>
                     </div>
                 </div>
             </div>
@@ -78,65 +89,170 @@
             <div class="col-lg-4 mb-4">
                 <div class="card h-100 shadow-sm">
                     <div class="card-body text-center">
-                        <div class="feature-icon bg-info bg-gradient text-white rounded-circle mb-3">
-                            <i class="fas fa-mobile-alt"></i>
+                        <div class="feature-icon bg-success bg-gradient text-white rounded-circle mb-3">
+                            <i class="fas fa-cut"></i>
                         </div>
-                        <h5 class="card-title">Mobile Responsive</h5>
-                        <p class="card-text">Mobile-first design approach ensuring great user experience across all devices.</p>
+                        <h5 class="card-title">Lawn Maintenance</h5>
+                        <p class="card-text">Regular lawn care services including mowing, fertilizing, and seasonal maintenance to keep your lawn looking its best year-round.</p>
+                        <p class="text-success fw-bold">Starting at $75/visit</p>
                     </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="{{ url_for('services') }}" class="btn btn-success btn-lg">
+                <i class="fas fa-leaf me-2"></i>View All Services
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold text-success mb-3">Why Choose Gods of Sod?</h2>
+                <p class="lead text-muted">We're committed to excellence in every project</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center">
+                    <div class="feature-icon bg-success bg-gradient text-white rounded-circle mb-3 mx-auto">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h5>Quality Guaranteed</h5>
+                    <p class="text-muted">We stand behind our work with comprehensive warranties and satisfaction guarantees.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center">
+                    <div class="feature-icon bg-success bg-gradient text-white rounded-circle mb-3 mx-auto">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h5>Timely Service</h5>
+                    <p class="text-muted">We respect your time and complete projects on schedule, every time.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center">
+                    <div class="feature-icon bg-success bg-gradient text-white rounded-circle mb-3 mx-auto">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h5>Expert Team</h5>
+                    <p class="text-muted">Our certified landscaping professionals bring years of experience to every project.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center">
+                    <div class="feature-icon bg-success bg-gradient text-white rounded-circle mb-3 mx-auto">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h5>Fair Pricing</h5>
+                    <p class="text-muted">Competitive rates with transparent pricing and no hidden fees.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-{% if current_user.is_authenticated %}
-<section class="bg-light py-5">
+<!-- Testimonial Preview Section -->
+<section class="py-5">
     <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold text-success mb-3">What Our Customers Say</h2>
+                <p class="lead text-muted">Don't just take our word for it</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="text-warning mb-3">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="card-text">"Gods of Sod transformed our backyard into a beautiful oasis. The sod installation was flawless and the team was professional throughout."</p>
+                        <footer class="blockquote-footer mt-3">
+                            <strong>Sarah Johnson</strong>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="text-warning mb-3">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="card-text">"Excellent service from start to finish. They completed our landscape design ahead of schedule and within budget. Highly recommended!"</p>
+                        <footer class="blockquote-footer mt-3">
+                            <strong>Mike Chen</strong>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="text-warning mb-3">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="card-text">"The best lawn care service in town! Our lawn has never looked better thanks to their maintenance program."</p>
+                        <footer class="blockquote-footer mt-3">
+                            <strong>Emily Rodriguez</strong>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="{{ url_for('testimonials') }}" class="btn btn-outline-success btn-lg">
+                <i class="fas fa-star me-2"></i>Read More Reviews
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="bg-gradient-primary text-white py-5">
+    <div class="container text-center">
         <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
-                <h3 class="mb-4">Welcome back, {{ current_user.username }}!</h3>
-                <p class="lead">You are logged in as a {{ current_user.role }} user.</p>
-                
-                {% if current_user.is_admin() %}
-                    <a href="{{ url_for('admin') }}" class="btn btn-primary">
-                        <i class="fas fa-cog me-2"></i>Access Admin Panel
+            <div class="col-lg-8">
+                <h2 class="display-5 fw-bold mb-3">Ready to Transform Your Lawn?</h2>
+                <p class="lead mb-4">Get a free quote today and discover why we're the top choice for landscaping services in your area.</p>
+                <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                    <a href="{{ url_for('contact') }}" class="btn btn-light btn-lg">
+                        <i class="fas fa-phone me-2"></i>Get Free Quote
                     </a>
-                {% endif %}
+                    <a href="tel:+1-555-GODS-SOD" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-phone-alt me-2"></i>Call Now: (555) GODS-SOD
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </section>
-{% endif %}
-{% endblock %}
-
-{% block scripts %}
-<script>
-    // Update time continuously
-    function updateDateTime() {
-        const now = new Date();
-        
-        // Update date
-        const dateOptions = { 
-            weekday: 'long', 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-        };
-        document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', dateOptions);
-        
-        // Update time
-        const timeOptions = {
-            hour12: false,
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit'
-        };
-        document.getElementById('current-time').textContent = now.toLocaleTimeString('en-US', timeOptions);
-    }
-    
-    // Update immediately and then every second
-    updateDateTime();
-    setInterval(updateDateTime, 1000);
-</script>
 {% endblock %}

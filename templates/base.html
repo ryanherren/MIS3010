@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}MIS 3010 - Ryan Herren{% endblock %}</title>
+    <title>{% block title %}Gods of Sod - Professional Landscaping Services{% endblock %}</title>
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -19,7 +19,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <a class="navbar-brand" href="{{ url_for('home') }}">
-                <i class="fas fa-graduation-cap me-2"></i>MIS 3010
+                <i class="fas fa-seedling me-2"></i>Gods of Sod
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -34,8 +34,23 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.endpoint == 'about' %}active{% endif %}" href="{{ url_for('about') }}">
-                            <i class="fas fa-user me-1"></i>About Me
+                        <a class="nav-link {% if request.endpoint == 'services' %}active{% endif %}" href="{{ url_for('services') }}">
+                            <i class="fas fa-leaf me-1"></i>Services
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'testimonials' %}active{% endif %}" href="{{ url_for('testimonials') }}">
+                            <i class="fas fa-star me-1"></i>Testimonials
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'faqs' %}active{% endif %}" href="{{ url_for('faqs') }}">
+                            <i class="fas fa-question-circle me-1"></i>FAQs
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'contact' %}active{% endif %}" href="{{ url_for('contact') }}">
+                            <i class="fas fa-phone me-1"></i>Contact
                         </a>
                     </li>
                 </ul>
@@ -94,10 +109,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <p class="mb-0">&copy; 2025 MIS 3010 - Ryan Herren</p>
+                    <p class="mb-0">&copy; 2025 Gods of Sod - Professional Landscaping Services</p>
                 </div>
                 <div class="col-md-6 text-end">
-                    <p class="mb-0">Built with <i class="fas fa-heart text-danger"></i> using Flask & Bootstrap</p>
+                    <p class="mb-0">Creating Beautiful Lawns <i class="fas fa-seedling text-success"></i> Since 2020</p>
                 </div>
             </div>
         </div>

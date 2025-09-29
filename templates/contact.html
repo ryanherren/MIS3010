@@ -1,0 +1,352 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - Gods of Sod{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-section bg-gradient-primary text-white py-5">
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="display-4 fw-bold mb-4">
+                    <i class="fas fa-phone me-3"></i>
+                    Contact Gods of Sod
+                </h1>
+                <p class="lead mb-4">
+                    Ready to transform your outdoor space? Get in touch with our landscaping experts today!
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Information & Form Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Contact Information -->
+            <div class="col-lg-4 mb-5">
+                <div class="card h-100 shadow-sm border-success">
+                    <div class="card-header bg-success text-white">
+                        <h3 class="card-title mb-0">
+                            <i class="fas fa-info-circle me-2"></i>Contact Information
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="contact-item mb-4">
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="feature-icon bg-success bg-gradient text-white rounded-circle me-3" style="width: 3rem; height: 3rem; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Phone</h5>
+                                    <a href="tel:+15554637763" class="text-success text-decoration-none">(555) GODS-SOD</a><br>
+                                    <a href="tel:+15554637763" class="text-muted small">(555) 463-7763</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item mb-4">
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="feature-icon bg-success bg-gradient text-white rounded-circle me-3" style="width: 3rem; height: 3rem; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Email</h5>
+                                    <a href="mailto:info@godsofsod.com" class="text-success text-decoration-none">info@godsofsod.com</a><br>
+                                    <a href="mailto:quotes@godsofsod.com" class="text-muted small">quotes@godsofsod.com</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item mb-4">
+                            <div class="d-flex align-items-start mb-2">
+                                <div class="feature-icon bg-success bg-gradient text-white rounded-circle me-3" style="width: 3rem; height: 3rem; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Address</h5>
+                                    <p class="mb-0">
+                                        1234 Greenway Boulevard<br>
+                                        Landscaping District<br>
+                                        Garden City, GC 12345
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="feature-icon bg-success bg-gradient text-white rounded-circle me-3" style="width: 3rem; height: 3rem; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Business Hours</h5>
+                                    <p class="mb-0">
+                                        <strong>Mon - Fri:</strong> 7:00 AM - 6:00 PM<br>
+                                        <strong>Saturday:</strong> 8:00 AM - 4:00 PM<br>
+                                        <strong>Sunday:</strong> Emergency Services Only
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-success">
+                    <div class="card-header bg-success text-white">
+                        <h3 class="card-title mb-0">
+                            <i class="fas fa-paper-plane me-2"></i>Get Your Free Quote
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="firstName" class="form-label">First Name *</label>
+                                    <input type="text" class="form-control" id="firstName" name="firstName" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="lastName" class="form-label">Last Name *</label>
+                                    <input type="text" class="form-control" id="lastName" name="lastName" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email Address *</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Property Address</label>
+                                <input type="text" class="form-control" id="address" name="address" placeholder="Where will the work be performed?">
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="service" class="form-label">Service Needed *</label>
+                                    <select class="form-control" id="service" name="service" required>
+                                        <option value="">Select a service...</option>
+                                        <option value="sod-installation">Sod Installation</option>
+                                        <option value="landscape-design">Landscape Design</option>
+                                        <option value="lawn-maintenance">Lawn Maintenance</option>
+                                        <option value="irrigation">Irrigation Systems</option>
+                                        <option value="hardscaping">Hardscaping</option>
+                                        <option value="seasonal">Seasonal Services</option>
+                                        <option value="multiple">Multiple Services</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="projectSize" class="form-label">Project Size</label>
+                                    <select class="form-control" id="projectSize" name="projectSize">
+                                        <option value="">Select size...</option>
+                                        <option value="small">Small (Under 1,000 sq ft)</option>
+                                        <option value="medium">Medium (1,000 - 5,000 sq ft)</option>
+                                        <option value="large">Large (5,000 - 10,000 sq ft)</option>
+                                        <option value="extra-large">Extra Large (Over 10,000 sq ft)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="budget" class="form-label">Budget Range</label>
+                                    <select class="form-control" id="budget" name="budget">
+                                        <option value="">Select budget...</option>
+                                        <option value="under-1000">Under $1,000</option>
+                                        <option value="1000-2500">$1,000 - $2,500</option>
+                                        <option value="2500-5000">$2,500 - $5,000</option>
+                                        <option value="5000-10000">$5,000 - $10,000</option>
+                                        <option value="over-10000">Over $10,000</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="timeline" class="form-label">Preferred Timeline</label>
+                                    <select class="form-control" id="timeline" name="timeline">
+                                        <option value="">Select timeline...</option>
+                                        <option value="asap">As soon as possible</option>
+                                        <option value="1-2-weeks">1-2 weeks</option>
+                                        <option value="1-month">Within 1 month</option>
+                                        <option value="2-3-months">2-3 months</option>
+                                        <option value="flexible">Flexible</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Project Details *</label>
+                                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Please describe your project, specific needs, or any questions you have..." required></textarea>
+                            </div>
+                            
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="newsletter" name="newsletter">
+                                <label class="form-check-label" for="newsletter">
+                                    Subscribe to our newsletter for landscaping tips and seasonal reminders
+                                </label>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-success btn-lg">
+                                    <i class="fas fa-paper-plane me-2"></i>Send Message & Get Quote
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Service Areas -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold text-success mb-3">Service Areas</h2>
+                <p class="lead text-muted">We proudly serve the following communities</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-map-marker-alt text-success fa-2x mb-3"></i>
+                        <h5 class="card-title">Garden City</h5>
+                        <p class="text-muted">Primary Service Area</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-map-marker-alt text-success fa-2x mb-3"></i>
+                        <h5 class="card-title">Greenville</h5>
+                        <p class="text-muted">Full Service Available</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-map-marker-alt text-success fa-2x mb-3"></i>
+                        <h5 class="card-title">Lawn Valley</h5>
+                        <p class="text-muted">Full Service Available</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-map-marker-alt text-success fa-2x mb-3"></i>
+                        <h5 class="card-title">Meadowbrook</h5>
+                        <p class="text-muted">Select Services</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-4">
+            <p class="text-muted">Don't see your area listed? <a href="tel:+15554637763" class="text-success">Call us</a> to check if we service your location!</p>
+        </div>
+    </div>
+</section>
+
+<!-- Emergency Services -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="card border-warning shadow">
+                    <div class="card-body">
+                        <i class="fas fa-exclamation-triangle text-warning fa-3x mb-3"></i>
+                        <h3 class="card-title text-warning">Emergency Services Available</h3>
+                        <p class="card-text">
+                            Need urgent landscaping assistance? We offer emergency services for storm damage cleanup, 
+                            irrigation repairs, and other time-sensitive landscaping issues.
+                        </p>
+                        <a href="tel:+15554637763" class="btn btn-warning btn-lg">
+                            <i class="fas fa-phone-alt me-2"></i>Emergency Hotline: (555) GODS-SOD
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map Section (Placeholder) -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-success text-white">
+                        <h3 class="card-title mb-0">
+                            <i class="fas fa-map me-2"></i>Find Us
+                        </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="bg-light d-flex align-items-center justify-content-center" style="height: 300px;">
+                            <div class="text-center">
+                                <i class="fas fa-map-marked-alt text-success fa-4x mb-3"></i>
+                                <h4 class="text-success">Interactive Map</h4>
+                                <p class="text-muted">1234 Greenway Boulevard, Garden City, GC 12345</p>
+                                <a href="https://maps.google.com" target="_blank" class="btn btn-success">
+                                    <i class="fas fa-external-link-alt me-2"></i>Open in Google Maps
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get form data
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData);
+    
+    // Simple validation
+    if (!data.firstName || !data.lastName || !data.email || !data.service || !data.message) {
+        alert('Please fill in all required fields.');
+        return;
+    }
+    
+    // Simulate form submission
+    const submitButton = this.querySelector('button[type="submit"]');
+    const originalText = submitButton.innerHTML;
+    
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+    submitButton.disabled = true;
+    
+    setTimeout(() => {
+        alert('Thank you for your message! We will contact you within 24 hours with your free quote.');
+        this.reset();
+        submitButton.innerHTML = originalText;
+        submitButton.disabled = false;
+    }, 2000);
+});
+</script>
+{% endblock %}

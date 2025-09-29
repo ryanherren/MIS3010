@@ -11,6 +11,7 @@ import os
 app = Flask(__name__)
 
 # Configuration
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or 'dev-secret-key-change-in-production'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or 'sqlite:///mis3010.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -54,9 +55,21 @@ class LoginForm(FlaskForm):
 def home():
     return render_template('home.html')
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/testimonials')
+def testimonials():
+    return render_template('testimonials.html')
+
+@app.route('/services')
+def services():
+    return render_template('services.html')
+
+@app.route('/faqs')
+def faqs():
+    return render_template('faqs.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

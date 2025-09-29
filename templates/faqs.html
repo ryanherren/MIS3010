@@ -1,0 +1,437 @@
+{% extends "base.html" %}
+
+{% block title %}Frequently Asked Questions - Gods of Sod{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-section bg-gradient-primary text-white py-5">
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="display-4 fw-bold mb-4">
+                    <i class="fas fa-question-circle me-3"></i>
+                    Frequently Asked Questions
+                </h1>
+                <p class="lead mb-4">
+                    Get answers to common questions about our landscaping services
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FAQ Categories -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold text-success mb-3">Quick Navigation</h2>
+                <p class="lead text-muted">Jump to the section you're most interested in</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-seedling text-success fa-2x mb-3"></i>
+                        <h5>Sod Installation</h5>
+                        <a href="#sod-faqs" class="btn btn-outline-success btn-sm">View FAQs</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-cut text-success fa-2x mb-3"></i>
+                        <h5>Lawn Care</h5>
+                        <a href="#lawn-care-faqs" class="btn btn-outline-success btn-sm">View FAQs</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-dollar-sign text-success fa-2x mb-3"></i>
+                        <h5>Pricing & Payment</h5>
+                        <a href="#pricing-faqs" class="btn btn-outline-success btn-sm">View FAQs</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-tools text-success fa-2x mb-3"></i>
+                        <h5>General Services</h5>
+                        <a href="#general-faqs" class="btn btn-outline-success btn-sm">View FAQs</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sod Installation FAQs -->
+<section class="bg-light py-5" id="sod-faqs">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-6 fw-bold text-success mb-4">
+                    <i class="fas fa-seedling me-2"></i>Sod Installation FAQs
+                </h2>
+                
+                <div class="accordion" id="sodAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#sod1">
+                                What type of sod do you recommend for my area?
+                            </button>
+                        </h2>
+                        <div id="sod1" class="accordion-collapse collapse show" data-bs-parent="#sodAccordion">
+                            <div class="accordion-body">
+                                We recommend different grass types based on your local climate, soil conditions, and intended use. For cooler climates, we suggest Kentucky Bluegrass or Fescue blends. For warmer areas, Bermuda or Zoysia grass work best. During our free consultation, we'll assess your property and recommend the perfect grass type for your specific needs.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sod2">
+                                How long does sod installation take?
+                            </button>
+                        </h2>
+                        <div id="sod2" class="accordion-collapse collapse" data-bs-parent="#sodAccordion">
+                            <div class="accordion-body">
+                                Most residential sod installations are completed in 1-2 days, depending on the size of the area. This includes site preparation, soil amendments, and sod installation. Larger commercial projects may take 3-5 days. We'll provide you with a detailed timeline during your consultation.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sod3">
+                                When is the best time to install sod?
+                            </button>
+                        </h2>
+                        <div id="sod3" class="accordion-collapse collapse" data-bs-parent="#sodAccordion">
+                            <div class="accordion-body">
+                                The best time for sod installation is during the growing season - typically spring (April-May) or early fall (September-October). These periods provide optimal temperatures and rainfall for root establishment. However, we can install sod year-round with proper care and irrigation.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sod4">
+                                How do I care for new sod?
+                            </button>
+                        </h2>
+                        <div id="sod4" class="accordion-collapse collapse" data-bs-parent="#sodAccordion">
+                            <div class="accordion-body">
+                                New sod requires daily watering for the first 2-3 weeks, keeping the soil consistently moist but not waterlogged. Avoid foot traffic for the first 2 weeks. After 3-4 weeks, you can begin normal lawn care activities. We provide detailed care instructions and follow-up support for all installations.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Lawn Care FAQs -->
+<section class="py-5" id="lawn-care-faqs">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-6 fw-bold text-success mb-4">
+                    <i class="fas fa-cut me-2"></i>Lawn Care & Maintenance FAQs
+                </h2>
+                
+                <div class="accordion" id="lawnCareAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#lawn1">
+                                How often should my lawn be mowed?
+                            </button>
+                        </h2>
+                        <div id="lawn1" class="accordion-collapse collapse show" data-bs-parent="#lawnCareAccordion">
+                            <div class="accordion-body">
+                                During the growing season, most lawns should be mowed weekly. However, this can vary based on grass type, weather conditions, and fertilization schedule. Cool-season grasses may need more frequent mowing in spring and fall, while warm-season grasses grow most actively in summer.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#lawn2">
+                                What's included in your maintenance packages?
+                            </button>
+                        </h2>
+                        <div id="lawn2" class="accordion-collapse collapse" data-bs-parent="#lawnCareAccordion">
+                            <div class="accordion-body">
+                                Our packages include regular mowing, edging, blowing off walkways, fertilization, weed control, and seasonal services. Premium packages also include aeration, overseeding, pest management, and priority scheduling. We customize each package to meet your specific lawn care needs.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#lawn3">
+                                Do you provide organic lawn care options?
+                            </button>
+                        </h2>
+                        <div id="lawn3" class="accordion-collapse collapse" data-bs-parent="#lawnCareAccordion">
+                            <div class="accordion-body">
+                                Yes! We offer organic and eco-friendly lawn care options including organic fertilizers, natural pest control methods, and sustainable maintenance practices. Our Elite Care Package includes premium organic treatments that are safe for children, pets, and the environment.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#lawn4">
+                                What if I'm not satisfied with the service?
+                            </button>
+                        </h2>
+                        <div id="lawn4" class="accordion-collapse collapse" data-bs-parent="#lawnCareAccordion">
+                            <div class="accordion-body">
+                                We guarantee your satisfaction with our services. If you're not completely happy with any service visit, we'll return to address the issue at no additional charge. Our goal is to exceed your expectations with every visit.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing FAQs -->
+<section class="bg-light py-5" id="pricing-faqs">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-6 fw-bold text-success mb-4">
+                    <i class="fas fa-dollar-sign me-2"></i>Pricing & Payment FAQs
+                </h2>
+                
+                <div class="accordion" id="pricingAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#pricing1">
+                                How do you calculate pricing for landscaping projects?
+                            </button>
+                        </h2>
+                        <div id="pricing1" class="accordion-collapse collapse show" data-bs-parent="#pricingAccordion">
+                            <div class="accordion-body">
+                                Our pricing is based on several factors including project size, materials needed, labor requirements, site conditions, and timeline. We provide detailed, itemized quotes so you know exactly what you're paying for. All estimates are free and include a thorough consultation.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pricing2">
+                                Do you offer payment plans or financing?
+                            </button>
+                        </h2>
+                        <div id="pricing2" class="accordion-collapse collapse" data-bs-parent="#pricingAccordion">
+                            <div class="accordion-body">
+                                Yes! For larger projects over $2,500, we offer flexible payment plans. Typically, we require 25% down to start, 50% at project midpoint, and 25% upon completion. We also work with financing partners to offer extended payment options for qualifying customers.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pricing3">
+                                Are there any hidden fees in your quotes?
+                            </button>
+                        </h2>
+                        <div id="pricing3" class="accordion-collapse collapse" data-bs-parent="#pricingAccordion">
+                            <div class="accordion-body">
+                                Absolutely not! We believe in transparent pricing. Our quotes include all labor, materials, equipment, and cleanup. The only additional costs would be for changes you request during the project or unforeseen site conditions that we discuss with you first.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pricing4">
+                                What payment methods do you accept?
+                            </button>
+                        </h2>
+                        <div id="pricing4" class="accordion-collapse collapse" data-bs-parent="#pricingAccordion">
+                            <div class="accordion-body">
+                                We accept cash, checks, all major credit cards, and electronic bank transfers. For recurring maintenance services, we offer convenient automatic payment options. Payment is due upon completion of each service visit or project milestone.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- General FAQs -->
+<section class="py-5" id="general-faqs">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-6 fw-bold text-success mb-4">
+                    <i class="fas fa-tools me-2"></i>General Service FAQs
+                </h2>
+                
+                <div class="accordion" id="generalAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#general1">
+                                Are you licensed and insured?
+                            </button>
+                        </h2>
+                        <div id="general1" class="accordion-collapse collapse show" data-bs-parent="#generalAccordion">
+                            <div class="accordion-body">
+                                Yes, Gods of Sod is fully licensed and carries comprehensive general liability and workers' compensation insurance. We're happy to provide proof of insurance upon request. Our licensing and insurance are kept current to protect both our team and your property.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#general2">
+                                Do you provide free estimates?
+                            </button>
+                        </h2>
+                        <div id="general2" class="accordion-collapse collapse" data-bs-parent="#generalAccordion">
+                            <div class="accordion-body">
+                                Absolutely! We provide free, no-obligation estimates for all our services. Our estimates include a thorough consultation, site assessment, and detailed written quote. We'll also provide recommendations and answer any questions you have about your project.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#general3">
+                                What areas do you serve?
+                            </button>
+                        </h2>
+                        <div id="general3" class="accordion-collapse collapse" data-bs-parent="#generalAccordion">
+                            <div class="accordion-body">
+                                We primarily serve Garden City and surrounding areas including Greenville, Lawn Valley, and Meadowbrook. Our service radius extends approximately 25 miles from our main location. Contact us to confirm service availability in your specific area.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#general4">
+                                Do you offer emergency services?
+                            </button>
+                        </h2>
+                        <div id="general4" class="accordion-collapse collapse" data-bs-parent="#generalAccordion">
+                            <div class="accordion-body">
+                                Yes, we provide emergency services for storm damage cleanup, irrigation system repairs, and other urgent landscaping needs. Emergency services are available 24/7 with additional charges for after-hours calls. Contact our emergency hotline at (555) GODS-SOD.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#general5">
+                                How far in advance should I schedule services?
+                            </button>
+                        </h2>
+                        <div id="general5" class="accordion-collapse collapse" data-bs-parent="#generalAccordion">
+                            <div class="accordion-body">
+                                For routine maintenance, we recommend scheduling at least 1-2 weeks in advance. Larger projects like sod installation or landscape design should be scheduled 2-4 weeks ahead, especially during peak seasons (spring and fall). Emergency services are available with same-day or next-day response.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#general6">
+                                What happens if it rains on my service day?
+                            </button>
+                        </h2>
+                        <div id="general6" class="accordion-collapse collapse" data-bs-parent="#generalAccordion">
+                            <div class="accordion-body">
+                                Safety is our priority, so we don't mow wet grass or work in dangerous weather conditions. If rain prevents us from completing your service, we'll reschedule for the next available day at no additional charge. We'll communicate any weather-related delays promptly.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Still Have Questions -->
+<section class="bg-gradient-primary text-white py-5">
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h2 class="display-5 fw-bold mb-3">Still Have Questions?</h2>
+                <p class="lead mb-4">Can't find the answer you're looking for? Our friendly team is here to help!</p>
+                <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                    <a href="{{ url_for('contact') }}" class="btn btn-light btn-lg">
+                        <i class="fas fa-envelope me-2"></i>Contact Us
+                    </a>
+                    <a href="tel:+15554637763" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-phone me-2"></i>Call (555) GODS-SOD
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Popular Topics -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold text-success mb-3">Popular Topics</h2>
+                <p class="lead text-muted">Quick links to our most requested information</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-calendar-alt text-success fa-2x mb-3"></i>
+                        <h5>Seasonal Care Guide</h5>
+                        <p class="text-muted">Learn what your lawn needs each season</p>
+                        <a href="{{ url_for('contact') }}" class="btn btn-outline-success">Get Guide</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mb-4">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-calculator text-success fa-2x mb-3"></i>
+                        <h5>Cost Calculator</h5>
+                        <p class="text-muted">Estimate costs for your landscaping project</p>
+                        <a href="{{ url_for('contact') }}" class="btn btn-outline-success">Calculate</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mb-4">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-leaf text-success fa-2x mb-3"></i>
+                        <h5>Grass Type Guide</h5>
+                        <p class="text-muted">Find the perfect grass for your property</p>
+                        <a href="{{ url_for('services') }}" class="btn btn-outline-success">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
