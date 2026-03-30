@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Calendar — StudyPlan.com{% endblock %}
+
+{% block content %}
+<h1 class="h2 fw-bold text-sp-cardinal mb-1">
+    <i class="fas fa-calendar-alt me-2"></i>Calendar
+</h1>
+<p class="text-muted mb-4">Each row of tabs is one week, <strong>Monday through Sunday</strong>. See deadlines and <strong>reserved work blocks</strong> for focused time on assignments.</p>
+
+<div class="card shadow-sm border-0 card-sp mb-4">
+    <div class="card-header bg-sp-blue text-white py-3">
+        <h2 class="h5 mb-0"><i class="fas fa-clock me-2"></i>Reserve time to work</h2>
+    </div>
+    <div class="card-body">
+        <p class="small text-muted mb-3">Block out time on your calendar (e.g. five hours on an essay). Link a to-do item or type a label. Use <strong>duration</strong> or an explicit <strong>end time</strong>. Split long work across days by adding one block per day.</p>
+        <form id="form-work-block" class="row g-3 align-items-end">
+            <div class="col-md-6 col-lg-3">
+                <label class="form-label" for="wb-date">Date</label>
+                <input type="date" class="form-control" id="wb-date" required>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <label class="form-label" for="wb-linked">Link to to-do (optional)</label>
+                <select class="form-select" id="wb-linked">
+                    <option value="">— none —</option>
+                </select>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <label class="form-label" for="wb-title">What you are working on</label>
+                <input type="text" class="form-control" id="wb-title" maxlength="200" placeholder="e.g. MIS paper draft">
+            </div>
+            <div class="col-md-6 col-lg-2">
+                <label class="form-label" for="wb-start">Start</label>
+                <input type="time" class="form-control" id="wb-start" required>
+            </div>
+            <div class="col-md-4 col-lg-2">
+                <label class="form-label" for="wb-duration">Duration (hours)</label>
+                <input type="number" class="form-control" id="wb-duration" min="0.25" max="24" step="0.25" placeholder="e.g. 5">
+            </div>
+            <div class="col-md-4 col-lg-2">
+                <label class="form-label" for="wb-end">Or end time</label>
+                <input type="time" class="form-control" id="wb-end">
+            </div>
+            <div class="col-md-4 col-lg-12">
+                <button type="submit" class="btn btn-sp-green">
+                    <i class="fas fa-plus me-1"></i>Add time block
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card shadow-sm border-0 card-sp mb-4">
+    <div class="card-body py-3">
+        <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+            <button type="button" class="btn btn-outline-secondary btn-sm" id="cal-prev-week">
+                <i class="fas fa-chevron-left"></i> Prev week
+            </button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" id="cal-this-week">This week</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" id="cal-next-week">
+                Next week <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <ul class="nav nav-pills flex-wrap gap-1 gap-md-2" id="calendar-day-tabs" role="tablist"></ul>
+    </div>
+</div>
+
+<div class="tab-content" id="calendar-tab-panels"></div>
+{% endblock %}

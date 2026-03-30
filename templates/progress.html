@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Progress — StudyPlan.com{% endblock %}
+
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<h1 class="h2 fw-bold text-sp-cardinal mb-1">
+    <i class="fas fa-chart-line me-2"></i>Progress charts
+</h1>
+<p class="text-muted mb-4">Visualize completion and workload from your saved tasks.</p>
+
+<div class="row g-4">
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 card-sp h-100">
+            <div class="card-header bg-sp-blue text-white py-3">
+                <h2 class="h6 mb-0">Open vs completed</h2>
+            </div>
+            <div class="card-body">
+                <canvas id="chart-completion" height="220"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 card-sp h-100">
+            <div class="card-header bg-sp-green text-white py-3">
+                <h2 class="h6 mb-0">By type</h2>
+            </div>
+            <div class="card-body">
+                <canvas id="chart-types" height="220"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 card-sp h-100">
+            <div class="card-header bg-sp-cardinal text-white py-3">
+                <h2 class="h6 mb-0">By priority (open items)</h2>
+            </div>
+            <div class="card-body">
+                <canvas id="chart-priority" height="220"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="card shadow-sm border-0 card-sp">
+            <div class="card-body">
+                <h2 class="h6 text-sp-cardinal mb-3">Summary</h2>
+                <ul class="list-unstyled mb-0 row" id="progress-summary"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

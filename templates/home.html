@@ -1,119 +1,89 @@
 {% extends "base.html" %}
 
-{% block title %}Home - MIS 3010{% endblock %}
+{% block title %}To-Do — StudyPlan.com{% endblock %}
 
 {% block content %}
-<div class="hero-section bg-cardinal-gold-gradient text-white py-5">
-    <div class="container text-center">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <h1 class="display-4 fw-bold mb-4">
-                    <i class="fas fa-graduation-cap me-3 text-gold"></i>
-                    Welcome to MIS 3010
-                </h1>
-                
-                <div class="datetime-display bg-white bg-opacity-10 rounded-4 p-4 mb-4">
-                    <div class="row">
-                        <div class="col-md-6 mb-3 mb-md-0">
-                            <h5 class="mb-2">
-                                <i class="fas fa-calendar-alt me-2"></i>Current Date
-                            </h5>
-                            <p class="h4 mb-0" id="current-date">Loading...</p>
+<div class="row mb-4">
+    <div class="col-lg-8">
+        <h1 class="h2 fw-bold text-sp-cardinal mb-1">
+            <i class="fas fa-list-check me-2"></i>Your to-do list
+        </h1>
+        <p class="text-muted mb-0">Highest priority and nearest deadlines appear first. Data saves in your browser.</p>
+    </div>
+    <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+        <button type="button" class="btn btn-sp-blue btn-sm" id="btn-enable-reminders">
+            <i class="fas fa-bell me-1"></i>Enable deadline reminders
+        </button>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-5">
+        <div class="card shadow-sm border-0 h-100 card-sp">
+            <div class="card-header bg-sp-cardinal text-white py-3">
+                <h2 class="h5 mb-0"><i class="fas fa-plus-circle me-2"></i>Add exam, homework, or task</h2>
+            </div>
+            <div class="card-body">
+                <form id="form-add-item" class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label class="form-label" for="item-title">Title</label>
+                        <input type="text" class="form-control" id="item-title" required maxlength="200" placeholder="e.g. Midterm — MIS 3010">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="item-type">Type</label>
+                        <select class="form-select" id="item-type">
+                            <option value="homework">Homework</option>
+                            <option value="exam">Exam</option>
+                            <option value="project">Project</option>
+                            <option value="assignment">Assignment</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="item-course">Course (optional)</label>
+                        <input type="text" class="form-control" id="item-course" maxlength="80" placeholder="e.g. MIS 3010">
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="item-due">Due date</label>
+                            <input type="date" class="form-control" id="item-due">
                         </div>
                         <div class="col-md-6">
-                            <h5 class="mb-2">
-                                <i class="fas fa-clock me-2"></i>Current Time
-                            </h5>
-                            <p class="h2 mb-0 font-monospace" id="current-time">00:00:00</p>
+                            <label class="form-label" for="item-time">Due time (optional)</label>
+                            <input type="time" class="form-control" id="item-time">
                         </div>
                     </div>
-                </div>
-                
-                <p class="lead mb-4">
-                    Management Information Systems - Real World Applications of Artificial Intelligence
-                </p>
-                
-                <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-                    <a href="{{ url_for('about') }}" class="btn btn-secondary btn-lg">
-                        <i class="fas fa-user me-2"></i>Learn About Me
-                    </a>
-                </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="item-priority">Priority</label>
+                        <select class="form-select" id="item-priority">
+                            <option value="HIGH">HIGH</option>
+                            <option value="MEDIUM" selected>MEDIUM</option>
+                            <option value="LOW">LOW</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="item-notes">Notes (optional)</label>
+                        <textarea class="form-control" id="item-notes" rows="2" maxlength="500"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-sp-cardinal w-100">
+                        <i class="fas fa-save me-1"></i>Add to list
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-7">
+        <div class="card shadow-sm border-0 card-sp">
+            <div class="card-header bg-sp-blue text-white py-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <h2 class="h5 mb-0"><i class="fas fa-sort-amount-down me-2"></i>Sorted by priority &amp; deadline</h2>
+                <span class="badge bg-white text-sp-blue" id="todo-count">0 open</span>
+            </div>
+            <div class="card-body p-0">
+                <ul class="list-group list-group-flush" id="todo-list">
+                    <li class="list-group-item text-muted text-center py-5" id="todo-empty">No items yet. Add your first task on the left.</li>
+                </ul>
             </div>
         </div>
     </div>
 </div>
-
-<section class="py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <div class="feature-icon bg-cardinal text-white rounded-circle mb-3">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h5 class="card-title">Modern Technologies</h5>
-                        <p class="card-text">Built with Flask, Bootstrap 5, and modern web standards for a responsive experience.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <div class="feature-icon bg-gold text-dark rounded-circle mb-3">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <h5 class="card-title">Database Integration</h5>
-                        <p class="card-text">SQLAlchemy ORM with support for both SQLite development and PostgreSQL production.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <div class="feature-icon bg-cardinal text-white rounded-circle mb-3">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <h5 class="card-title">Mobile Responsive</h5>
-                        <p class="card-text">Mobile-first design approach ensuring great user experience across all devices.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-{% endblock %}
-
-{% block scripts %}
-<script>
-    // Update time continuously
-    function updateDateTime() {
-        const now = new Date();
-        
-        // Update date
-        const dateOptions = { 
-            weekday: 'long', 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-        };
-        document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', dateOptions);
-        
-        // Update time
-        const timeOptions = {
-            hour12: false,
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit'
-        };
-        document.getElementById('current-time').textContent = now.toLocaleTimeString('en-US', timeOptions);
-    }
-    
-    // Update immediately and then every second
-    updateDateTime();
-    setInterval(updateDateTime, 1000);
-</script>
 {% endblock %}
