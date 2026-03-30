@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Services{% endblock %}
+{% block content %}
+<section class="ss-page-header ss-hot text-white py-5 position-relative">
+    <div class="container position-relative" style="z-index: 1;">
+        <h1 class="display-5 fw-bold mb-2">Services</h1>
+        <p class="lead mb-0 opacity-90">Grinding, cleanup, and the little extras that keep lawns happy.</p>
+    </div>
+</section>
+
+<section class="ss-floral py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm ss-card-hover">
+                    <div class="card-body p-4">
+                        <div class="ss-service-icon ss-hot-soft text-white mb-3"><i class="fas fa-gears"></i></div>
+                        <h2 class="h5 fw-bold">Residential stump grinding</h2>
+                        <p class="text-muted small mb-0">Single stumps or small groups after tree removal. Turf protection mats, depth to your planting plans, and a clean rake-out when we’re done.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm ss-card-hover">
+                    <div class="card-body p-4">
+                        <div class="ss-service-icon ss-light-pink text-hot-pink mb-3"><i class="fas fa-building"></i></div>
+                        <h2 class="h5 fw-bold">Commercial &amp; HOA</h2>
+                        <p class="text-muted small mb-0">Parking islands, common areas, and multi-stump clears. We coordinate access, minimize disruption, and leave sites photo-ready.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm ss-card-hover">
+                    <div class="card-body p-4">
+                        <div class="ss-service-icon ss-hot-soft text-white mb-3"><i class="fas fa-seedling"></i></div>
+                        <h2 class="h5 fw-bold">Deep grind for replanting</h2>
+                        <p class="text-muted small mb-0">Extra depth and root flair chase-out when you want grass or a new tree in the same footprint.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm ss-card-hover">
+                    <div class="card-body p-4">
+                        <div class="ss-service-icon ss-light-pink text-hot-pink mb-3"><i class="fas fa-truck"></i></div>
+                        <h2 class="h5 fw-bold">Chip haul-away</h2>
+                        <p class="text-muted small mb-0">Prefer a bare hole? We load chips and sweep so you’re not tripping over mulch piles.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm ss-card-hover">
+                    <div class="card-body p-4">
+                        <div class="ss-service-icon ss-hot-soft text-white mb-3"><i class="fas fa-cloud-bolt"></i></div>
+                        <h2 class="h5 fw-bold">Storm cleanup</h2>
+                        <p class="text-muted small mb-0">Downed trees leave stumps. We prioritize hazardous trips and work with your insurer’s timeline when needed.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm ss-card-hover">
+                    <div class="card-body p-4">
+                        <div class="ss-service-icon ss-light-pink text-hot-pink mb-3"><i class="fas fa-ruler-combined"></i></div>
+                        <h2 class="h5 fw-bold">Site visits &amp; marking</h2>
+                        <p class="text-muted small mb-0">Not sure if we can reach it? We’ll walk the property, flag utilities awareness, and give a written scope before we fire up the grinder.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5">
+            <a href="{{ url_for('quote') }}" class="btn ss-btn-primary btn-lg me-2">Get a quote</a>
+            <a href="{{ url_for('contact') }}" class="btn btn-outline-secondary btn-lg">Contact</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

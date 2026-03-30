@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Quote calculator{% endblock %}
+{% block content %}
+<section class="ss-page-header ss-hot text-white py-5 position-relative">
+    <div class="container position-relative" style="z-index: 1;">
+        <h1 class="display-5 fw-bold mb-2"><i class="fas fa-calculator me-2"></i>Instant quote calculator</h1>
+        <p class="lead mb-0 opacity-90">Ballpark pricing for planning—final bids may vary after an on-site look.</p>
+    </div>
+</section>
+
+<section class="ss-floral py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-7">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4 p-md-5">
+                        <form id="quote-form" class="ss-quote-form">
+                            <div class="mb-4">
+                                <label for="stump-count" class="form-label fw-semibold">How many stumps?</label>
+                                <input type="number" class="form-control form-control-lg" id="stump-count" min="1" max="99" value="1" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="avg-diameter" class="form-label fw-semibold">Average stump diameter (inches, at ground level)</label>
+                                <input type="number" class="form-control form-control-lg" id="avg-diameter" min="6" max="72" value="18" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="grind-depth" class="form-label fw-semibold">Grind depth</label>
+                                <select class="form-select form-select-lg" id="grind-depth">
+                                    <option value="1" selected>Standard (6–8" below grade)</option>
+                                    <option value="1.15">Deep (replant in same spot)</option>
+                                    <option value="0.9">Shallow (grind flush, budget)</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="access" class="form-label fw-semibold">Access for equipment</label>
+                                <select class="form-select form-select-lg" id="access">
+                                    <option value="1" selected>Open yard / driveway OK</option>
+                                    <option value="1.12">Fence gate, tight turn</option>
+                                    <option value="1.25">Backyard only, carry gear</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="debris" class="form-label fw-semibold">Wood chips &amp; debris</label>
+                                <select class="form-select form-select-lg" id="debris">
+                                    <option value="1" selected>Leave chips on site (mulch)</option>
+                                    <option value="1.18">Haul away chips</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn ss-btn-primary btn-lg w-100">Calculate estimate</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="card border-0 shadow ss-result-card h-100 ss-light-pink">
+                    <div class="card-body p-4 p-md-5 d-flex flex-column">
+                        <h2 class="h4 fw-bold mb-3">Your estimate</h2>
+                        <div id="quote-result" class="flex-grow-1">
+                            <p class="text-muted mb-0">Adjust the form and tap <strong>Calculate estimate</strong> to see a range.</p>
+                        </div>
+                        <hr class="my-4">
+                        <p class="small text-muted mb-0">Estimates use a simple model: base fee per visit plus per-inch grinding, adjusted for depth, access, and debris. Not a binding contract.</p>
+                        <a href="{{ url_for('contact') }}" class="btn btn-outline-dark mt-3">Lock in a site visit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Contact{% endblock %}
+{% block content %}
+<section class="ss-page-header ss-hot text-white py-5 position-relative">
+    <div class="container position-relative" style="z-index: 1;">
+        <h1 class="display-5 fw-bold mb-2">Contact StumpSolutions</h1>
+        <p class="lead mb-0 opacity-90">Call, email, or send a note—we’ll get back before your HOA notices the stump.</p>
+    </div>
+</section>
+
+<section class="ss-floral py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-5">
+                <div class="card border-0 shadow-sm h-100 ss-light-pink">
+                    <div class="card-body p-4 p-md-5">
+                        <h2 class="h4 fw-bold mb-4">Reach us</h2>
+                        <ul class="list-unstyled ss-contact-list">
+                            <li class="mb-4">
+                                <span class="ss-contact-icon ss-hot-soft text-white"><i class="fas fa-phone"></i></span>
+                                <div>
+                                    <div class="fw-semibold">Phone</div>
+                                    <a href="tel:+15555557890" class="text-hot-pink text-decoration-none">(555) 555-STUMP (7868)</a>
+                                </div>
+                            </li>
+                            <li class="mb-4">
+                                <span class="ss-contact-icon ss-hot-soft text-white"><i class="fas fa-envelope"></i></span>
+                                <div>
+                                    <div class="fw-semibold">Email</div>
+                                    <a href="mailto:hello@stumpsolutions.com" class="text-hot-pink text-decoration-none">hello@stumpsolutions.com</a>
+                                </div>
+                            </li>
+                            <li class="mb-4">
+                                <span class="ss-contact-icon ss-hot-soft text-white"><i class="fas fa-location-dot"></i></span>
+                                <div>
+                                    <div class="fw-semibold">Service area</div>
+                                    <span class="text-muted">Metro &amp; suburbs within ~40 miles. Ask about your ZIP.</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="ss-contact-icon ss-hot-soft text-white"><i class="fas fa-clock"></i></span>
+                                <div>
+                                    <div class="fw-semibold">Hours</div>
+                                    <span class="text-muted">Mon–Sat 7am–7pm · Emergency calls for storm damage</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4 p-md-5">
+                        <h2 class="h4 fw-bold mb-3">Send a message</h2>
+                        <p class="text-muted small mb-4">This form is for demo purposes in class—nothing is stored on a server.</p>
+                        <form class="ss-contact-form">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="c-name">Name</label>
+                                    <input type="text" class="form-control" id="c-name" placeholder="Your name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="c-email">Email</label>
+                                    <input type="email" class="form-control" id="c-email" placeholder="you@example.com" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label" for="c-msg">How can we help?</label>
+                                    <textarea class="form-control" id="c-msg" rows="4" placeholder="Stump size, photos, timeline..." required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn ss-btn-primary btn-lg">Send (demo)</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
