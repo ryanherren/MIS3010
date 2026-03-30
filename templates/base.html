@@ -3,85 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}MIS 3010 - Ryan Herren{% endblock %}</title>
-    
-    <!-- Bootstrap 5 CSS -->
+    <title>{% block title %}Cole's Kicks{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
-    
     {% block head %}{% endblock %}
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-cardinal">
+<body class="d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-expand-lg navbar-dark kicks-nav">
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('home') }}">
-                <i class="fas fa-graduation-cap me-2 text-gold"></i>MIS 3010
+            <a class="navbar-brand fw-bold" href="{{ url_for('home') }}">
+                <i class="fas fa-shoe-prints me-2 kicks-text-accent"></i>Cole's Kicks
             </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link {% if request.endpoint == 'home' %}active{% endif %}" href="{{ url_for('home') }}">
-                            <i class="fas fa-home me-1"></i>Home
+                        <a class="nav-link" href="{{ url_for('home') }}"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="buyersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-shopping-bag me-1"></i>Buyers
                         </a>
+                        <ul class="dropdown-menu kicks-dropdown" aria-labelledby="buyersDropdown">
+                            <li><a class="dropdown-item" href="{{ url_for('shop') }}">Shop sneakers</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('recommended') }}">Recommended</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('orders') }}">Order tracker</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('checkout') }}">Checkout</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.endpoint == 'about' %}active{% endif %}" href="{{ url_for('about') }}">
-                            <i class="fas fa-user me-1"></i>About Me
-                        </a>
+                        <a class="nav-link" href="{{ url_for('sell') }}"><i class="fas fa-store me-1"></i>Sellers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('about') }}"><i class="fas fa-book-open me-1"></i>Our story</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('help_page') }}"><i class="fas fa-life-ring me-1"></i>Help &amp; reviews</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('contact') }}"><i class="fas fa-envelope me-1"></i>Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('careers') }}"><i class="fas fa-briefcase me-1"></i>Careers</a>
                     </li>
                 </ul>
-                
+                <div class="d-flex align-items-center gap-2">
+                    <a href="{{ url_for('checkout') }}" class="btn btn-kicks-accent btn-sm position-relative" id="nav-cart-btn">
+                        <i class="fas fa-shopping-cart me-1"></i>Cart
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark border border-2 border-white d-none" id="nav-cart-count">0</span>
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Flash Messages -->
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             <div class="container mt-3">
                 {% for category, message in messages %}
                     <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show" role="alert">
                         {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 {% endfor %}
             </div>
         {% endif %}
     {% endwith %}
 
-    <!-- Main Content -->
-    <main class="container-fluid">
+    <main class="container-fluid flex-grow-1 px-0">
         {% block content %}{% endblock %}
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-light py-4 mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p class="mb-0">&copy; 2025 MIS 3010 - Ryan Herren</p>
+    <footer class="kicks-footer text-light mt-auto">
+        <div class="container py-4">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5 class="kicks-text-accent fw-bold"><i class="fas fa-shoe-prints me-2"></i>Cole's Kicks</h5>
+                    <p class="small mb-0 text-white-50">Peer-to-peer sneaker resale built for the MIS3010 community—authentic vibes, mock transactions for class.</p>
                 </div>
-                <div class="col-md-6 text-end">
-                    <p class="mb-0">Built with <i class="fas fa-heart text-danger"></i> using Flask & Bootstrap</p>
+                <div class="col-md-4">
+                    <h6 class="text-uppercase small kicks-text-accent">Explore</h6>
+                    <ul class="list-unstyled small mb-0">
+                        <li><a class="link-light link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ url_for('shop') }}">Shop</a></li>
+                        <li><a class="link-light link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ url_for('sell') }}">Sell</a></li>
+                        <li><a class="link-light link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ url_for('recommended') }}">Recommended</a></li>
+                        <li><a class="link-light link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ url_for('orders') }}">Track order</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="text-uppercase small kicks-text-accent">Company</h6>
+                    <ul class="list-unstyled small mb-0">
+                        <li><a class="link-light link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ url_for('about') }}">About</a></li>
+                        <li><a class="link-light link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ url_for('contact') }}">Contact</a></li>
+                        <li><a class="link-light link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ url_for('careers') }}">Careers</a></li>
+                        <li><a class="link-light link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ url_for('help_page') }}">Help</a></li>
+                    </ul>
                 </div>
             </div>
+            <hr class="border-secondary my-3">
+            <p class="small text-white-50 mb-0 text-center">&copy; 2026 Cole's Kicks — MIS 3010 group project</p>
         </div>
     </footer>
 
-    <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
-    
+    <script src="{{ url_for('static', filename='js/kicks.js') }}"></script>
     {% block scripts %}{% endblock %}
 </body>
 </html>

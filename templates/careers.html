@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Careers — Cole's Kicks{% endblock %}
+
+{% block content %}
+<div class="kicks-panel-dark py-5 text-center text-white">
+    <div class="container">
+        <h1 class="display-6 fw-bold mb-3">Careers at Cole's Kicks</h1>
+        <p class="lead text-white-50 mb-0 max-width-prose mx-auto" style="max-width: 36rem;">Mock openings that mirror how we'd scale from a classroom MVP to a real resale team.</p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-4">
+        {% for role in roles %}
+        <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4 d-flex flex-column">
+                    <span class="badge bg-danger align-self-start mb-2">{{ role.team }}</span>
+                    <h2 class="h5 card-title">{{ role.title }}</h2>
+                    <p class="small text-muted mb-2">{{ role.location }} · {{ role.type }}</p>
+                    <p class="card-text small flex-grow-1">{{ role.summary }}</p>
+                    <button type="button" class="btn btn-outline-secondary btn-sm align-self-start" disabled>Apply (mock)</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <p class="text-center text-muted small mt-4 mb-0">Cole's Kicks is a student project; roles illustrate future hiring needs.</p>
+</div>
+{% endblock %}

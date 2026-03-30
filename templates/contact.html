@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Contact — Cole's Kicks{% endblock %}
+
+{% block content %}
+<div class="bg-danger text-white py-4">
+    <div class="container">
+        <h1 class="h2 fw-bold mb-1">Contact Cole's Kicks</h1>
+        <p class="mb-0 text-white-75">Reach the MIS3010 project team—mock contact details for class presentation.</p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-4 justify-content-center">
+        <div class="col-lg-5">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-4">
+                    <h2 class="h5 mb-4">Office hours (mock)</h2>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-3"><i class="fas fa-map-marker-alt me-2 text-danger"></i><strong>Campus:</strong> Gerdin / Business stack (demo address)</li>
+                        <li class="mb-3"><i class="fas fa-clock me-2 kicks-text-accent"></i><strong>Hours:</strong> After 2:15 p.m. lectures, by appointment</li>
+                        <li class="mb-3"><i class="fas fa-envelope me-2 text-danger"></i><strong>Email:</strong> <a href="mailto:coleskicks@demo.edu">coleskicks@demo.edu</a></li>
+                        <li><i class="fas fa-phone me-2 kicks-text-accent"></i><strong>Phone:</strong> (555) 019-MIS1</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-4">
+                    <h2 class="h5 mb-4">Message us</h2>
+                    <form id="contact-demo-form">
+                        <div class="mb-3">
+                            <label class="form-label" for="c-name">Name</label>
+                            <input type="text" class="form-control" id="c-name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="c-email">Email</label>
+                            <input type="email" class="form-control" id="c-email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="c-body">How can we help?</label>
+                            <textarea class="form-control" id="c-body" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send (demo)</button>
+                    </form>
+                    <p class="small text-muted mt-3 mb-0" id="contact-note"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('contact-demo-form')?.addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.getElementById('contact-note').textContent = 'Demo only—no message was sent. Use this UI in your presentation to discuss future email integration.';
+    this.reset();
+});
+</script>
+{% endblock %}

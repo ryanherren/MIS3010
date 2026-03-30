@@ -1,42 +1,32 @@
 {% extends "base.html" %}
 
-{% block title %}Home - MIS 3010{% endblock %}
+{% block title %}Home — Cole's Kicks{% endblock %}
 
 {% block content %}
-<div class="hero-section bg-cardinal-gold-gradient text-white py-5">
-    <div class="container text-center">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <h1 class="display-4 fw-bold mb-4">
-                    <i class="fas fa-graduation-cap me-3 text-gold"></i>
-                    Welcome to MIS 3010
-                </h1>
-                
-                <div class="datetime-display bg-white bg-opacity-10 rounded-4 p-4 mb-4">
-                    <div class="row">
-                        <div class="col-md-6 mb-3 mb-md-0">
-                            <h5 class="mb-2">
-                                <i class="fas fa-calendar-alt me-2"></i>Current Date
-                            </h5>
-                            <p class="h4 mb-0" id="current-date">Loading...</p>
-                        </div>
-                        <div class="col-md-6">
-                            <h5 class="mb-2">
-                                <i class="fas fa-clock me-2"></i>Current Time
-                            </h5>
-                            <p class="h2 mb-0 font-monospace" id="current-time">00:00:00</p>
-                        </div>
-                    </div>
+<div class="kicks-hero text-white py-5">
+    <div class="container py-lg-4">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7">
+                <p class="text-uppercase small kicks-hero-badge mb-2"><i class="fas fa-bolt me-1"></i>Buyers &amp; sellers welcome</p>
+                <h1 class="display-4 fw-bold mb-3">Sneaker resale, campus-born.</h1>
+                <p class="lead mb-4 text-white-50">Cole's Kicks connects verified-style listings with a smooth cart checkout, seller tools, and order tracking—mock data, real workflows for MIS3010.</p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="{{ url_for('shop') }}" class="btn btn-kicks-accent btn-lg"><i class="fas fa-shopping-bag me-2"></i>Shop as buyer</a>
+                    <a href="{{ url_for('sell') }}" class="btn btn-outline-light btn-lg"><i class="fas fa-store me-2"></i>Sell your kicks</a>
                 </div>
-                
-                <p class="lead mb-4">
-                    Management Information Systems - Real World Applications of Artificial Intelligence
-                </p>
-                
-                <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-                    <a href="{{ url_for('about') }}" class="btn btn-secondary btn-lg">
-                        <i class="fas fa-user me-2"></i>Learn About Me
-                    </a>
+            </div>
+            <div class="col-lg-5">
+                <div class="card border-0 shadow-lg kicks-glass-card">
+                    <div class="card-body p-4 text-dark">
+                        <h5 class="fw-bold text-danger mb-3"><i class="fas fa-fire me-2 kicks-text-accent"></i>Today's mock drops</h5>
+                        <ul class="list-unstyled mb-0 small">
+                            <li class="d-flex justify-content-between py-2 border-bottom"><span>Jordan 1 Chicago vibe</span><span class="fw-semibold">$189.99</span></li>
+                            <li class="d-flex justify-content-between py-2 border-bottom"><span>Yeezy 350 V2</span><span class="fw-semibold">$265.00</span></li>
+                            <li class="d-flex justify-content-between py-2 border-bottom"><span>Dunk Low Panda</span><span class="fw-semibold">$145.00</span></li>
+                            <li class="d-flex justify-content-between py-2"><span>NB 990v6</span><span class="fw-semibold">$210.00</span></li>
+                        </ul>
+                        <a href="{{ url_for('recommended') }}" class="btn btn-primary w-100 mt-3">See recommended picks</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -45,75 +35,34 @@
 
 <section class="py-5">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <div class="feature-icon bg-cardinal text-white rounded-circle mb-3">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h5 class="card-title">Modern Technologies</h5>
-                        <p class="card-text">Built with Flask, Bootstrap 5, and modern web standards for a responsive experience.</p>
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="fw-bold">Built for two sides of the sneaker game</h2>
+                <p class="text-muted mb-0">Half the experience is discovery and checkout; the other half is listing, pricing, and tracking your sales.</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm kicks-border-accent">
+                    <div class="card-body p-4">
+                        <div class="rounded-circle bg-danger text-white d-inline-flex align-items-center justify-content-center mb-3" style="width:3rem;height:3rem;"><i class="fas fa-shopping-bag"></i></div>
+                        <h4 class="card-title">Buyer experience</h4>
+                        <p class="card-text text-muted">Filter by brand, size, color, and price. Add to cart, run through checkout, and track orders with a generated ID.</p>
+                        <a href="{{ url_for('shop') }}" class="stretched-link text-decoration-none fw-semibold text-danger">Open shop</a>
                     </div>
                 </div>
             </div>
-            
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <div class="feature-icon bg-gold text-dark rounded-circle mb-3">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <h5 class="card-title">Database Integration</h5>
-                        <p class="card-text">SQLAlchemy ORM with support for both SQLite development and PostgreSQL production.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <div class="feature-icon bg-cardinal text-white rounded-circle mb-3">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <h5 class="card-title">Mobile Responsive</h5>
-                        <p class="card-text">Mobile-first design approach ensuring great user experience across all devices.</p>
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm" style="border-top: 4px solid var(--kicks-orange) !important;">
+                    <div class="card-body p-4">
+                        <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3 kicks-strip-orange" style="width:3rem;height:3rem;"><i class="fas fa-chart-line"></i></div>
+                        <h4 class="card-title">Seller hub</h4>
+                        <p class="card-text text-muted">Preview listing health, mock payouts, and inventory tied to the same catalog used in class demos.</p>
+                        <a href="{{ url_for('sell') }}" class="stretched-link text-decoration-none fw-semibold kicks-text-accent">Go to seller side</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-{% endblock %}
-
-{% block scripts %}
-<script>
-    // Update time continuously
-    function updateDateTime() {
-        const now = new Date();
-        
-        // Update date
-        const dateOptions = { 
-            weekday: 'long', 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-        };
-        document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', dateOptions);
-        
-        // Update time
-        const timeOptions = {
-            hour12: false,
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit'
-        };
-        document.getElementById('current-time').textContent = now.toLocaleTimeString('en-US', timeOptions);
-    }
-    
-    // Update immediately and then every second
-    updateDateTime();
-    setInterval(updateDateTime, 1000);
-</script>
 {% endblock %}

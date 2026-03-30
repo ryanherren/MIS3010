@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Order confirmed — Cole's Kicks{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-7 text-center">
+            <div class="display-1 text-success mb-3"><i class="fas fa-check-circle"></i></div>
+            <h1 class="h2 fw-bold mb-3">Thanks—your mock order is placed</h1>
+            {% if order %}
+            <p class="lead">Order ID: <strong class="text-danger">{{ order.id }}</strong></p>
+            <p class="text-muted">Save this ID to track status on the Order Tracker page.</p>
+            <div class="card border-0 shadow-sm text-start mt-4">
+                <div class="card-body">
+                    <h2 class="h6 text-uppercase text-muted">Summary</h2>
+                    <ul class="list-unstyled mb-0">
+                        {% for item in order['items'] %}
+                        <li class="d-flex justify-content-between py-2 border-bottom">
+                            <span>{{ item.name }} × {{ item.qty }}</span>
+                            <span>${{ "%.2f"|format(item.price * item.qty) }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% if order.total is defined %}
+                    <p class="fw-bold mt-3 mb-0 text-end">Total: ${{ "%.2f"|format(order.total) }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+            <div class="mt-4 d-flex flex-wrap gap-2 justify-content-center">
+                <a href="{{ url_for('orders') }}" class="btn btn-primary">Track this order</a>
+                <a href="{{ url_for('shop') }}" class="btn btn-outline-secondary">Keep shopping</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

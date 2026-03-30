@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Seller hub — Cole's Kicks{% endblock %}
+
+{% block content %}
+<div class="kicks-panel-dark py-4">
+    <div class="container">
+        <h1 class="h2 fw-bold mb-1 kicks-text-accent"><i class="fas fa-store me-2"></i>Seller side</h1>
+        <p class="mb-0 text-white-50">Mock dashboard to showcase payouts, listings, and operations for class.</p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-4 mb-4">
+        <div class="col-md-3 col-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <p class="small text-muted mb-1">Active listings</p>
+                    <p class="h3 fw-bold text-danger mb-0">{{ stats.active_listings }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <p class="small text-muted mb-1">Pending sales</p>
+                    <p class="h3 fw-bold kicks-text-accent mb-0">{{ stats.pending_sales }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <p class="small text-muted mb-1">Lifetime sales (mock)</p>
+                    <p class="h3 fw-bold mb-0">${{ "%.0f"|format(stats.lifetime_sales) }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <p class="small text-muted mb-1">Avg. ship prep</p>
+                    <p class="h3 fw-bold mb-0">{{ stats.avg_ship_time_hours }}h</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white fw-bold"><i class="fas fa-plus-circle me-2 text-danger"></i>List new pair (demo form)</div>
+                <div class="card-body">
+                    <form class="mock-seller-form">
+                        <div class="mb-3">
+                            <label class="form-label">Shoe name</label>
+                            <input type="text" class="form-control" placeholder="e.g. Air Max 95 Neon" disabled>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Brand</label>
+                                <input type="text" class="form-control" placeholder="Nike" disabled>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Ask price</label>
+                                <input type="text" class="form-control" placeholder="$180.00" disabled>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-secondary w-100" disabled>Submit listing (mock)</button>
+                        <p class="small text-muted mt-2 mb-0">Disabled on purpose—shows seller UX without persisting data.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white fw-bold"><i class="fas fa-boxes me-2 kicks-text-accent"></i>Sample inventory tied to shop</div>
+                <div class="list-group list-group-flush">
+                    {% for shoe in shoes %}
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>{{ shoe.name }}</strong>
+                            <div class="small text-muted">{{ shoe.brand }} · {{ shoe.size }} · ${{ "%.0f"|format(shoe.price) }}</div>
+                        </div>
+                        <span class="badge bg-success">Live</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
