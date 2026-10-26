@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Sign In{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card">
+                <div class="card-body p-4 p-md-5">
+                    <h2 class="fw-bold text-navy text-center mb-1">Sign In</h2>
+                    <p class="text-muted text-center mb-4">Access your Hy-Vee Perks account</p>
+                    <form method="post">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" required autofocus>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold" for="password">Password</label>
+                            <input type="password" id="password" name="password" class="form-control" required>
+                        </div>
+                        <button class="btn btn-navy w-100 mb-3">Sign In</button>
+                    </form>
+                    <p class="text-center mb-0">New to Hy-Vee? <a href="{{ url_for('register') }}" class="fw-semibold text-green">Create an account</a></p>
+                    <div class="bg-baby-light rounded-3 p-3 mt-4 small text-navy">
+                        <i class="fas fa-circle-info me-1"></i><strong>Demo account:</strong> demo@hy-vee.com / hyvee123
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

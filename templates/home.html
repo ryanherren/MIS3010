@@ -1,83 +1,36 @@
 {% extends "base.html" %}
+{% from "_macros.html" import product_card, recipe_card %}
 
-{% block title %}Home - MIS 3010{% endblock %}
+{% block title %}Groceries, Pickup & Delivery{% endblock %}
 
 {% block content %}
-<div class="hero-section bg-cardinal-gold-gradient text-white py-5">
-    <div class="container text-center">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <h1 class="display-4 fw-bold mb-4">
-                    <i class="fas fa-graduation-cap me-3 text-gold"></i>
-                    Welcome to MIS 3010
-                </h1>
-                
-                <div class="datetime-display bg-white bg-opacity-10 rounded-4 p-4 mb-4">
-                    <div class="row">
-                        <div class="col-md-6 mb-3 mb-md-0">
-                            <h5 class="mb-2">
-                                <i class="fas fa-calendar-alt me-2"></i>Current Date
-                            </h5>
-                            <p class="h4 mb-0" id="current-date">Loading...</p>
-                        </div>
-                        <div class="col-md-6">
-                            <h5 class="mb-2">
-                                <i class="fas fa-clock me-2"></i>Current Time
-                            </h5>
-                            <p class="h2 mb-0 font-monospace" id="current-time">00:00:00</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <p class="lead mb-4">
-                    Management Information Systems - Real World Applications of Artificial Intelligence
-                </p>
-                
-                <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-                    <a href="{{ url_for('about') }}" class="btn btn-secondary btn-lg">
-                        <i class="fas fa-user me-2"></i>Learn About Me
-                    </a>
+<section class="hero">
+    <div class="container position-relative" style="z-index:1">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7">
+                <span class="badge rounded-pill bg-baby text-navy mb-3 px-3 py-2">
+                    <i class="fas fa-leaf me-1"></i>Fall Harvest Sale — this week only
+                </span>
+                <h1 class="display-4 fw-bold mb-3">A helpful smile<br>in every aisle.</h1>
+                <p class="lead mb-4">Shop fresh groceries online, clip digital coupons, and pick up at any of our {{ store_count }} featured stores — or cook something great with recipes built from our shelves.</p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="{{ url_for('products') }}" class="btn btn-green btn-lg px-4"><i class="fas fa-basket-shopping me-2"></i>Start Shopping</a>
+                    <a href="{{ url_for('deals') }}" class="btn btn-baby btn-lg px-4"><i class="fas fa-tags me-2"></i>Weekly Deals</a>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<section class="py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <div class="feature-icon bg-cardinal text-white rounded-circle mb-3">
-                            <i class="fas fa-code"></i>
+            <div class="col-lg-5">
+                <div class="card p-4 text-navy">
+                    <h5 class="fw-bold mb-3"><i class="fas fa-location-dot text-green me-2"></i>Find your Hy-Vee</h5>
+                    <form action="{{ url_for('locations') }}" method="get">
+                        <div class="input-group mb-3">
+                            <input type="text" name="q" class="form-control" placeholder="City or store name">
+                            <button class="btn btn-navy px-3"><i class="fas fa-magnifying-glass"></i></button>
                         </div>
-                        <h5 class="card-title">Modern Technologies</h5>
-                        <p class="card-text">Built with Flask, Bootstrap 5, and modern web standards for a responsive experience.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <div class="feature-icon bg-gold text-dark rounded-circle mb-3">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <h5 class="card-title">Database Integration</h5>
-                        <p class="card-text">SQLAlchemy ORM with support for both SQLite development and PostgreSQL production.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <div class="feature-icon bg-cardinal text-white rounded-circle mb-3">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <h5 class="card-title">Mobile Responsive</h5>
-                        <p class="card-text">Mobile-first design approach ensuring great user experience across all devices.</p>
+                    </form>
+                    <div class="row text-center small g-2">
+                        <div class="col-4"><div class="bg-baby-light rounded p-2"><i class="fas fa-car-side text-green d-block mb-1"></i>Pickup</div></div>
+                        <div class="col-4"><div class="bg-baby-light rounded p-2"><i class="fas fa-truck text-green d-block mb-1"></i>Delivery</div></div>
+                        <div class="col-4"><div class="bg-baby-light rounded p-2"><i class="fas fa-prescription-bottle-medical text-green d-block mb-1"></i>Pharmacy</div></div>
                     </div>
                 </div>
             </div>
@@ -85,35 +38,84 @@
     </div>
 </section>
 
-{% endblock %}
+<!-- Categories -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="section-title mb-4">Shop by Category</h2>
+        <div class="row g-3">
+            {% set icons = {'Produce':'fa-apple-whole','Meat & Seafood':'fa-drumstick-bite','Dairy & Eggs':'fa-cheese','Bakery':'fa-bread-slice','Pantry':'fa-jar','Frozen':'fa-snowflake','Beverages':'fa-mug-hot','Snacks':'fa-cookie-bite'} %}
+            {% for c in categories %}
+            <div class="col-6 col-md-3 col-xl">
+                <a class="category-tile" href="{{ url_for('products', category=c) }}">
+                    <i class="fas {{ icons[c] }}"></i>{{ c }}
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
 
-{% block scripts %}
-<script>
-    // Update time continuously
-    function updateDateTime() {
-        const now = new Date();
-        
-        // Update date
-        const dateOptions = { 
-            weekday: 'long', 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-        };
-        document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', dateOptions);
-        
-        // Update time
-        const timeOptions = {
-            hour12: false,
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit'
-        };
-        document.getElementById('current-time').textContent = now.toLocaleTimeString('en-US', timeOptions);
-    }
-    
-    // Update immediately and then every second
-    updateDateTime();
-    setInterval(updateDateTime, 1000);
-</script>
+<!-- Promos / ads -->
+<section class="pb-5">
+    <div class="container">
+        <div class="row g-4">
+            {% for promo in promos %}
+            <div class="col-md-4">
+                <div class="promo promo-{{ loop.index0 }} d-flex flex-column">
+                    <i class="fas {{ promo.icon }} promo-icon mb-3"></i>
+                    <h4 class="fw-bold">{{ promo.title }}</h4>
+                    <p class="mb-4">{{ promo.subtitle }}</p>
+                    <a href="{{ url_for('products', category=promo.category) if promo.category else url_for('deals') }}"
+                       class="btn {{ 'btn-navy' if loop.index0 == 2 else 'btn-light' }} mt-auto align-self-start">{{ promo.cta }} <i class="fas fa-arrow-right ms-1"></i></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- On sale -->
+<section class="py-5 bg-surface">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-end mb-4">
+            <h2 class="section-title mb-0">This Week's Deals</h2>
+            <a href="{{ url_for('products', sale=1) }}" class="fw-semibold">See all deals <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="row g-4">
+            {% for p in on_sale %}
+            <div class="col-6 col-md-4 col-lg-3">{{ product_card(p) }}</div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Recipes -->
+<section class="py-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-end mb-4">
+            <h2 class="section-title mb-0">What's for Dinner?</h2>
+            <a href="{{ url_for('recipes') }}" class="fw-semibold">All recipes <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="row g-4">
+            {% for r in recipes %}
+            <div class="col-sm-6 col-lg-3">{{ recipe_card(r) }}</div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Perks banner -->
+<section class="pb-2">
+    <div class="container">
+        <div class="rounded-4 bg-green text-white p-4 p-md-5 d-md-flex justify-content-between align-items-center">
+            <div>
+                <h3 class="fw-bold mb-1">Join Hy-Vee Perks — it's free</h3>
+                <p class="mb-md-0">Clip digital coupons, earn Fuel Saver, and check out faster.</p>
+            </div>
+            <a href="{{ url_for('account') if user else url_for('register') }}" class="btn btn-light btn-lg text-green px-4">
+                {{ 'My Account' if user else 'Create Account' }}
+            </a>
+        </div>
+    </div>
+</section>
 {% endblock %}

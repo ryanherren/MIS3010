@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% from "_macros.html" import product_card %}
+
+{% block title %}Shop Products{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <h1 class="fw-bold mb-1">{{ category or 'All Products' }}</h1>
+        <p>{{ products|length }} item{{ '' if products|length == 1 else 's' }}{% if q %} matching “{{ q }}”{% endif %}</p>
+    </div>
+</div>
+
+<div class="container py-4">
+        <div class="row g-4">
+            <!-- Filters -->
+            <aside class="col-lg-3">
+                <form id="filters" method="get" action="{{ url_for('products') }}" class="filter-panel" data-autosubmit>
+                    <h6 class="mb-2">Search</h6>
+                    <div class="input-group mb-4">
+                        <input type="search" name="q" value="{{ q }}" class="form-control" placeholder="e.g. salmon">
+                        <button class="btn btn-navy"><i class="fas fa-magnifying-glass"></i></button>
+                    </div>
+
+                    <h6 class="mb-2">Category</h6>
+                    <select name="category" class="form-select mb-4">
+                        <option value="">All categories</option>
+                        {% for c in categories %}
+                        <option value="{{ c }}" {% if c == category %}selected{% endif %}>{{ c }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <h6 class="mb-2">Dietary</h6>
+                    <div class="mb-4">
+                        {% for t in dietary_tags %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="tag" value="{{ t }}" id="tag-{{ loop.index }}" {% if t in tags %}checked{% endif %}>
+                            <label class="form-check-label" for="tag-{{ loop.index }}">{{ t }}</label>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <h6 class="mb-2">Price</h6>
+                    <select name="max_price" class="form-select mb-4">
+                        <option value="">Any price</option>
+                        {% for mp in [2, 5, 10] %}
+                        <option value="{{ mp }}" {% if max_price == mp %}selected{% endif %}>Under ${{ mp }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <div class="form-check form-switch mb-4">
+                        <input class="form-check-input" type="checkbox" name="sale" value="1" id="sale" {% if on_sale %}checked{% endif %}>
+                        <label class="form-check-label fw-semibold text-danger" for="sale">On sale only</label>
+                    </div>
+
+                    <a href="{{ url_for('products') }}" class="btn btn-outline-navy btn-sm w-100">Clear filters</a>
+                </form>
+            </aside>
+
+            <!-- Results -->
+            <div class="col-lg-9">
+                <div class="d-flex justify-content-end align-items-center mb-3 gap-2">
+                    <label for="sort" class="small text-muted">Sort by</label>
+                    <select name="sort" id="sort" form="filters" class="form-select form-select-sm w-auto">
+                        {% for value, label in [('featured','Featured'),('price_asc','Price: Low to High'),('price_desc','Price: High to Low'),('rating','Top Rated'),('name','Name A–Z')] %}
+                        <option value="{{ value }}" {% if sort == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                {% if products %}
+                <div class="row g-4">
+                    {% for p in products %}
+                    <div class="col-6 col-md-4">{{ product_card(p) }}</div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="text-center py-5">
+                    <i class="fas fa-basket-shopping fa-3x text-baby mb-3"></i>
+                    <h4 class="text-navy">No products match those filters</h4>
+                    <a href="{{ url_for('products') }}" class="btn btn-navy mt-2">Show all products</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+</div>
+{% endblock %}

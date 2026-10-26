@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% from "_macros.html" import price_block %}
+
+{% block title %}{{ recipe.name }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <a href="{{ url_for('recipes') }}" class="text-baby small text-decoration-none"><i class="fas fa-arrow-left me-1"></i>All recipes</a>
+        <h1 class="fw-bold mt-2 mb-1">{{ recipe.emoji }} {{ recipe.name }}</h1>
+        <p>{{ recipe.summary }}</p>
+        <div class="d-flex flex-wrap gap-2 mt-3">
+            <span class="badge rounded-pill bg-green px-3 py-2"><i class="far fa-clock me-1"></i>{{ recipe.minutes }} min</span>
+            <span class="badge rounded-pill bg-green px-3 py-2"><i class="fas fa-user-group me-1"></i>Serves {{ recipe.serves }}</span>
+            <span class="badge rounded-pill bg-green px-3 py-2"><i class="fas fa-signal me-1"></i>{{ recipe.difficulty }}</span>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-5">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body p-4">
+                    <h4 class="section-title mb-4">Ingredients</h4>
+                    <ul class="list-group list-group-flush mb-4">
+                        {% for i in ingredients %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                            <div>
+                                <div>{{ i.qty }}</div>
+                                {% if i.product %}
+                                <a href="{{ url_for('product_detail', product_id=i.product.id) }}" class="small">
+                                    {{ i.product.emoji }} {{ i.product.name }}
+                                </a>
+                                {% else %}
+                                <small class="text-muted">Pantry staple</small>
+                                {% endif %}
+                            </div>
+                            {% if i.product %}
+                            <div class="text-end small">{{ price_block(i.product) }}</div>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="bg-baby-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+                        <div>
+                            <small class="text-muted d-block">Estimated cost</small>
+                            <span class="fs-4 fw-bold text-navy">${{ '%.2f'|format(total) }}</span>
+                        </div>
+                        <form method="post" action="{{ url_for('recipe_add_all', recipe_id=recipe.id) }}">
+                            <button class="btn btn-green"><i class="fas fa-cart-plus me-2"></i>Add all to cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <h4 class="section-title mb-4">Directions</h4>
+            <ol class="list-unstyled">
+                {% for step in recipe.steps %}
+                <li class="d-flex mb-3">
+                    <span class="badge rounded-circle bg-navy me-3 d-flex align-items-center justify-content-center flex-shrink-0" style="width:2rem;height:2rem">{{ loop.index }}</span>
+                    <span class="pt-1">{{ step }}</span>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+</div>
+{% endblock %}

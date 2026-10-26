@@ -1,4 +1,4 @@
-// Main JavaScript file for MIS 3010 Web Application
+// Main JavaScript file for the Hy-Vee web storefront
 // Author: Ryan Herren
 
 // Global App Object
@@ -22,9 +22,6 @@ const MIS3010App = {
 
     // Set up global event listeners
     setupEventListeners() {
-        // Handle navigation active states
-        this.updateActiveNavigation();
-        
         // Handle form submissions with loading states
         const forms = document.querySelectorAll('form');
         forms.forEach(form => {
@@ -36,6 +33,14 @@ const MIS3010App = {
         
         // Handle responsive navigation
         this.setupResponsiveNavigation();
+
+        // Re-run product/store/recipe filters as soon as an option changes
+        document.querySelectorAll('form[data-autosubmit]').forEach(form => {
+            // form.elements includes controls linked via the form="" attribute
+            Array.from(form.elements)
+                .filter(el => el.tagName === 'SELECT' || el.type === 'checkbox' || el.type === 'radio')
+                .forEach(el => el.addEventListener('change', () => form.submit()));
+        });
     },
 
     // Initialize various components

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <h1 class="fw-bold mb-1">Contact Us</h1>
+        <p>Questions, compliments or feedback — we'd love to hear from you.</p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-5">
+        <div class="col-lg-7">
+            <div class="card">
+                <div class="card-body p-4">
+                    <form method="post">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold" for="name">Name</label>
+                                <input type="text" id="name" name="name" class="form-control" value="{{ user.name if user else '' }}" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold" for="email">Email</label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold" for="topic">Topic</label>
+                                <select id="topic" name="topic" class="form-select">
+                                    <option>General question</option>
+                                    <option>Aisles Online order</option>
+                                    <option>Pharmacy</option>
+                                    <option>Store feedback</option>
+                                    <option>Catering</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold" for="store">Store (optional)</label>
+                                <select id="store" name="store" class="form-select">
+                                    <option value="">—</option>
+                                    {% for s in stores %}<option>{{ s.name }}</option>{% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-semibold" for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" class="form-control" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-green px-4"><i class="fas fa-paper-plane me-2"></i>Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="card bg-navy text-white border-0 mb-4">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold text-baby">Corporate Office</h5>
+                    <p class="mb-1"><i class="fas fa-building me-2"></i>5820 Westown Pkwy</p>
+                    <p class="mb-3">West Des Moines, IA 50266</p>
+                    <p class="mb-1"><i class="fas fa-phone me-2"></i>1-800-555-HYVEE</p>
+                    <p class="mb-0"><i class="fas fa-envelope me-2"></i>customercare@hy-vee.com</p>
+                </div>
+            </div>
+            <div class="card bg-baby-light border-0">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold text-navy">Need an answer fast?</h5>
+                    <p class="text-muted">Most questions are covered in our FAQs.</p>
+                    <a href="{{ url_for('customer_service') }}" class="btn btn-navy btn-sm">Visit Customer Service</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

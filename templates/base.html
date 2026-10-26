@@ -3,43 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}MIS 3010 - Ryan Herren{% endblock %}</title>
-    
+    <title>{% block title %}Hy-Vee{% endblock %} | Hy-Vee</title>
+
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
-    
+
     {% block head %}{% endblock %}
 </head>
 <body>
+    <!-- Utility bar -->
+    <div class="topbar py-1">
+        <div class="container d-flex justify-content-between flex-wrap gap-2">
+            <span><i class="fas fa-gas-pump me-1"></i>Save up to 50¢/gal with Fuel Saver + Perks</span>
+            <span class="d-none d-md-inline">
+                <a href="{{ url_for('locations') }}" class="me-3"><i class="fas fa-location-dot me-1"></i>Find a Store</a>
+                <a href="{{ url_for('customer_service') }}" class="me-3"><i class="fas fa-headset me-1"></i>Customer Service</a>
+                <a href="{{ url_for('contact') }}"><i class="fas fa-envelope me-1"></i>Contact Us</a>
+            </span>
+        </div>
+    </div>
+
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-cardinal">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-navy">
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('home') }}">
-                <i class="fas fa-graduation-cap me-2 text-gold"></i>MIS 3010
+            <a class="navbar-brand brand-logo" href="{{ url_for('home') }}">
+                <img src="{{ url_for('static', filename='images/Hy-Vee.png') }}" alt="Hy-Vee">
             </a>
-            
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
+
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+                <ul class="navbar-nav me-auto ms-lg-3">
+                    {% for endpoint, label, icon in [
+                        ('products', 'Shop', 'fa-basket-shopping'),
+                        ('deals', 'Deals', 'fa-tags'),
+                        ('recipes', 'Recipes', 'fa-utensils'),
+                        ('locations', 'Locations', 'fa-store'),
+                        ('leadership', 'Leadership', 'fa-users'),
+                        ('customer_service', 'Help', 'fa-circle-question'),
+                    ] %}
                     <li class="nav-item">
-                        <a class="nav-link {% if request.endpoint == 'home' %}active{% endif %}" href="{{ url_for('home') }}">
-                            <i class="fas fa-home me-1"></i>Home
+                        <a class="nav-link {% if request.endpoint and request.endpoint.startswith(endpoint.rstrip('s')) %}active{% endif %}" href="{{ url_for(endpoint) }}">
+                            <i class="fas {{ icon }} me-1"></i>{{ label }}
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.endpoint == 'about' %}active{% endif %}" href="{{ url_for('about') }}">
-                            <i class="fas fa-user me-1"></i>About Me
-                        </a>
-                    </li>
+                    {% endfor %}
                 </ul>
-                
+
+                <form class="d-flex me-lg-3 my-2 my-lg-0" action="{{ url_for('products') }}" method="get" role="search">
+                    <input class="form-control form-control-sm rounded-pill" type="search" name="q" placeholder="Search products" aria-label="Search products">
+                </form>
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('cart') }}">
+                            <i class="fas fa-cart-shopping"></i>
+                            {% if cart_count %}<span class="badge rounded-pill cart-badge">{{ cart_count }}</span>{% endif %}
+                            <span class="d-lg-none ms-1">Cart</span>
+                        </a>
+                    </li>
+                    {% if user %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-circle-user me-1"></i>{{ user.name.split()[0] }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="{{ url_for('account') }}">My Account</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ url_for('logout') }}">Sign Out</a></li>
+                        </ul>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="btn btn-green btn-sm ms-lg-2 px-3" href="{{ url_for('login') }}">
+                            <i class="fas fa-right-to-bracket me-1"></i>Sign In
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
             </div>
         </div>
     </nav>
@@ -59,21 +106,48 @@
     {% endwith %}
 
     <!-- Main Content -->
-    <main class="container-fluid">
+    <main>
         {% block content %}{% endblock %}
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-light py-4 mt-5">
+    <footer class="site-footer py-5 mt-5">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p class="mb-0">&copy; 2025 MIS 3010 - Ryan Herren</p>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <span class="brand-logo mb-3"><img src="{{ url_for('static', filename='images/Hy-Vee.png') }}" alt="Hy-Vee"></span>
+                    <p class="small mb-0">A helpful smile in every aisle. Employee-owned and proudly serving the Midwest.</p>
                 </div>
-                <div class="col-md-6 text-end">
-                    <p class="mb-0">Built with <i class="fas fa-heart text-danger"></i> using Flask & Bootstrap</p>
+                <div class="col-6 col-lg-2">
+                    <h6>Shop</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="{{ url_for('products') }}">All Products</a></li>
+                        <li><a href="{{ url_for('deals') }}">Weekly Ad & Coupons</a></li>
+                        <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h6>Company</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="{{ url_for('leadership') }}">Leadership</a></li>
+                        <li><a href="{{ url_for('locations') }}">Store Locations</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h6>Help</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="{{ url_for('customer_service') }}">Customer Service</a></li>
+                        <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                        <li><a href="{{ url_for('account') }}">My Account</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h6>Call Us</h6>
+                    <p class="small mb-0">1-800-555-HYVEE<br>7 days a week, 7 AM – 9 PM</p>
                 </div>
             </div>
+            <hr class="border-secondary my-4">
+            <p class="small mb-0">&copy; {{ year }} Hy-Vee, Inc. &middot; MIS 3010 class demo &middot; Prices and stores shown are sample data.</p>
         </div>
     </footer>
 
@@ -81,7 +155,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
-    
+
     {% block scripts %}{% endblock %}
 </body>
 </html>

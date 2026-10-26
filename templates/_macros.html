@@ -1,0 +1,54 @@
+{% macro price_block(p) %}
+    {% if p.sale_price is not none %}
+        <span class="price on-sale">${{ '%.2f'|format(p.sale_price) }}</span>
+        <span class="price-was ms-1">${{ '%.2f'|format(p.price) }}</span>
+    {% else %}
+        <span class="price">${{ '%.2f'|format(p.price) }}</span>
+    {% endif %}
+    <small class="text-muted">/ {{ p.unit }}</small>
+{% endmacro %}
+
+{% macro product_card(p) %}
+<div class="card lift h-100">
+    <a href="{{ url_for('product_detail', product_id=p.id) }}" class="text-decoration-none">
+        <div class="product-thumb">
+            {% if p.sale_price is not none %}<span class="sale-flag">SALE</span>{% endif %}
+            {{ p.emoji }}
+        </div>
+    </a>
+    <div class="card-body d-flex flex-column">
+        <small class="text-green fw-semibold">{{ p.category }}</small>
+        <a href="{{ url_for('product_detail', product_id=p.id) }}" class="text-decoration-none text-navy">
+            <h6 class="fw-bold mb-1">{{ p.name }}</h6>
+        </a>
+        <div class="rating mb-2"><i class="fas fa-star"></i> {{ p.rating }}</div>
+        <div class="mb-2">
+            {% for t in p.tags %}<span class="badge rounded-pill tag-pill me-1">{{ t }}</span>{% endfor %}
+        </div>
+        <div class="mt-auto d-flex justify-content-between align-items-center gap-2">
+            <div>{{ price_block(p) }}</div>
+            <form method="post" action="{{ url_for('cart_add', product_id=p.id) }}">
+                <button class="btn btn-green btn-sm" title="Add to cart"><i class="fas fa-cart-plus"></i></button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
+{% macro recipe_card(r) %}
+<a href="{{ url_for('recipe_detail', recipe_id=r.id) }}" class="text-decoration-none">
+<div class="card lift h-100">
+    <div class="product-thumb">{{ r.emoji }}</div>
+    <div class="card-body">
+        <span class="badge rounded-pill bg-green mb-2">{{ r.category }}</span>
+        <h6 class="fw-bold text-navy mb-1">{{ r.name }}</h6>
+        <p class="small text-muted mb-2">{{ r.summary }}</p>
+        <div class="small text-navy">
+            <i class="far fa-clock me-1"></i>{{ r.minutes }} min
+            <i class="fas fa-user-group ms-3 me-1"></i>Serves {{ r.serves }}
+            <i class="fas fa-carrot ms-3 me-1"></i>{{ r.ingredients|length }} items
+        </div>
+    </div>
+</div>
+</a>
+{% endmacro %}

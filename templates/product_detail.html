@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% from "_macros.html" import product_card, recipe_card, price_block %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb small">
+            <li class="breadcrumb-item"><a href="{{ url_for('products') }}">Shop</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('products', category=product.category) }}">{{ product.category }}</a></li>
+            <li class="breadcrumb-item active">{{ product.name }}</li>
+        </ol>
+    </nav>
+
+    <div class="row g-5 align-items-center">
+        <div class="col-md-5">
+            <div class="product-thumb lg">
+                {% if product.sale_price is not none %}<span class="sale-flag">SALE</span>{% endif %}
+                {{ product.emoji }}
+            </div>
+        </div>
+        <div class="col-md-7">
+            <small class="text-green fw-semibold text-uppercase">{{ product.category }}</small>
+            <h1 class="fw-bold text-navy">{{ product.name }}</h1>
+            <div class="rating mb-3"><i class="fas fa-star"></i> {{ product.rating }} / 5</div>
+            <div class="fs-4 mb-3">{{ price_block(product) }}</div>
+            {% if product.sale_price is not none %}
+            <p class="text-danger fw-semibold"><i class="fas fa-tag me-1"></i>You save ${{ '%.2f'|format(product.price - product.sale_price) }} this week</p>
+            {% endif %}
+            <p class="lead">{{ product.description }}</p>
+            <div class="mb-4">
+                {% for t in product.tags %}<span class="badge rounded-pill tag-pill me-1 fs-6">{{ t }}</span>{% endfor %}
+            </div>
+            <form method="post" action="{{ url_for('cart_add', product_id=product.id) }}" class="d-flex gap-2" style="max-width: 320px">
+                <input type="number" name="qty" value="1" min="1" max="50" class="form-control" style="width: 90px">
+                <button class="btn btn-green flex-grow-1"><i class="fas fa-cart-plus me-2"></i>Add to Cart</button>
+            </form>
+            <p class="small text-muted mt-3 mb-0"><i class="fas fa-car-side me-1"></i>Available for Aisles Online pickup and delivery.</p>
+        </div>
+    </div>
+
+    {% if recipes %}
+    <section class="mt-5">
+        <h3 class="section-title mb-4">Recipes using {{ product.name }}</h3>
+        <div class="row g-4">
+            {% for r in recipes %}
+            <div class="col-sm-6 col-lg-3">{{ recipe_card(r) }}</div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    {% if related %}
+    <section class="mt-5">
+        <h3 class="section-title mb-4">More in {{ product.category }}</h3>
+        <div class="row g-4">
+            {% for p in related %}
+            <div class="col-6 col-lg-3">{{ product_card(p) }}</div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+</div>
+{% endblock %}

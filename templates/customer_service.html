@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Customer Service{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <h1 class="fw-bold mb-1">Customer Service</h1>
+        <p>We're here to help — online, by phone, or at any store's service desk.</p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-4 mb-5">
+        {% for icon, title, text, link, link_text in [
+            ('fa-phone', 'Call Us', '1-800-555-HYVEE · 7 AM – 9 PM daily', None, None),
+            ('fa-envelope', 'Send a Message', 'We reply within one business day.', url_for('contact'), 'Contact Us'),
+            ('fa-store', 'Visit a Store', 'Every Hy-Vee has a customer service desk.', url_for('locations'), 'Find a Store'),
+        ] %}
+        <div class="col-md-4">
+            <div class="card h-100 text-center p-4">
+                <div class="coupon-icon mx-auto mb-3" style="width:3.5rem;height:3.5rem;border-radius:50%;background:var(--baby-blue-light);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:1.4rem">
+                    <i class="fas {{ icon }}"></i>
+                </div>
+                <h5 class="fw-bold text-navy">{{ title }}</h5>
+                <p class="text-muted mb-3">{{ text }}</p>
+                {% if link %}<a href="{{ link }}" class="btn btn-outline-navy btn-sm align-self-center">{{ link_text }}</a>{% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="row g-5">
+        <div class="col-lg-7">
+            <h3 class="section-title mb-4">Frequently Asked Questions</h3>
+            <div class="accordion" id="faq">
+                {% for question, answer in faqs %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button {% if not loop.first %}collapsed{% endif %} fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq{{ loop.index }}">
+                            {{ question }}
+                        </button>
+                    </h2>
+                    <div id="faq{{ loop.index }}" class="accordion-collapse collapse {% if loop.first %}show{% endif %}" data-bs-parent="#faq">
+                        <div class="accordion-body">{{ answer }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="card bg-baby-light border-0">
+                <div class="card-body p-4">
+                    <h4 class="fw-bold text-navy"><i class="fas fa-box me-2 text-green"></i>Check Order Status</h4>
+                    <p class="small text-muted">Enter the order number from your confirmation email.</p>
+                    <form method="post">
+                        <div class="input-group">
+                            <input type="text" name="order" class="form-control" placeholder="e.g. HV1026143210">
+                            <button class="btn btn-navy">Look up</button>
+                        </div>
+                    </form>
+                    {% if order_result %}
+                    <div class="bg-white rounded-3 p-3 mt-3">
+                        <p class="mb-1"><strong>Order:</strong> {{ order_result.order }}</p>
+                        <p class="mb-1"><strong>Status:</strong> <span class="badge bg-green">{{ order_result.status }}</span></p>
+                        <p class="mb-1"><strong>Store:</strong> {{ order_result.store }}</p>
+                        <p class="mb-0"><strong>Pickup window:</strong> {{ order_result.window }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

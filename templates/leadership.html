@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Leadership Team{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <h1 class="fw-bold mb-1">Our Leadership Team</h1>
+        <p>The people guiding Hy-Vee's next chapter — in stores and online.</p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-4 justify-content-center">
+        {% for leader in leaders %}
+        <div class="col-sm-6 col-lg-3">
+            <div class="card lift h-100 text-center pt-4">
+                <div class="leader-avatar {{ leader.color }}">{{ leader.initials }}</div>
+                <div class="card-body">
+                    <h4 class="fw-bold text-navy mb-0">{{ leader.name }}</h4>
+                    <p class="text-green fw-semibold mb-3">{{ leader.title }}</p>
+                    <p class="small text-muted mb-0">{{ leader.bio }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="card mt-5 border-0 bg-surface">
+        <div class="card-body p-4 p-md-5">
+            <h3 class="section-title mb-4">Our New Brand Palette</h3>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="rounded-3 bg-navy" style="height:80px"></div>
+                    <p class="fw-bold text-navy mt-2 mb-0">Navy Blue — Primary</p>
+                    <small class="text-muted">Chosen by Colleen, CMO</small>
+                </div>
+                <div class="col-md-4">
+                    <div class="rounded-3 bg-green" style="height:80px"></div>
+                    <p class="fw-bold text-navy mt-2 mb-0">Green — Secondary</p>
+                    <small class="text-muted">Chosen by Kellen, Co-CMO</small>
+                </div>
+                <div class="col-md-4">
+                    <div class="rounded-3 bg-baby" style="height:80px"></div>
+                    <p class="fw-bold text-navy mt-2 mb-0">Baby Blue — Tertiary</p>
+                    <small class="text-muted">Chosen by Margaret</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

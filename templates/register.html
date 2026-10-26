@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Create Account{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card">
+                <div class="card-body p-4 p-md-5">
+                    <h2 class="fw-bold text-navy text-center mb-1">Join Hy-Vee Perks</h2>
+                    <p class="text-muted text-center mb-4">Free digital coupons, Fuel Saver and faster checkout</p>
+                    <form method="post">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" for="name">Full name</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold" for="password">Password</label>
+                            <input type="password" id="password" name="password" class="form-control" minlength="6" required>
+                            <div class="form-text">At least 6 characters.</div>
+                        </div>
+                        <button class="btn btn-green w-100 mb-3">Create Account</button>
+                    </form>
+                    <p class="text-center mb-0">Already a member? <a href="{{ url_for('login') }}" class="fw-semibold">Sign in</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

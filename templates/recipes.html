@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% from "_macros.html" import recipe_card %}
+
+{% block title %}Recipes{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <h1 class="fw-bold mb-1">Recipes</h1>
+        <p>Every ingredient links straight to our shelves — add the whole recipe to your cart in one click.</p>
+    </div>
+</div>
+
+<div class="container py-4">
+    <form method="get" class="row g-2 mb-4" data-autosubmit>
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="search" name="q" value="{{ q }}" class="form-control" placeholder="Search by recipe or ingredient (e.g. avocado)">
+                <button class="btn btn-navy"><i class="fas fa-magnifying-glass"></i></button>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <select name="category" class="form-select">
+                <option value="">All meals</option>
+                {% for c in recipe_categories %}
+                <option value="{{ c }}" {% if c == category %}selected{% endif %}>{{ c }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </form>
+
+    {% if recipes %}
+    <div class="row g-4">
+        {% for r in recipes %}
+        <div class="col-sm-6 col-lg-3">{{ recipe_card(r) }}</div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-5">
+        <i class="fas fa-utensils fa-3x text-baby mb-3"></i>
+        <h4 class="text-navy">No recipes found</h4>
+        <a href="{{ url_for('recipes') }}" class="btn btn-navy mt-2">Show all recipes</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

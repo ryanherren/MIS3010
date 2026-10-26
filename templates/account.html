@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}My Account{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <h1 class="fw-bold mb-1">Hi, {{ user.name }}</h1>
+        <p>{{ email }} · Hy-Vee Perks member</p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card text-center p-4 h-100">
+                <i class="fas fa-gas-pump fa-2x text-green mb-2"></i>
+                <h3 class="fw-bold text-navy mb-0">{{ clipped|length * 10 }}¢</h3>
+                <small class="text-muted">Fuel Saver balance / gal</small>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center p-4 h-100">
+                <i class="fas fa-scissors fa-2x text-green mb-2"></i>
+                <h3 class="fw-bold text-navy mb-0">{{ clipped|length }}</h3>
+                <small class="text-muted">Coupons clipped</small>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center p-4 h-100">
+                <i class="fas fa-cart-shopping fa-2x text-green mb-2"></i>
+                <h3 class="fw-bold text-navy mb-0">{{ cart_count }}</h3>
+                <small class="text-muted">Items in cart</small>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="section-title mt-5 mb-4">My Clipped Coupons</h3>
+    {% if clipped %}
+    <ul class="list-group">
+        {% for c in clipped %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span><i class="fas {{ c.icon }} text-green me-2"></i><strong>{{ c.title }}</strong> — {{ c.detail }}</span>
+            <small class="text-muted">Expires {{ c.expires }}</small>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="text-muted">No coupons yet. <a href="{{ url_for('deals') }}">Browse digital coupons</a></p>
+    {% endif %}
+
+    <div class="d-flex gap-2 mt-4">
+        <a href="{{ url_for('cart') }}" class="btn btn-navy">View Cart</a>
+        <a href="{{ url_for('logout') }}" class="btn btn-outline-navy">Sign Out</a>
+    </div>
+</div>
+{% endblock %}

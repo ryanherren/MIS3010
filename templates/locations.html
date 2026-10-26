@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Store Locations{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <h1 class="fw-bold mb-1">Store Locations</h1>
+        <p>Serving communities across {{ state_names|length }} Midwest states.</p>
+    </div>
+</div>
+
+<div class="container py-4">
+    <form method="get" class="row g-2 mb-4" data-autosubmit>
+        <div class="col-md-5">
+            <div class="input-group">
+                <input type="search" name="q" value="{{ q }}" class="form-control" placeholder="City, store name or address">
+                <button class="btn btn-navy"><i class="fas fa-magnifying-glass"></i></button>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <select name="state" class="form-select">
+                <option value="">All states</option>
+                {% for s in states %}
+                <option value="{{ s }}" {% if s == state %}selected{% endif %}>{{ state_names[s] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select name="amenity" class="form-select">
+                <option value="">Any services</option>
+                {% for a in amenities %}
+                <option value="{{ a }}" {% if a == amenity %}selected{% endif %}>{{ a }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-1">
+            <a href="{{ url_for('locations') }}" class="btn btn-outline-navy w-100" title="Clear"><i class="fas fa-xmark"></i></a>
+        </div>
+    </form>
+
+    <p class="text-muted small">{{ stores|length }} store{{ '' if stores|length == 1 else 's' }} found</p>
+
+    <div class="row g-4">
+        {% for s in stores %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card lift h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <h5 class="fw-bold text-navy mb-0">{{ s.name }}</h5>
+                        <span class="badge bg-navy">{{ s.state }}</span>
+                    </div>
+                    <p class="mb-1"><i class="fas fa-location-dot text-green me-2"></i>{{ s.address }}, {{ s.city }}, {{ s.state }}</p>
+                    <p class="mb-1"><i class="fas fa-phone text-green me-2"></i>{{ s.phone }}</p>
+                    <p class="mb-3"><i class="far fa-clock text-green me-2"></i>Open daily {{ s.hours }}</p>
+                    <div class="mb-3">
+                        {% for a in s.amenities %}<span class="badge rounded-pill amenity me-1 mb-1">{{ a }}</span>{% endfor %}
+                    </div>
+                    <a class="btn btn-outline-navy btn-sm" target="_blank" rel="noopener"
+                       href="https://www.google.com/maps/search/?api=1&query={{ ('Hy-Vee ' ~ s.city ~ ' ' ~ s.state)|urlencode }}">
+                        <i class="fas fa-diamond-turn-right me-1"></i>Directions
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-12 text-center py-5">
+            <i class="fas fa-store-slash fa-3x text-baby mb-3"></i>
+            <h4 class="text-navy">No stores match your search</h4>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

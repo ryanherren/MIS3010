@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Your Cart{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <h1 class="fw-bold mb-1">Your Cart</h1>
+        <p>Aisles Online pickup &amp; delivery</p>
+    </div>
+</div>
+
+<div class="container py-5">
+    {% if items %}
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    {% for i in items %}
+                    <li class="list-group-item p-3 d-flex align-items-center gap-3">
+                        <span class="fs-2">{{ i.product.emoji }}</span>
+                        <div class="flex-grow-1">
+                            <a href="{{ url_for('product_detail', product_id=i.product.id) }}" class="fw-semibold text-navy text-decoration-none">{{ i.product.name }}</a>
+                            <div class="small text-muted">${{ '%.2f'|format(price_of(i.product)) }} / {{ i.product.unit }}
+                                {% if i.product.sale_price is not none %}<span class="text-danger fw-semibold ms-1">Sale</span>{% endif %}
+                            </div>
+                        </div>
+                        <form method="post" action="{{ url_for('cart_update', product_id=i.product.id) }}" class="d-flex gap-1">
+                            <input type="number" name="qty" value="{{ i.qty }}" min="0" max="50" class="form-control form-control-sm" style="width:70px">
+                            <button class="btn btn-outline-navy btn-sm" title="Update"><i class="fas fa-rotate"></i></button>
+                        </form>
+                        <span class="fw-bold text-navy text-end" style="width:80px">${{ '%.2f'|format(i.line_total) }}</span>
+                        <form method="post" action="{{ url_for('cart_update', product_id=i.product.id) }}">
+                            <input type="hidden" name="qty" value="0">
+                            <button class="btn btn-link text-danger p-0" title="Remove"><i class="fas fa-trash"></i></button>
+                        </form>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card bg-baby-light border-0">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold text-navy mb-3">Order Summary</h5>
+                    <div class="d-flex justify-content-between mb-1"><span>Subtotal</span><span>${{ '%.2f'|format(subtotal) }}</span></div>
+                    {% if savings > 0 %}
+                    <div class="d-flex justify-content-between mb-1 text-green fw-semibold"><span>You saved</span><span>${{ '%.2f'|format(savings) }}</span></div>
+                    {% endif %}
+                    <div class="d-flex justify-content-between mb-3"><span>Pickup fee</span><span>FREE</span></div>
+                    <hr>
+                    <div class="d-flex justify-content-between fs-5 fw-bold text-navy mb-3"><span>Total</span><span>${{ '%.2f'|format(subtotal) }}</span></div>
+                    <form method="post" action="{{ url_for('checkout') }}">
+                        <label class="form-label small fw-semibold" for="store">Pickup store</label>
+                        <select id="store" name="store" class="form-select mb-3">
+                            {% for s in stores if 'Aisles Online' in s.amenities %}<option>{{ s.name }}</option>{% endfor %}
+                        </select>
+                        <button class="btn btn-green w-100"><i class="fas fa-lock me-2"></i>{{ 'Place Order' if user else 'Sign in to Checkout' }}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="text-center py-5">
+        <i class="fas fa-cart-shopping fa-3x text-baby mb-3"></i>
+        <h4 class="text-navy">Your cart is empty</h4>
+        <p class="text-muted">Browse products or add a whole recipe in one click.</p>
+        <a href="{{ url_for('products') }}" class="btn btn-navy me-2">Shop Products</a>
+        <a href="{{ url_for('recipes') }}" class="btn btn-green">Browse Recipes</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
