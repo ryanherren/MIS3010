@@ -8,25 +8,32 @@ VENUES = {
         'city': 'Ames, IA',
         'capacity': '61,500',
         'surface': 'field',
+        # Layout (west on top, north on right): numbered sections 1-19 run down the west
+        # (Iowa State) sideline, 20-22 are the south end zone Sukup Club, 23-27 plus O-T
+        # are the southeast student corner, 28-41 are the east (visitor) sideline, and the
+        # hillside is the north end. Lettered sections are the upper deck.
         'sections': {
-            'WEST-CLUB': {'name': 'West Club Level', 'tier': 'Premium', 'rect': (120, 40, 360, 50),
-                          'where': 'West sideline, upper club level, 50-yard line. Indoor lounge access.'},
-            'WEST': {'name': 'West Sideline', 'tier': 'Lower Bowl', 'rect': (120, 95, 360, 50),
-                     'where': 'West sideline, rows 1-40, between the 20-yard lines.'},
-            'EAST': {'name': 'East Sideline', 'tier': 'Lower Bowl', 'rect': (120, 275, 360, 50),
-                     'where': 'East sideline (visitors side), rows 1-40, between the 20-yard lines.'},
-            'EAST-UP': {'name': 'East Upper Deck', 'tier': 'Upper Deck', 'rect': (120, 330, 360, 50),
-                        'where': 'East sideline upper deck, sections UD1-UD12. Great views, steep stairs.'},
-            'NORTH': {'name': 'North End Zone', 'tier': 'End Zone', 'rect': (30, 100, 80, 220),
-                      'where': 'North end zone, behind the Cyclone tunnel.'},
-            'SOUTH': {'name': 'South End Zone', 'tier': 'End Zone', 'rect': (490, 100, 80, 220),
-                      'where': 'South end zone, beside the video board.'},
-            'GA-STU': {'name': 'General Admission Student Section', 'tier': 'General Admission',
-                       'rect': (30, 330, 80, 50), 'where': 'Southeast corner bleachers. Open seating, valid student ID required.',
-                       'ga': True},
-            'GA-LAWN': {'name': 'General Admission Family Zone', 'tier': 'General Admission',
-                        'rect': (490, 330, 80, 50), 'where': 'Northeast corner bleachers. Open seating, first come first served.',
-                        'ga': True},
+            'WEST-CLUB': {'name': 'Jack Trice Club', 'tier': 'Premium', 'rect': (120, 40, 360, 50),
+                          'where': 'West (Iowa State) sideline club level above the 50-yard line. Indoor, climate-controlled seating.'},
+            'WEST': {'name': 'West Sideline (Sections 1-19)', 'tier': 'Lower Bowl', 'rect': (120, 95, 360, 50),
+                     'where': 'Iowa State sideline lower bowl. Sections 8 and 9 sit on the 50-yard line.'},
+            'WEST-UP': {'name': 'West Upper Deck (Lettered)', 'tier': 'Upper Deck', 'rect': (120, 5, 360, 30),
+                        'where': 'Upper deck above the Iowa State sideline. Sections D, E and F are at midfield.'},
+            'EAST': {'name': 'East Sideline (Sections 28-41)', 'tier': 'Lower Bowl', 'rect': (120, 275, 360, 50),
+                     'where': 'Visitor sideline lower bowl. Sections 33 and 34 sit on the 50-yard line.'},
+            'EAST-UP': {'name': 'East Upper Deck (Lettered)', 'tier': 'Upper Deck', 'rect': (120, 330, 360, 50),
+                        'where': 'Upper deck above the visitor sideline. Section W is at midfield.'},
+            'SUKUP-CLUB': {'name': 'Sukup End Zone Club (20-22)', 'label': 'SUKUP', 'tier': 'Club', 'rect': (30, 100, 80, 220),
+                           'where': 'South end zone club seating, sections 20-22.'},
+            'STUDENT': {'name': 'Student Section (23-27, O-T)', 'label': 'STUDENT', 'tier': 'General Admission',
+                        'rect': (30, 330, 80, 50), 'ga': True,
+                        'where': 'Southeast corner, sections 23-27 and O-T. Open seating, student ID required.'},
+            'HILLSIDE-NW': {'name': 'Hillside Northwest', 'label': 'HILL NW', 'tier': 'General Admission',
+                            'rect': (490, 100, 80, 105), 'ga': True,
+                            'where': 'North end zone hillside, west half. Open seating, first come first served.'},
+            'HILLSIDE-NE': {'name': 'Hillside Northeast', 'label': 'HILL NE', 'tier': 'General Admission',
+                            'rect': (490, 215, 80, 105), 'ga': True,
+                            'where': 'North end zone hillside, east half. Open seating, first come first served.'},
         },
     },
     'hilton': {
@@ -59,7 +66,7 @@ VENUES = {
 
 # base price per tier, per sport multiplier applied by event
 TIER_PRICE = {
-    'Premium': 120, 'Lower Bowl': 65, 'Upper Deck': 40, 'End Zone': 45,
+    'Premium': 120, 'Club': 85, 'Lower Bowl': 65, 'Upper Deck': 40, 'End Zone': 45,
     'Baseline': 30, 'Upper Level': 22, 'General Admission': 15,
 }
 

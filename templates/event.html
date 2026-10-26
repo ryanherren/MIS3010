@@ -22,6 +22,7 @@
                 <line class="map-line" x1="190" y1="150" x2="190" y2="270"/>
                 <line class="map-line" x1="410" y1="150" x2="410" y2="270"/>
                 <text x="300" y="215" text-anchor="middle" font-weight="800" fill="#fff" font-size="20">JACK TRICE</text>
+                <text x="590" y="414" text-anchor="end" font-size="11" fill="#777">North end zone is on the right &rarr; (west sideline is Iowa State's)</text>
                 {% else %}
                 <rect class="map-court" x="160" y="155" width="280" height="110" rx="6"/>
                 <circle class="map-line" cx="300" cy="210" r="22"/>
@@ -32,7 +33,7 @@
                 {% set x, y, w, h = r.rect %}
                 <rect class="map-sec {{ 'ga' if r.ga }} {{ 'premium' if r.tier == 'Premium' }} {{ 'soldout' if r.avail == 0 }}"
                       data-key="{{ r.key }}" x="{{ x }}" y="{{ y }}" width="{{ w }}" height="{{ h }}" rx="8"><title>{{ r.name }}: ${{ r.price }}</title></rect>
-                <text class="map-label {{ 'dark' if r.ga }}" x="{{ x + w/2 }}" y="{{ y + h/2 + 4 }}">{{ r.key.split('-')[0] if w < 100 else r.name.replace('General Admission ', 'GA ') }}</text>
+                <text class="map-label {{ 'dark' if r.ga }}" x="{{ x + w/2 }}" y="{{ y + h/2 + 4 }}">{{ r.label or (r.key.split('-')[0] if w < 100 else r.name.replace('General Admission ', 'GA ')) }}</text>
                 {% endfor %}
             </svg>
             <div class="small mt-2">
