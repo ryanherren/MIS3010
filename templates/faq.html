@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% from "_macros.html" import grass %}
+{% block title %}FAQs | Blush & Blade{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><h1>Frequently Asked Questions</h1><p>Everything you wanted to know before booking.</p></div>{{ grass('#ffffff') }}</section>
+<section class="section">
+  <div class="container" style="max-width: 800px">
+    <div class="accordion" id="faq">
+      {% for q, a in faqs %}
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button {{ '' if loop.first else 'collapsed' }}" data-bs-toggle="collapse" data-bs-target="#f{{ loop.index }}">{{ q }}</button></h2>
+        <div id="f{{ loop.index }}" class="accordion-collapse collapse {{ 'show' if loop.first }}" data-bs-parent="#faq"><div class="accordion-body text-muted">{{ a }}</div></div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-5"><p>Still have questions?</p><a href="{{ url_for('book') }}" class="btn btn-pink">Book a free walkthrough</a></div>
+  </div>
+</section>
+{% endblock %}

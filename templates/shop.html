@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% from "_macros.html" import grass, product_card %}
+{% block title %}Beauty Shop | Blush & Blade{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><h1>Blush &amp; Blade Beauty</h1><p>Makeup that's fresh, bold, and a little bit lawn. Free shipping over $40.</p></div>{{ grass('#ffffff') }}</section>
+<section class="section pt-4">
+  <div class="container">
+    <div class="row g-3 align-items-center mb-4">
+      <div class="col-lg-7 d-flex flex-wrap gap-2">
+        <button class="filter-pill" data-cat="all">All</button>
+        {% for c in categories %}<button class="filter-pill" data-cat="{{ c.id }}"><i class="fas {{ c.icon }} me-1"></i>{{ c.name }}</button>{% endfor %}
+      </div>
+      <div class="col-lg-3"><input id="shop-search" class="form-control" placeholder="Search products…" type="search"></div>
+      <div class="col-lg-2"><select id="shop-sort" class="form-select"><option value="feat">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select></div>
+    </div>
+    <div class="row g-4" id="product-grid">
+      {% for p in products %}
+      <div class="col-6 col-md-4 col-lg-3" data-cat="{{ p.cat }}" data-price="{{ p.price }}" data-order="{{ loop.index }}" data-name="{{ (p.name ~ ' ' ~ p.shade)|lower }}">{{ product_card(p) }}</div>
+      {% endfor %}
+    </div>
+    <p id="shop-empty" class="text-center text-muted py-5 d-none">No products match your search.</p>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% macro grass(fill='#ffffff') %}
+<svg class="grass-edge" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true">
+  <path fill="{{ fill }}" d="M0 60V30l20 12 20-22 20 24 20-18 20 20 20-26 20 26 20-20 20 22 20-24 20 24 20-18 20 22 20-26 20 24 20-20 20 22 20-24 20 26 20-20 20 20 20-24 20 24 20-18 20 22 20-26 20 24 20-20 20 22 20-24 20 26 20-20 20 20 20-24 20 24 20-18 20 22 20-26 20 24 20-20 20 22 20-24 20 26 20-20 20 20 20-24 20 24 20-18 20 22 20-26 20 24 20-20 20 22 20-24 20 26 20-20 20 20 20-24 20 24 20-18 20 22 20-26 20 24 20-20 20 22V60z"/>
+</svg>
+{% endmacro %}
+{% macro stars(n) %}<span class="stars">{% for i in range(5) %}<i class="{{ 'fas' if i < n else 'far' }} fa-star"></i>{% endfor %}</span>{% endmacro %}
+{% macro beforeafter(p) %}
+<div class="ba">
+  <div class="ba-scene ba-after"><div class="stripes"></div><i class="fas fa-house house"></i>
+    <i class="fas fa-spa deco" style="left:12%"></i><i class="fas fa-tree deco" style="left:80%;color:#2F8A0C"></i><i class="fas fa-fan deco" style="left:46%"></i></div>
+  <div class="ba-scene ba-before"><i class="fas fa-house house" style="color:#eee"></i>
+    <i class="fas fa-wheat-awn deco" style="left:12%"></i><i class="fas fa-wheat-awn deco" style="left:30%"></i><i class="fas fa-wheat-awn deco" style="left:62%"></i><i class="fas fa-trash deco" style="left:80%"></i></div>
+  <span class="ba-label l">BEFORE</span><span class="ba-label r">AFTER</span>
+  <div class="ba-handle"></div>
+  <input type="range" class="ba-range" min="0" max="100" value="50" aria-label="Before and after slider">
+</div>
+{% endmacro %}
+{% macro product_card(p) %}
+<div class="card-bb product-card">
+  <a href="{{ url_for('product', pid=p.id) }}" class="text-decoration-none">
+    <div class="swatch" style="--sw: {{ p.color }}">
+      {% if p.badge %}<span class="prod-badge">{{ p.badge }}</span>{% endif %}
+      <i class="fas {{ p.icon }}"></i>
+    </div>
+  </a>
+  <div class="p-3">
+    <div class="small text-muted">{{ p.shade }}</div>
+    <a href="{{ url_for('product', pid=p.id) }}" class="h6 d-block text-decoration-none text-reset mb-1">{{ p.name }}</a>
+    <div class="d-flex justify-content-between align-items-center mt-2">
+      <strong class="text-pink">${{ '%.2f'|format(p.price) }}</strong>
+      <button class="btn btn-pink btn-sm add-to-cart" data-id="{{ p.id }}"><i class="fas fa-bag-shopping me-1"></i>Add</button>
+    </div>
+  </div>
+</div>
+{% endmacro %}

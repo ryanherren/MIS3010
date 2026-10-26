@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% from "_macros.html" import grass %}
+{% block title %}Services & Rates | Blush & Blade{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><h1>Services &amp; Rates</h1><p>Simple pricing. Pay for what you need.</p></div>{{ grass('#ffffff') }}</section>
+<section class="section">
+  <div class="container">
+    <div class="row g-4">
+      {% for s in services %}
+      <div class="col-md-6 col-lg-4"><div class="card-bb p-4">
+        <div class="icon-bubble"><i class="fas {{ s.icon }}"></i></div>
+        <h4 class="h5">{{ s.name }}</h4><p class="text-muted">{{ s.desc }}</p>
+        <div class="d-flex justify-content-between align-items-center"><strong class="text-pink">{{ s.rate }}</strong><span class="small text-muted">${{ s.min }} minimum</span></div>
+      </div></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<section class="section bg-purple-soft">
+  <div class="container">
+    <div class="section-title"><span class="kicker">Monthly plans</span><h2>Set it and forget it</h2><p>Recurring plans, billed monthly, cancel anytime.</p></div>
+    <div class="row g-4 align-items-stretch">
+      {% for p in plans %}
+      <div class="col-md-4"><div class="plan {{ 'featured' if p.featured }}">
+        {% if p.featured %}<span class="badge-pop">MOST POPULAR</span>{% endif %}
+        <h4>{{ p.name }}</h4><p class="text-muted">{{ p.tag }}</p>
+        <div class="price">${{ p.price }}<small> / visit</small></div>
+        <ul>{% for f in p.features %}<li><i class="fas fa-check"></i>{{ f }}</li>{% endfor %}</ul>
+        <a href="{{ url_for('book') }}" class="btn {{ 'btn-pink' if p.featured else 'btn-outline-pink' }} w-100">Choose {{ p.name }}</a>
+      </div></div>
+      {% endfor %}
+    </div>
+    <p class="text-center mt-4 mb-0">Need something custom? <a href="{{ url_for('quote') }}">Build your own quote.</a></p>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% from "_macros.html" import grass, beforeafter %}
+{% block title %}Before & After | Blush & Blade{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><h1>Before &amp; After</h1><p>Drag the slider on each project to see the transformation.</p></div>{{ grass('#ffffff') }}</section>
+<section class="section">
+  <div class="container"><div class="row g-5">
+    {% for p in projects %}
+    <div class="col-md-6">
+      {{ beforeafter(p) }}
+      <h4 class="h5 mt-3 mb-1">{{ p.title }}</h4>
+      <div class="text-muted"><i class="fas fa-location-dot text-pink me-1"></i>{{ p.place }} · <i class="fas fa-leaf text-green me-1"></i>{{ p.service }}</div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="text-center mt-5"><a href="{{ url_for('quote') }}" class="btn btn-pink btn-lg">Get results like these</a></div></div>
+</section>
+{% endblock %}

@@ -1,119 +1,116 @@
 {% extends "base.html" %}
-
-{% block title %}Home - MIS 3010{% endblock %}
-
+{% from "_macros.html" import grass, stars, beforeafter %}
 {% block content %}
-<div class="hero-section bg-cardinal-gold-gradient text-white py-5">
-    <div class="container text-center">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <h1 class="display-4 fw-bold mb-4">
-                    <i class="fas fa-graduation-cap me-3 text-gold"></i>
-                    Welcome to MIS 3010
-                </h1>
-                
-                <div class="datetime-display bg-white bg-opacity-10 rounded-4 p-4 mb-4">
-                    <div class="row">
-                        <div class="col-md-6 mb-3 mb-md-0">
-                            <h5 class="mb-2">
-                                <i class="fas fa-calendar-alt me-2"></i>Current Date
-                            </h5>
-                            <p class="h4 mb-0" id="current-date">Loading...</p>
-                        </div>
-                        <div class="col-md-6">
-                            <h5 class="mb-2">
-                                <i class="fas fa-clock me-2"></i>Current Time
-                            </h5>
-                            <p class="h2 mb-0 font-monospace" id="current-time">00:00:00</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <p class="lead mb-4">
-                    Management Information Systems - Real World Applications of Artificial Intelligence
-                </p>
-                
-                <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-                    <a href="{{ url_for('about') }}" class="btn btn-secondary btn-lg">
-                        <i class="fas fa-user me-2"></i>Learn About Me
-                    </a>
-                </div>
-            </div>
+<section class="hero">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7">
+        <span class="badge rounded-pill bg-white text-dark mb-3 px-3 py-2"><i class="fas fa-star text-warning me-1"></i> 4.9 average · 500+ happy lawns</span>
+        <h1>Lawns so fresh, <span class="accent">the neighbors will ask.</span></h1>
+        <p class="lead mt-3">Mowing, fertilizing, beds, and cleanups with instant online pricing and booking that fits your week.</p>
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <a href="{{ url_for('quote') }}" class="btn btn-green btn-lg"><i class="fas fa-calculator me-2"></i>Get Instant Quote</a>
+          <a href="{{ url_for('book') }}" class="btn btn-light btn-lg rounded-pill fw-semibold text-dark"><i class="fas fa-calendar-check me-2 text-pink"></i>Book a Visit</a>
         </div>
-    </div>
-</div>
-
-<section class="py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <div class="feature-icon bg-cardinal text-white rounded-circle mb-3">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h5 class="card-title">Modern Technologies</h5>
-                        <p class="card-text">Built with Flask, Bootstrap 5, and modern web standards for a responsive experience.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <div class="feature-icon bg-gold text-dark rounded-circle mb-3">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <h5 class="card-title">Database Integration</h5>
-                        <p class="card-text">SQLAlchemy ORM with support for both SQLite development and PostgreSQL production.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <div class="feature-icon bg-cardinal text-white rounded-circle mb-3">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <h5 class="card-title">Mobile Responsive</h5>
-                        <p class="card-text">Mobile-first design approach ensuring great user experience across all devices.</p>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="hero-card">
+          <h5 class="mb-3"><i class="fas fa-bolt text-pink me-2"></i>Quick estimate</h5>
+          <form action="{{ url_for('quote') }}" method="get">
+            <label class="form-label small text-muted">Lawn size (sq ft)</label>
+            <input type="number" name="sqft" class="form-control form-control-lg mb-3" value="6000" min="500" max="200000">
+            <button class="btn btn-pink w-100">See My Price <i class="fas fa-arrow-right ms-1"></i></button>
+          </form>
+          <p class="small text-muted mt-3 mb-0"><i class="fas fa-lock me-1"></i>No account, no phone call.</p>
         </div>
+      </div>
     </div>
+  </div>
+  {{ grass('#ffffff') }}
 </section>
 
-{% endblock %}
+<section class="section">
+  <div class="container">
+    <div class="section-title"><span class="kicker">What we do</span><h2>Everything your yard needs</h2><p>Transparent per-square-foot rates, no surprises.</p></div>
+    <div class="row g-4">
+      {% for s in services %}
+      <div class="col-md-6 col-lg-4">
+        <div class="card-bb p-4">
+          <div class="icon-bubble"><i class="fas {{ s.icon }}"></i></div>
+          <h4 class="h5">{{ s.name }}</h4>
+          <p class="text-muted">{{ s.desc }}</p>
+          <strong class="text-pink">{{ s.rate }}</strong>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-4"><a href="{{ url_for('services') }}" class="btn btn-outline-pink">All services &amp; plans</a></div>
+  </div>
+</section>
 
-{% block scripts %}
-<script>
-    // Update time continuously
-    function updateDateTime() {
-        const now = new Date();
-        
-        // Update date
-        const dateOptions = { 
-            weekday: 'long', 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-        };
-        document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', dateOptions);
-        
-        // Update time
-        const timeOptions = {
-            hour12: false,
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit'
-        };
-        document.getElementById('current-time').textContent = now.toLocaleTimeString('en-US', timeOptions);
-    }
-    
-    // Update immediately and then every second
-    updateDateTime();
-    setInterval(updateDateTime, 1000);
-</script>
+<section class="section pb-0">
+  <div class="container">
+    <div class="beauty-banner">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <span class="badge bg-white text-dark rounded-pill px-3 py-2 mb-3"><i class="fas fa-sparkles text-pink me-1"></i> NEW</span>
+          <h2>Blush &amp; Blade Beauty</h2>
+          <p class="lead">Our lawn-care crew just got glam. Meet Fresh Cut Blush, Sod Solid Lipstick, Weed Whacker Mascara and more. Your lawn and your look, perfectly manicured.</p>
+          <a href="{{ url_for('shop') }}" class="btn btn-pink btn-lg me-2">Shop the Collection</a>
+          <a href="{{ url_for('bundle') }}" class="btn btn-green btn-lg"><i class="fas fa-gift me-2"></i>Beauty + Blade Bundle</a>
+        </div>
+        <div class="col-lg-5"><div class="row g-3">
+          {% for p in featured %}<div class="col-4"><a href="{{ url_for('product', pid=p.id) }}" class="text-decoration-none"><div class="swatch" style="--sw: {{ p.color }}; border-radius: 1rem; font-size: 2rem"><i class="fas {{ p.icon }}"></i></div><div class="small fw-semibold text-dark mt-2 text-center">{{ p.name }}</div></a></div>{% endfor %}
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-purple-soft mt-5">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="section-title text-lg-start mb-4"><span class="kicker">Real results</span><h2>Drag to see the difference</h2><p class="mx-lg-0">Every project gets a before-and-after photo shoot. Slide to compare.</p></div>
+        <a href="{{ url_for('gallery') }}" class="btn btn-pink">See the full gallery</a>
+      </div>
+      <div class="col-lg-6">{{ beforeafter(projects[0]) }}</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-title"><span class="kicker">How it works</span><h2>Three steps to a better yard</h2></div>
+    <div class="row g-4 text-center">
+      {% for n, t, d, i in [(1,'Get your quote','Choose services and lawn size for an instant price.','fa-calculator'),(2,'Pick your time','See live availability and book in under a minute.','fa-calendar-days'),(3,'Relax','We show up, work our magic, and text you photos.','fa-couch')] %}
+      <div class="col-md-4"><div class="icon-bubble mx-auto"><i class="fas {{ i }}"></i></div><h4 class="h5">{{ n }}. {{ t }}</h4><p class="text-muted">{{ d }}</p></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section bg-purple-soft">
+  <div class="container">
+    <div class="section-title"><span class="kicker">Loved by neighbors</span><h2>What customers say</h2></div>
+    <div class="row g-4">
+      {% for r in reviews %}
+      <div class="col-md-4"><div class="card-bb review-card">
+        {{ stars(r.stars) }}<p class="mt-3">&ldquo;{{ r.text }}&rdquo;</p>
+        <strong>{{ r.name }}</strong><div class="small text-muted">{{ r.town }} · {{ r.service }}</div>
+      </div></div>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-4"><a href="{{ url_for('reviews') }}" class="btn btn-outline-pink">Read more reviews</a></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container"><div class="cta">
+    <h2>Ready for the greenest lawn on the block?</h2>
+    <p class="lead">Get a price in 30 seconds. Book in a minute.</p>
+    <a href="{{ url_for('quote') }}" class="btn btn-light btn-lg rounded-pill fw-semibold text-dark me-2">Get My Quote</a>
+    <a href="{{ url_for('book') }}" class="btn btn-pink btn-lg">Book Now</a>
+  </div></div>
+</section>
 {% endblock %}

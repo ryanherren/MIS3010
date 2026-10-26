@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% from "_macros.html" import product_card %}
+{% block title %}{{ p.name }} | Blush & Blade{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    <nav class="small mb-4"><a href="{{ url_for('shop') }}">Beauty Shop</a> <i class="fas fa-chevron-right mx-1 small text-muted"></i> <a href="{{ url_for('shop', cat=cat.id) }}">{{ cat.name }}</a> <i class="fas fa-chevron-right mx-1 small text-muted"></i> {{ p.name }}</nav>
+    <div class="row g-5">
+      <div class="col-md-6"><div class="swatch lg" style="--sw: {{ p.color }}">{% if p.badge %}<span class="prod-badge">{{ p.badge }}</span>{% endif %}<i class="fas {{ p.icon }}"></i></div></div>
+      <div class="col-md-6">
+        <div class="text-green fw-bold text-uppercase small">{{ cat.name }}</div>
+        <h1 class="h2 mt-1">{{ p.name }}</h1>
+        <div class="fs-3 fw-bold text-pink my-2">${{ '%.2f'|format(p.price) }}</div>
+        <p class="text-muted">{{ p.desc }}</p>
+        <p><strong>Shade:</strong> <span class="d-inline-block align-middle rounded-circle border" style="width:1.1rem;height:1.1rem;background:{{ p.color }}"></span> {{ p.shade }}</p>
+        <div class="d-flex gap-3 align-items-center my-4">
+          <input id="prod-qty" type="number" min="1" max="20" value="1" class="form-control" style="width:5rem">
+          <button class="btn btn-pink btn-lg add-to-cart" data-id="{{ p.id }}"><i class="fas fa-bag-shopping me-2"></i>Add to Bag</button>
+        </div>
+        <ul class="list-unstyled text-muted small">
+          <li><i class="fas fa-truck text-green me-2"></i>Free shipping over $40</li>
+          <li><i class="fas fa-rabbit text-green me-2"></i>Cruelty-free &amp; vegan</li>
+          <li><i class="fas fa-rotate-left text-green me-2"></i>30-day happiness guarantee</li>
+        </ul>
+      </div>
+    </div>
+    {% if related %}
+    <h3 class="h4 mt-5 mb-4">You may also like</h3>
+    <div class="row g-4">{% for r in related %}<div class="col-6 col-md-4 col-lg-3">{{ product_card(r) }}</div>{% endfor %}</div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

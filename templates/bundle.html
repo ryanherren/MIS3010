@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% from "_macros.html" import grass %}
+{% block title %}Beauty + Blade Signature Bundle | Blush & Blade{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><span class="badge bg-white text-dark rounded-pill px-3 py-2 mb-3"><i class="fas fa-gift text-pink me-1"></i> Gift for two</span><h1>The Beauty + Blade Signature Bundle</h1><p>A beauty box for her. A signature lawn care package for him. One gift, two very happy people.</p></div>{{ grass('#ffffff') }}</section>
+<section class="section">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="card-bb p-4">
+          <div class="icon-bubble" style="background:var(--pink);color:#fff"><i class="fas fa-heart"></i></div>
+          <h3 class="h4">{{ b.beauty_box.title }}</h3>
+          <p class="text-muted">{{ b.beauty_box.tagline }}</p>
+          {% for p in box %}
+          <a href="{{ url_for('product', pid=p.id) }}" class="cart-line text-decoration-none text-reset" style="--sw: {{ p.color }}">
+            <div class="cart-thumb"><i class="fas {{ p.icon }}"></i></div>
+            <div class="flex-grow-1"><strong>{{ p.name }}</strong><div class="small text-muted">{{ p.shade }}</div></div>
+            <span class="text-muted">${{ '%.2f'|format(p.price) }}</span>
+          </a>
+          {% endfor %}
+          <div class="d-flex justify-content-between mt-3"><span>Beauty Box value</span><strong>${{ '%.2f'|format(box_value) }}</strong></div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card-bb p-4">
+          <div class="icon-bubble" style="background:var(--green);color:#fff"><i class="fas fa-scissors"></i></div>
+          <h3 class="h4">{{ b.blade_package.title }}</h3>
+          <p class="text-muted">{{ b.blade_package.tagline }}</p>
+          <ul class="list-unstyled mb-0">
+            {% for i in b.blade_package['items'] %}<li class="py-2 border-bottom"><i class="fas fa-check text-green me-2"></i>{{ i }}</li>{% endfor %}
+          </ul>
+          <p class="small text-muted mt-3">Covers lawns up to 10,000 sq ft. Redeem your voucher on our <a href="{{ url_for('book') }}">booking page</a> any time in the next 12 months.</p>
+          <div class="d-flex justify-content-between mt-3"><span>Lawn Package value</span><strong>${{ '%.2f'|format(b.blade_package.value) }}</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-summary mt-5 text-center">
+      <div class="text-muted">Total value ${{ '%.2f'|format(b.retail) }}</div>
+      <div class="quote-total my-2">${{ '%.2f'|format(item.price) }}</div>
+      <div class="text-green fw-semibold mb-3">You save ${{ '%.2f'|format(b.retail - item.price) }}</div>
+      <button class="btn btn-pink btn-lg add-to-cart" data-id="{{ b.id }}"><i class="fas fa-bag-shopping me-2"></i>Add Bundle to Bag</button>
+      <p class="small text-muted mt-3 mb-0">Ships free. Your lawn voucher is emailed with your order confirmation.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

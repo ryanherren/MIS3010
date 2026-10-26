@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% from "_macros.html" import grass %}
+{% block title %}Instant Quote | Blush & Blade{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><h1>Instant Quote Generator</h1><p>Your price in seconds. Bundle 3+ services and save 10%.</p></div>{{ grass('#ffffff') }}</section>
+<section class="section">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-7">
+        <form id="quote-form" onsubmit="return false">
+          <h4 class="h5 mb-3">1. Choose your services</h4>
+          <div class="row g-3 mb-4">
+            {% for s in services %}
+            <div class="col-sm-6"><label class="quote-option">
+              <input class="form-check-input me-2" type="checkbox" name="service" value="{{ s.id }}" {{ 'checked' if s.id == 'mowing' }}>
+              <i class="fas {{ s.icon }} text-pink me-1"></i><strong>{{ s.name }}</strong><div class="small text-muted ms-4">{{ s.rate }}</div>
+            </label></div>
+            {% endfor %}
+          </div>
+          <h4 class="h5 mb-3">2. How big is your lawn?</h4>
+          <input type="range" class="form-range" name="sqft" min="1000" max="40000" step="500" value="{{ request.args.get('sqft', 6000)|int }}" style="accent-color: var(--pink)">
+          <p class="mb-4"><strong id="sqft-label" class="text-pink fs-4"></strong> sq ft <span class="text-muted small">(typical yard: 5,000–10,000)</span></p>
+          <h4 class="h5 mb-3">3. How often?</h4>
+          <div class="row g-3">
+            {% for key, f in frequency.items() %}
+            <div class="col-6 col-md-3"><label class="quote-option text-center">
+              <input class="form-check-input d-none" type="radio" name="frequency" value="{{ key }}" {{ 'checked' if key == 'biweekly' }}>
+              <strong>{{ f.label }}</strong>{% if f.mult < 1 %}<div class="small text-green">save {{ ((1 - f.mult) * 100)|round|int }}%</div>{% endif %}
+            </label></div>
+            {% endfor %}
+          </div>
+        </form>
+      </div>
+      <div class="col-lg-5">
+        <div class="quote-summary">
+          <h4 class="h5 mb-3"><i class="fas fa-receipt text-pink me-2"></i>Your estimate</h4>
+          <div id="quote-result"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
