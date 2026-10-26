@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}{{ sport.name }} Tickets | Cyclone Tickets{% endblock %}
+{% block content %}
+<section class="hero py-4"><div class="container">
+    <h1 class="fw-bold"><i class="fas {{ sport.icon }} me-2 text-gold"></i>{{ sport.name }} Tickets</h1>
+    <p class="mb-0">{{ sport.blurb }} Home games at {{ venue.name }} ({{ venue.capacity }} seats).</p>
+</div></section>
+<div class="container py-4">
+    <div class="row g-2 mb-4">
+        {% for k, s in sports.items() %}
+        <div class="col"><a class="sport-tile py-2 {% if k == key %}active{% endif %}" href="{{ url_for('sport', sport_key=k) }}"><i class="fas {{ s.icon }} fs-5"></i><div class="small fw-semibold">{{ s.name }}</div></a></div>
+        {% endfor %}
+    </div>
+    <div class="row g-4">
+        {% for ev in events %}
+        <div class="col-md-6 col-lg-4">{% include '_event_card.html' %}</div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

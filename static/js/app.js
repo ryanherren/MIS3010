@@ -1,356 +1,47 @@
-// Main JavaScript file for MIS 3010 Web Application
-// Author: Ryan Herren
-
-// Global App Object
-const MIS3010App = {
-    // Configuration
-    config: {
-        timeUpdateInterval: 1000, // 1 second
-        apiEndpoints: {
-            time: '/api/time',
-            users: '/api/users'
-        }
-    },
-
-    // Initialize the application
-    init() {
-        console.log('MIS 3010 App initialized');
-        this.setupEventListeners();
-        this.initializeComponents();
-        this.startTimeUpdates();
-    },
-
-    // Set up global event listeners
-    setupEventListeners() {
-        // Handle navigation active states
-        this.updateActiveNavigation();
-        
-        // Handle form submissions with loading states
-        const forms = document.querySelectorAll('form');
-        forms.forEach(form => {
-            form.addEventListener('submit', this.handleFormSubmit.bind(this));
-        });
-
-        // Handle card hover effects
-        this.initializeCardEffects();
-        
-        // Handle responsive navigation
-        this.setupResponsiveNavigation();
-    },
-
-    // Initialize various components
-    initializeComponents() {
-        // Initialize tooltips if Bootstrap is loaded
-        if (typeof bootstrap !== 'undefined') {
-            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-            [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-        }
-
-        // Initialize any animations
-        this.initializeAnimations();
-        
-        // Load user preferences
-        this.loadUserPreferences();
-    },
-
-    // Update active navigation based on current page
-    updateActiveNavigation() {
-        const currentPath = window.location.pathname;
-        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-        
-        navLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href === currentPath) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
-            }
-        });
-    },
-
-    // Handle form submissions with loading states
-    handleFormSubmit(event) {
-        const form = event.target;
-        const submitButton = form.querySelector('button[type="submit"], input[type="submit"]');
-        
-        if (submitButton) {
-            submitButton.classList.add('loading');
-            submitButton.disabled = true;
-            
-            // Re-enable after 5 seconds as fallback
-            setTimeout(() => {
-                submitButton.classList.remove('loading');
-                submitButton.disabled = false;
-            }, 5000);
-        }
-    },
-
-    // Initialize card hover effects
-    initializeCardEffects() {
-        const cards = document.querySelectorAll('.card');
-        
-        cards.forEach(card => {
-            // Add subtle animation on hover
-            card.addEventListener('mouseenter', function() {
-                this.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
-            });
-        });
-    },
-
-    // Setup responsive navigation
-    setupResponsiveNavigation() {
-        const navbarToggler = document.querySelector('.navbar-toggler');
-        const navbarCollapse = document.querySelector('.navbar-collapse');
-        
-        if (navbarToggler && navbarCollapse) {
-            // Close mobile menu when clicking on a link
-            const navLinks = navbarCollapse.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (window.innerWidth < 992) { // Bootstrap lg breakpoint
-                        const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
-                        if (bsCollapse) {
-                            bsCollapse.hide();
-                        }
-                    }
-                });
-            });
-        }
-    },
-
-    // Start time updates for home page
-    startTimeUpdates() {
-        const timeElement = document.getElementById('current-time');
-        const dateElement = document.getElementById('current-date');
-        
-        if (timeElement || dateElement) {
-            this.updateDateTime();
-            setInterval(() => this.updateDateTime(), this.config.timeUpdateInterval);
-        }
-    },
-
-    // Update date and time display
-    updateDateTime() {
-        const now = new Date();
-        
-        // Update date
-        const dateElement = document.getElementById('current-date');
-        if (dateElement) {
-            const dateOptions = { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            };
-            dateElement.textContent = now.toLocaleDateString('en-US', dateOptions);
-        }
-        
-        // Update time
-        const timeElement = document.getElementById('current-time');
-        if (timeElement) {
-            const timeOptions = {
-                hour12: false,
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            };
-            timeElement.textContent = now.toLocaleTimeString('en-US', timeOptions);
-        }
-    },
-
-    // Initialize animations
-    initializeAnimations() {
-        // Add fade-in animation to main content
-        const mainContent = document.querySelector('main');
-        if (mainContent) {
-            mainContent.classList.add('fade-in');
-        }
-
-        // Intersection Observer for scroll animations
-        if ('IntersectionObserver' in window) {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('slide-up');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            // Observe cards and sections
-            const animatedElements = document.querySelectorAll('.card, section');
-            animatedElements.forEach(element => {
-                observer.observe(element);
-            });
-        }
-    },
-
-    // Load user preferences from localStorage
-    loadUserPreferences() {
-        const preferences = localStorage.getItem('mis3010_preferences');
-        if (preferences) {
-            try {
-                const prefs = JSON.parse(preferences);
-                this.applyUserPreferences(prefs);
-            } catch (e) {
-                console.warn('Failed to load user preferences:', e);
-            }
-        }
-    },
-
-    // Apply user preferences
-    applyUserPreferences(preferences) {
-        // Apply theme preference
-        if (preferences.theme) {
-            document.documentElement.setAttribute('data-bs-theme', preferences.theme);
-        }
-        
-        // Apply any other preferences
-        if (preferences.animations === false) {
-            document.body.classList.add('no-animations');
-        }
-    },
-
-    // Save user preferences to localStorage
-    saveUserPreferences(preferences) {
-        try {
-            localStorage.setItem('mis3010_preferences', JSON.stringify(preferences));
-        } catch (e) {
-            console.warn('Failed to save user preferences:', e);
-        }
-    },
-
-    // API utility functions
-    api: {
-        // Generic API call function
-        async call(endpoint, options = {}) {
-            try {
-                const response = await fetch(endpoint, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        ...options.headers
-                    },
-                    ...options
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                return await response.json();
-            } catch (error) {
-                console.error('API call failed:', error);
-                throw error;
-            }
-        },
-
-        // Get current time from server
-        async getTime() {
-            return this.call('/api/time');
-        },
-
-        // Get users (admin only)
-        async getUsers() {
-            return this.call('/api/users');
-        }
-    },
-
-    // Utility functions
-    utils: {
-        // Format date for display
-        formatDate(date, options = {}) {
-            const defaultOptions = {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            };
-            return new Date(date).toLocaleDateString('en-US', { ...defaultOptions, ...options });
-        },
-
-        // Format time for display
-        formatTime(date, options = {}) {
-            const defaultOptions = {
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: false
-            };
-            return new Date(date).toLocaleTimeString('en-US', { ...defaultOptions, ...options });
-        },
-
-        // Debounce function
-        debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        },
-
-        // Show notification (using Bootstrap alerts or custom implementation)
-        showNotification(message, type = 'info', duration = 5000) {
-            const alertContainer = document.getElementById('alert-container') || document.querySelector('.container');
-            
-            const alertElement = document.createElement('div');
-            alertElement.className = `alert alert-${type} alert-dismissible fade show`;
-            alertElement.innerHTML = `
-                ${message}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            `;
-            
-            alertContainer.insertBefore(alertElement, alertContainer.firstChild);
-            
-            // Auto-remove after duration
-            setTimeout(() => {
-                if (alertElement.parentNode) {
-                    alertElement.remove();
-                }
-            }, duration);
-        },
-
-        // Copy text to clipboard
-        async copyToClipboard(text) {
-            try {
-                await navigator.clipboard.writeText(text);
-                this.showNotification('Copied to clipboard!', 'success', 2000);
-            } catch (err) {
-                console.error('Failed to copy text: ', err);
-                this.showNotification('Failed to copy to clipboard', 'danger', 3000);
-            }
-        }
-    }
-};
-
-// Initialize app when DOM is loaded
+// Cyclone Tickets client-side helpers
 document.addEventListener('DOMContentLoaded', () => {
-    MIS3010App.init();
-});
+    const rows = document.querySelectorAll('.sec-row[data-key]');
+    const shapes = document.querySelectorAll('.map-sec[data-key]');
+    const secInput = document.getElementById('section-input');
+    const qty = document.getElementById('qty');
+    const addBtn = document.getElementById('add-btn');
+    const summary = document.getElementById('pick-summary');
+    if (!rows.length) return;
 
-// Handle page visibility changes
-document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible') {
-        // Resume time updates when page becomes visible
-        const timeElement = document.getElementById('current-time');
-        if (timeElement) {
-            MIS3010App.updateDateTime();
-        }
+    function select(key) {
+        const row = document.querySelector(`.sec-row[data-key="${key}"]`);
+        if (!row || row.classList.contains('soldout')) return;
+        rows.forEach(r => r.classList.toggle('selected', r === row));
+        shapes.forEach(s => s.classList.toggle('selected', s.dataset.key === key));
+        secInput.value = key;
+        const avail = parseInt(row.dataset.avail, 10);
+        qty.max = Math.min(avail, parseInt(qty.dataset.max, 10));
+        if (parseInt(qty.value, 10) > qty.max) qty.value = qty.max;
+        addBtn.disabled = false;
+        update();
+        row.scrollIntoView({behavior: 'smooth', block: 'nearest'});
     }
+    function update() {
+        const row = document.querySelector('.sec-row.selected');
+        if (!row) return;
+        const total = parseFloat(row.dataset.price) * (parseInt(qty.value, 10) || 0);
+        summary.textContent = `${qty.value} × ${row.dataset.name} · $${total.toFixed(2)} before fees`;
+    }
+    rows.forEach(r => r.addEventListener('click', () => select(r.dataset.key)));
+    shapes.forEach(s => s.addEventListener('click', () => select(s.dataset.key)));
+    qty.addEventListener('input', update);
+
+    // Keep availability fresh while the page is open
+    const eventId = document.body.dataset.event;
+    if (eventId) setInterval(async () => {
+        try {
+            const inv = await (await fetch(`/api/availability/${eventId}`)).json();
+            rows.forEach(r => {
+                const a = inv[r.dataset.key].avail;
+                r.dataset.avail = a;
+                r.querySelector('.avail').textContent = a > 0 ? `${a} left` : 'Sold out';
+                r.classList.toggle('soldout', a === 0);
+            });
+        } catch (e) { /* offline, ignore */ }
+    }, 15000);
 });
-
-// Handle window resize for responsive features
-window.addEventListener('resize', MIS3010App.utils.debounce(() => {
-    // Handle any responsive adjustments
-    MIS3010App.setupResponsiveNavigation();
-}, 250));
-
-// Export for use in other scripts
-window.MIS3010App = MIS3010App;

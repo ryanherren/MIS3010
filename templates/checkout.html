@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Checkout | Cyclone Tickets{% endblock %}
+{% block content %}
+<div class="container py-4">
+    <h1 class="fw-bold mb-4">Checkout</h1>
+    <div class="row g-4">
+        <div class="col-lg-7">
+            <form method="post" class="panel">
+                <h5 class="fw-bold mb-3"><i class="far fa-credit-card text-cardinal me-2"></i>Payment</h5>
+                <div class="alert bg-pink-soft small">Demo only. Enter any 16 digits. Nothing is charged or stored.</div>
+                <div class="mb-3"><label class="form-label">Name on card</label><input class="form-control" name="name" value="{{ user.name }}" required></div>
+                <div class="mb-3"><label class="form-label">Card number</label><input class="form-control" name="card" placeholder="4242 4242 4242 4242" inputmode="numeric" required></div>
+                <div class="row g-3 mb-3">
+                    <div class="col"><label class="form-label">Expires</label><input class="form-control" placeholder="MM/YY"></div>
+                    <div class="col"><label class="form-label">CVC</label><input class="form-control" placeholder="123"></div>
+                </div>
+                <button class="btn btn-cardinal btn-lg w-100">Pay {{ totals.total|money }}</button>
+            </form>
+        </div>
+        <div class="col-lg-5">
+            <div class="panel">
+                <h5 class="fw-bold">Your tickets</h5>
+                {% for l in lines %}
+                <div class="d-flex justify-content-between small mb-2">
+                    <span>{{ l.qty }} × {{ l.sport.name }} vs {{ l.event.opponent }}<br><span class="text-muted">{{ l.section.name }}</span></span>
+                    <span>{{ l.subtotal|money }}</span>
+                </div>
+                {% endfor %}
+                <hr>
+                <div class="d-flex justify-content-between small"><span>Service fees</span><span>{{ totals.fees|money }}</span></div>
+                <div class="d-flex justify-content-between summary-total mt-1"><span>Total</span><span>{{ totals.total|money }}</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

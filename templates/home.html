@@ -1,119 +1,46 @@
 {% extends "base.html" %}
-
-{% block title %}Home - MIS 3010{% endblock %}
-
 {% block content %}
-<div class="hero-section bg-cardinal-gold-gradient text-white py-5">
-    <div class="container text-center">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <h1 class="display-4 fw-bold mb-4">
-                    <i class="fas fa-graduation-cap me-3 text-gold"></i>
-                    Welcome to MIS 3010
-                </h1>
-                
-                <div class="datetime-display bg-white bg-opacity-10 rounded-4 p-4 mb-4">
-                    <div class="row">
-                        <div class="col-md-6 mb-3 mb-md-0">
-                            <h5 class="mb-2">
-                                <i class="fas fa-calendar-alt me-2"></i>Current Date
-                            </h5>
-                            <p class="h4 mb-0" id="current-date">Loading...</p>
-                        </div>
-                        <div class="col-md-6">
-                            <h5 class="mb-2">
-                                <i class="fas fa-clock me-2"></i>Current Time
-                            </h5>
-                            <p class="h2 mb-0 font-monospace" id="current-time">00:00:00</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <p class="lead mb-4">
-                    Management Information Systems - Real World Applications of Artificial Intelligence
-                </p>
-                
-                <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-                    <a href="{{ url_for('about') }}" class="btn btn-secondary btn-lg">
-                        <i class="fas fa-user me-2"></i>Learn About Me
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<section class="py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <div class="feature-icon bg-cardinal text-white rounded-circle mb-3">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h5 class="card-title">Modern Technologies</h5>
-                        <p class="card-text">Built with Flask, Bootstrap 5, and modern web standards for a responsive experience.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <div class="feature-icon bg-gold text-dark rounded-circle mb-3">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <h5 class="card-title">Database Integration</h5>
-                        <p class="card-text">SQLAlchemy ORM with support for both SQLite development and PostgreSQL production.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <div class="feature-icon bg-cardinal text-white rounded-circle mb-3">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <h5 class="card-title">Mobile Responsive</h5>
-                        <p class="card-text">Mobile-first design approach ensuring great user experience across all devices.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<section class="hero py-5">
+    <div class="container py-4">
+        <span class="badge bg-warning text-dark mb-3">Official Iowa State Athletics Ticketing</span>
+        <h1 class="display-4 fw-bold">Be there when the<br><span class="text-gold">Cyclones</span> roll.</h1>
+        <p class="lead col-lg-6">Football, basketball, wrestling, volleyball and more. Pick your seat on the map, pay once, and put your tickets in your phone's wallet.</p>
+        <a href="#upcoming" class="btn btn-gold btn-lg me-2">Find a Game</a>
+        <a href="{{ url_for('sport', sport_key='football') }}" class="btn btn-outline-light btn-lg">Football Tickets</a>
     </div>
 </section>
 
-{% endblock %}
+<section class="container py-5">
+    <h2 class="fw-bold mb-4">Shop by sport</h2>
+    <div class="row g-3">
+        {% for k, s in sports.items() %}
+        <div class="col-6 col-md-4 col-lg">
+            <a class="sport-tile" href="{{ url_for('sport', sport_key=k) }}">
+                <i class="fas {{ s.icon }}"></i>
+                <div class="fw-bold">{{ s.name }}</div>
+                <div class="small text-muted">{{ s.blurb }}</div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
 
-{% block scripts %}
-<script>
-    // Update time continuously
-    function updateDateTime() {
-        const now = new Date();
-        
-        // Update date
-        const dateOptions = { 
-            weekday: 'long', 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-        };
-        document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', dateOptions);
-        
-        // Update time
-        const timeOptions = {
-            hour12: false,
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit'
-        };
-        document.getElementById('current-time').textContent = now.toLocaleTimeString('en-US', timeOptions);
-    }
-    
-    // Update immediately and then every second
-    updateDateTime();
-    setInterval(updateDateTime, 1000);
-</script>
+<section class="container pb-4" id="upcoming">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+        <h2 class="fw-bold mb-0">Upcoming games</h2>
+    </div>
+    <div class="row g-4">
+        {% for ev in featured %}
+        <div class="col-md-6 col-lg-3">{% include '_event_card.html' %}</div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="container py-5">
+    <div class="row g-4 text-center">
+        <div class="col-md-4"><div class="panel h-100"><i class="fas fa-map fa-2x text-cardinal mb-2"></i><h5 class="fw-bold">Pick from the map</h5><p class="text-muted mb-0">See exactly where your seats are in Jack Trice and Hilton before you buy.</p></div></div>
+        <div class="col-md-4"><div class="panel h-100"><i class="fas fa-ticket text-gold fa-2x mb-2"></i><h5 class="fw-bold">General admission too</h5><p class="text-muted mb-0">Student and family GA sections keep game day affordable.</p></div></div>
+        <div class="col-md-4"><div class="panel h-100"><i class="fas fa-wallet fa-2x mb-2" style="color:var(--pink)"></i><h5 class="fw-bold">Mobile wallet ready</h5><p class="text-muted mb-0">Add every ticket to Apple Wallet or Google Wallet and skip the printout.</p></div></div>
+    </div>
+</section>
 {% endblock %}

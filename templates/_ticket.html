@@ -1,0 +1,17 @@
+<div class="ticket mb-3">
+    <div class="ticket-main">
+        <div class="small text-cardinal fw-bold">{{ t.sport.name|upper }}</div>
+        <h5 class="fw-bold mb-1">Cyclones vs {{ t.ev.opponent }}</h5>
+        <div class="small text-muted mb-2">{{ t.ev.when|gamedate }} &middot; {{ t.ev.when|gametime }} &middot; {{ t.ev.venue }}</div>
+        <div class="row small">
+            <div class="col-6"><div class="text-muted">Section</div><div class="fw-semibold">{{ t.section.name }}</div></div>
+            <div class="col-3"><div class="text-muted">Row</div><div class="fw-semibold">{{ t.row or 'GA' }}</div></div>
+            <div class="col-3"><div class="text-muted">Seat</div><div class="fw-semibold">{{ t.seat or 'Open' }}</div></div>
+        </div>
+        <div class="small text-muted mt-2"><i class="fas fa-location-dot me-1"></i>{{ t.section.where }}</div>
+    </div>
+    <div class="ticket-stub">
+        <div class="small fw-bold mb-2">{{ t.id }}</div>
+        <a href="{{ url_for('wallet', tid=t.id) }}" class="btn btn-dark btn-sm"><i class="fas fa-wallet me-1"></i>Add to Wallet</a>
+    </div>
+</div>

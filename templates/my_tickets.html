@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}My Tickets | Cyclone Tickets{% endblock %}
+{% block content %}
+<div class="container py-4 col-lg-8">
+    <h1 class="fw-bold mb-4">My tickets</h1>
+    {% for t in tickets %}{% include '_ticket.html' %}
+    {% else %}
+    <div class="panel text-center py-5"><p class="lead">No tickets yet.</p><a class="btn btn-cardinal" href="{{ url_for('home') }}">Find a game</a></div>
+    {% endfor %}
+</div>
+{% endblock %}

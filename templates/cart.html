@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Your Cart | Cyclone Tickets{% endblock %}
+{% block content %}
+<div class="container py-4">
+    <h1 class="fw-bold mb-4"><i class="fas fa-cart-shopping text-cardinal me-2"></i>Your cart</h1>
+    {% if not lines %}
+    <div class="panel text-center py-5">
+        <p class="lead">Your cart is empty.</p>
+        <a href="{{ url_for('home') }}" class="btn btn-cardinal">Find a game</a>
+    </div>
+    {% else %}
+    <div class="row g-4">
+        <div class="col-lg-8">
+            {% for l in lines %}
+            <div class="panel mb-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <div>
+                    <div class="fw-bold">{{ l.sport.name }}: Cyclones vs {{ l.event.opponent }}</div>
+                    <div class="small text-muted">{{ l.event.when|gamedate }} &middot; {{ l.event.when|gametime }} &middot; {{ l.event.venue }}</div>
+                    <div class="mt-1"><span class="tag">{{ l.section.name }}</span> <span class="small text-muted ms-1">{{ l.section.where }}</span></div>
+                </div>
+                <div class="text-end">
+                    <div>{{ l.qty }} × {{ l.price|money }}</div>
+                    <div class="fw-bold text-cardinal">{{ l.subtotal|money }}</div>
+                    <form method="post" action="{{ url_for('cart_remove') }}">
+                        <input type="hidden" name="event" value="{{ l.event.id }}"><input type="hidden" name="section" value="{{ l.section_key }}">
+                        <button class="btn btn-sm btn-link text-muted p-0">Remove</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-lg-4">
+            <div class="panel">
+                <h5 class="fw-bold">Order summary</h5>
+                <div class="d-flex justify-content-between"><span>{{ totals.count }} ticket{{ 's' if totals.count != 1 }}</span><span>{{ totals.subtotal|money }}</span></div>
+                <div class="d-flex justify-content-between"><span>Service fees</span><span>{{ totals.fees|money }}</span></div>
+                <hr>
+                <div class="d-flex justify-content-between summary-total"><span>Total</span><span>{{ totals.total|money }}</span></div>
+                <a href="{{ url_for('checkout') }}" class="btn btn-cardinal w-100 mt-3">Checkout</a>
+                {% if not user %}<div class="small text-muted mt-2">You'll be asked to log in or sign up first.</div>{% endif %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

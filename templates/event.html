@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}{{ sport.name }} vs {{ ev.opponent }} | Cyclone Tickets{% endblock %}
+{% block body_attrs %}data-event="{{ ev.id }}"{% endblock %}
+{% block content %}
+<section class="hero py-4"><div class="container">
+    <span class="tag">{{ ev.tag }}</span>
+    <h1 class="fw-bold mt-2">Cyclones vs {{ ev.opponent }}</h1>
+    <p class="mb-0"><i class="fas {{ sport.icon }} me-1 text-gold"></i>{{ sport.name }} &middot;
+        <i class="far fa-clock mx-1"></i>{{ ev.when|gamedate }}, {{ ev.when|gametime }} &middot;
+        <i class="fas fa-location-dot mx-1"></i>{{ venue.name }}, {{ venue.city }}</p>
+</div></section>
+
+<div class="container py-4">
+<div class="row g-4">
+    <div class="col-lg-7">
+        <div class="map-wrap">
+            <h5 class="fw-bold mb-2">{{ venue.name }} map <small class="text-muted fw-normal">(click a section)</small></h5>
+            <svg viewBox="0 0 600 420" class="w-100" role="img" aria-label="{{ venue.name }} seating map">
+                {% if venue.surface == 'field' %}
+                <rect class="map-field" x="120" y="150" width="360" height="120" rx="6"/>
+                <line class="map-line" x1="300" y1="150" x2="300" y2="270"/>
+                <line class="map-line" x1="190" y1="150" x2="190" y2="270"/>
+                <line class="map-line" x1="410" y1="150" x2="410" y2="270"/>
+                <text x="300" y="215" text-anchor="middle" font-weight="800" fill="#fff" font-size="20">JACK TRICE</text>
+                {% else %}
+                <rect class="map-court" x="160" y="155" width="280" height="110" rx="6"/>
+                <circle class="map-line" cx="300" cy="210" r="22"/>
+                <line class="map-line" x1="300" y1="155" x2="300" y2="265"/>
+                <text x="300" y="214" text-anchor="middle" font-weight="800" fill="#7a4b12" font-size="14" dy="42">HILTON COURT</text>
+                {% endif %}
+                {% for r in rows %}
+                {% set x, y, w, h = r.rect %}
+                <rect class="map-sec {{ 'ga' if r.ga }} {{ 'premium' if r.tier == 'Premium' }} {{ 'soldout' if r.avail == 0 }}"
+                      data-key="{{ r.key }}" x="{{ x }}" y="{{ y }}" width="{{ w }}" height="{{ h }}" rx="8"><title>{{ r.name }}: ${{ r.price }}</title></rect>
+                <text class="map-label {{ 'dark' if r.ga }}" x="{{ x + w/2 }}" y="{{ y + h/2 + 4 }}">{{ r.key.split('-')[0] if w < 100 else r.name.replace('General Admission ', 'GA ') }}</text>
+                {% endfor %}
+            </svg>
+            <div class="small mt-2">
+                <span class="me-3"><span class="legend-dot" style="background:var(--cardinal)"></span>Premium</span>
+                <span class="me-3"><span class="legend-dot" style="background:var(--pink)"></span>Reserved</span>
+                <span class="me-3"><span class="legend-dot" style="background:var(--gold)"></span>General admission</span>
+                <span><span class="legend-dot" style="background:var(--ink)"></span>Your pick</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <h5 class="fw-bold">Choose your seats</h5>
+        <div class="d-grid gap-2 mb-3">
+            {% for r in rows|sort(attribute='price', reverse=True) %}
+            <div class="sec-row {{ 'soldout' if r.avail == 0 }}" data-key="{{ r.key }}" data-price="{{ r.price }}" data-avail="{{ r.avail }}" data-name="{{ r.name }}">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="fw-bold">{{ r.name }} {% if r.ga %}<span class="badge text-bg-warning">GA</span>{% endif %}</div>
+                        <div class="small text-muted">{{ r.where }}</div>
+                    </div>
+                    <div class="text-end ms-2">
+                        <div class="price">${{ r.price }}</div>
+                        <div class="small avail {{ 'low-stock' if r.avail < 60 }}">{{ (r.avail ~ ' left') if r.avail else 'Sold out' }}</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <form method="post" action="{{ url_for('cart_add') }}" class="panel">
+            <input type="hidden" name="event" value="{{ ev.id }}">
+            <input type="hidden" name="section" id="section-input" value="">
+            <label class="form-label fw-semibold" for="qty">How many tickets?</label>
+            <input type="number" class="form-control mb-2" id="qty" name="qty" value="2" min="1" max="{{ max_qty }}" data-max="{{ max_qty }}">
+            <div class="small text-muted mb-3" id="pick-summary">Select a section to see your total.</div>
+            <button class="btn btn-cardinal w-100" id="add-btn" disabled><i class="fas fa-cart-plus me-2"></i>Add to cart</button>
+            <div class="small text-muted mt-2">Limit {{ max_qty }} per order &middot; $3 service fee per ticket</div>
+        </form>
+    </div>
+</div>
+</div>
+{% endblock %}

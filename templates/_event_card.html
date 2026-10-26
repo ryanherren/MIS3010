@@ -1,0 +1,26 @@
+{% set st = stats(ev) %}
+{% set sp = sports[ev.sport] %}
+<div class="card event-card">
+    <div class="card-body d-flex flex-column">
+        <div class="d-flex gap-3 mb-2">
+            <div class="date-block"><div class="m">{{ ev.when.strftime('%b')|upper }}</div><div class="d">{{ ev.when.day }}</div></div>
+            <div>
+                <span class="tag">{{ ev.tag }}</span>
+                <h5 class="fw-bold mb-0 mt-1">Cyclones vs {{ ev.opponent }}</h5>
+                <div class="text-muted small"><i class="fas {{ sp.icon }} me-1 text-cardinal"></i>{{ sp.name }}</div>
+            </div>
+        </div>
+        <div class="small text-muted mb-3">
+            <div><i class="far fa-clock me-1"></i>{{ ev.when|gamedate }} &middot; {{ ev.when|gametime }}</div>
+            <div><i class="fas fa-location-dot me-1"></i>{{ ev.venue }}</div>
+        </div>
+        <div class="mt-auto d-flex justify-content-between align-items-end">
+            <div>
+                <div class="small text-muted">From</div>
+                <div class="price">${{ st.from }}</div>
+                <div class="small {% if st.avail < 600 %}low-stock{% else %}text-muted{% endif %}">{{ '{:,}'.format(st.avail) }} tickets left</div>
+            </div>
+            <a href="{{ url_for('event', event_id=ev.id) }}" class="btn btn-cardinal">Get Tickets</a>
+        </div>
+    </div>
+</div>
