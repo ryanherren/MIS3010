@@ -76,6 +76,8 @@ def gamedate(d):
 
 @app.template_filter('gametime')
 def gametime(d):
+    if d.hour == 0 and d.minute == 0:
+        return 'Time TBA'
     return d.strftime('%-I:%M %p')
 
 
@@ -93,7 +95,7 @@ def event_stats(ev):
 # ---------- pages ----------
 @app.route('/')
 def home():
-    featured = [e for e in sport_events() if e['when'] >= datetime(2026, 10, 26)][:4]
+    featured = [e for e in sport_events() if e['when'].date() >= datetime.now().date()][:4]
     return render_template('home.html', featured=featured, stats=event_stats)
 
 

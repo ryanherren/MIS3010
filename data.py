@@ -70,27 +70,39 @@ SPORTS = {
                         'blurb': 'Hilton Magic is real.'},
     'womens-basketball': {'name': "Women's Basketball", 'icon': 'fa-basketball', 'venue': 'hilton', 'mult': 0.7,
                           'blurb': 'Cyclone women ball out at Hilton.'},
-    'wrestling': {'name': 'Wrestling', 'icon': 'fa-hand-fist', 'venue': 'hilton', 'mult': 0.8,
-                  'blurb': 'Cael Sanderson-era power, Cyclone-style.'},
     'volleyball': {'name': 'Volleyball', 'icon': 'fa-volleyball', 'venue': 'hilton', 'mult': 0.6,
                    'blurb': 'Loud, fast, and sold out often.'},
 }
 
-# (id, sport, opponent, date, home?)
+# Real 2026-27 home schedule from cyclones.com announcements. Missing time = TBA.
+# (id, sport, opponent, date[, time], tag)
 _RAW_EVENTS = [
-    (1, 'football', 'Iowa Hawkeyes', '2026-09-12 15:30', 'Cy-Hawk Game'),
-    (2, 'football', 'Kansas State Wildcats', '2026-10-03 11:00', 'Big 12 Opener'),
-    (3, 'football', 'Texas Tech Red Raiders', '2026-11-07 14:00', 'Homecoming'),
-    (4, 'football', 'Oklahoma State Cowboys', '2026-11-21 18:00', 'Senior Night'),
-    (5, 'mens-basketball', 'Kansas Jayhawks', '2026-12-05 19:00', 'Big 12 Showdown'),
-    (6, 'mens-basketball', 'Iowa Hawkeyes', '2026-12-11 18:00', 'Cy-Hawk Series'),
-    (7, 'mens-basketball', 'Baylor Bears', '2027-01-17 14:00', 'Big 12 Play'),
-    (8, 'womens-basketball', 'Drake Bulldogs', '2026-11-20 18:30', 'Season Opener'),
-    (9, 'womens-basketball', 'TCU Horned Frogs', '2027-01-24 13:00', 'Big 12 Play'),
-    (10, 'wrestling', 'Iowa Hawkeyes', '2027-02-01 19:00', 'Cy-Hawk Dual'),
-    (11, 'wrestling', 'Oklahoma State Cowboys', '2027-02-14 14:00', 'Big 12 Dual'),
-    (12, 'volleyball', 'Nebraska Cornhuskers', '2026-10-30 19:00', 'Rivalry Night'),
-    (13, 'volleyball', 'Kansas Jayhawks', '2026-11-13 19:00', 'Big 12 Play'),
+    (1, 'football', 'Oklahoma State Cowboys', '2026-10-31', 'Big 12 Play'),
+    (2, 'football', 'Cincinnati Bearcats', '2026-11-14', 'Big 12 Play'),
+    (3, 'football', 'Kansas State Wildcats', '2026-11-28', 'Regular Season Finale'),
+    (4, 'volleyball', 'West Virginia Mountaineers', '2026-10-30 18:30', 'Big 12 Play'),
+    (5, 'volleyball', 'Kansas Jayhawks', '2026-11-01 12:00', 'Big 12 Play'),
+    (6, 'volleyball', 'BYU Cougars', '2026-11-07 14:00', 'Big 12 Play'),
+    (7, 'volleyball', 'Cincinnati Bearcats', '2026-11-16 18:30', 'Big 12 Play'),
+    (8, 'volleyball', 'Houston Cougars', '2026-11-25', 'Regular Season Finale'),
+    (9, 'mens-basketball', 'Southern Miss Golden Eagles', '2026-11-06', 'Home Opener'),
+    (10, 'mens-basketball', 'Southern Jaguars', '2026-11-10', 'Non-Conference'),
+    (11, 'mens-basketball', 'Niagara Purple Eagles', '2026-11-15', 'Non-Conference'),
+    (12, 'mens-basketball', 'Alcorn State Braves', '2026-12-02', 'Non-Conference'),
+    (13, 'mens-basketball', 'Purdue Boilermakers', '2026-12-06', 'First Ames Visit'),
+    (14, 'mens-basketball', 'North Carolina Central Eagles', '2026-12-13', 'Non-Conference'),
+    (15, 'mens-basketball', 'Northern Arizona Lumberjacks', '2026-12-21', 'Non-Conference'),
+    (16, 'mens-basketball', 'New Hampshire Wildcats', '2026-12-29', 'Non-Conference'),
+    (17, 'womens-basketball', 'Upper Iowa Peacocks', '2026-10-28', 'Exhibition'),
+    (18, 'womens-basketball', 'Grambling State Tigers', '2026-11-02', 'Season Opener'),
+    (19, 'womens-basketball', 'Nicholls State Colonels', '2026-11-05', 'Non-Conference'),
+    (20, 'womens-basketball', 'Eastern Illinois Panthers', '2026-11-08', 'Non-Conference'),
+    (21, 'womens-basketball', 'Howard Bison', '2026-11-12', 'Non-Conference'),
+    (22, 'womens-basketball', 'UIC Flames', '2026-11-15', 'Non-Conference'),
+    (23, 'womens-basketball', 'Drake Bulldogs', '2026-11-22', 'Non-Conference'),
+    (24, 'womens-basketball', 'Norfolk State Spartans', '2026-12-01', 'Non-Conference'),
+    (25, 'womens-basketball', 'Loyola Ramblers', '2026-12-06', 'Non-Conference'),
+    (26, 'womens-basketball', 'Chicago State Cougars', '2026-12-13', 'Non-Conference'),
 ]
 
 EVENTS = {}
@@ -102,10 +114,10 @@ def _build():
         s = SPORTS[sport]
         venue = VENUES[s['venue']]
         # Marquee games cost a little more
-        bump = 1.35 if opp in ('Iowa Hawkeyes', 'Kansas Jayhawks') else 1.0
+        bump = 1.35 if opp in ('Purdue Boilermakers', 'Oklahoma State Cowboys', 'Kansas State Wildcats', 'Kansas Jayhawks') else 1.0
         EVENTS[eid] = {
             'id': eid, 'sport': sport, 'opponent': opp, 'tag': tag,
-            'when': datetime.strptime(when, '%Y-%m-%d %H:%M'),
+            'when': datetime.strptime(when, '%Y-%m-%d %H:%M' if ' ' in when else '%Y-%m-%d'),
             'venue_key': s['venue'], 'venue': venue['name'],
         }
         INVENTORY[eid] = {}
